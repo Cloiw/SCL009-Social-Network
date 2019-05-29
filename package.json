@@ -1,0 +1,44 @@
+{
+  "name": "scl009-social-network",
+  "version": "0.0.1",
+  "description": "Red Social",
+  "main": "src/index.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "eslint": "eslint --ext .js src/ test/",
+    "htmlhint": "htmlhint src/*.html",
+    "pretest": "npm run eslint && npm run htmlhint",
+    "deploy": "gh-pages -d src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cloiw/SCL009-Social-Network.git"
+  },
+  "keywords": [
+    "test",
+    "firebase",
+    "red",
+    "social"
+  ],
+  "author": "Tatiana Castro, Betsi, Claudia Sirvent",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cloiw/SCL009-Social-Network/issues"
+  },
+  "homepage": "https://github.com/Cloiw/SCL009-Social-Network#readme",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.4.4",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^24.8.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-jest": "^22.6.4",
+    "express": "^4.17.1",
+    "gh-pages": "^2.0.1",
+    "htmlhint": "^0.11.0",
+    "jest": "^24.8.0"
+  }
+}
