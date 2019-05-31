@@ -1,0 +1,112 @@
+@import url('htpps://fonts.googleapis.com/css?family=Cousine&display=swap');
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+   }
+   body{
+    background-color: rgb(255, 255, 255);
+   }
+   header{
+       text-align: center;
+      
+   }
+   .subtitulo{
+       text-align: center;
+        color: #BC0202;
+        font-family: 'Cousine', monospace;
+        
+   }
+   .penter{
+    background-color: #BC0202;
+    color: white;
+    padding: 30px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    margin-left: 500px;
+    margin-right: 500px;
+    border-radius: 20px;
+    border: 5px solid #7a7a7a;
+    font-family: 'Cousine', monospace;
+    font-size: 26px;
+    
+    }
+    a{
+        text-decoration: none;
+    }
+    .textregister{
+        background-color: #7a7a7a;
+        padding: 30px;
+        text-align: center;
+        color: white;
+        font-family: 'Cousine', monospace;
+        font-size: 26px;
+            }
+    .pass{
+        text-align: center;
+        margin-top: 30px;
+        size: 100px;
+
+    }
+    .mail{
+        text-align: center;
+        margin-top: 10px;
+        size:100px;
+    }
+
+ 
+   /* Mobile Styles */
+   @media only screen and (max-width: 400px) {
+    .logoimg{
+        width: auto;
+        height: 20vh;
+    }
+    .subtitulo{
+        font-size: 18px;
+    }
+    .penter{
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 20px;
+    font-size: 26px;
+    }
+    
+   }
+   
+   /* Tablet Styles */
+   @media only screen and (min-width: 401px) and (max-width: 960px) {
+    .logoimg{
+        width: auto;
+        height: 30vh;
+    }
+    .subtitulo{
+        font-size: 20px;
+    }
+    .penter{
+        padding: 30px;
+        margin-top: 50px;
+        margin-bottom: 100px;
+        margin-left: 150px;
+        margin-right: 150px;
+        border-radius: 20px;
+        font-size: 26px;
+        }
+   }
+   
+   /* Desktop Styles */
+   @media only screen and (min-width: 961px) {
+    .logoimg{
+        width: auto;
+        height: 50vh;
+    }
+    .subtitulo{
+        font-size: 30px;
+    }
+    
+   }
