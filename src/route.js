@@ -43,7 +43,7 @@ const showTemplate = (hash) =>{
         case '':
             templateHome();
             break;
-        case 'about':
+        case 'create':
             templateCreate();
             break;
         default:
