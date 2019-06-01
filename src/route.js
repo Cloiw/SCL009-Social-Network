@@ -31,7 +31,7 @@ const changeRoute = (hash) =>{
 const showTemplate = (hash) =>{
     //Se saca el #/ del string
     const router = hash.substring(2);
-    //Obtener desde el html el id del elemento donde se imprimirá shohTemplate
+    //Obtener desde el html el id del elemento donde se imprimirá showTemplate
     const containerRoot = document.getElementById('root');
     containerRoot.innerHTML='';
 
