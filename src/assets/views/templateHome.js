@@ -7,4 +7,5 @@ export const templateHome = () => {
     <button class="btn-google-login" id="login">Login con Google</button> 
     </div>`
 
+
 }
