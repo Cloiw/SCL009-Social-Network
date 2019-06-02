@@ -2,7 +2,7 @@
 
 //importación de los templates construidos
 import {templateHome} from './assets/views/templateHome.js';
-import {templateCreate} from './assets/views/templateCreate.js';
+// import {templateCreate} from './assets/views/templateCreate.js';
 
 
 /*Crear una función que reciba el hash (#) y según la coincidencia retorne otra función que va imprimir
@@ -15,10 +15,10 @@ const changeRoute = (hash) =>{
         return showTemplate(hash);
     }
 
-    if (hash === '#/create') {
-        //le pasa como parametro #/about a la función showTemplate
-        return showTemplate(hash);
-    }
+    // if (hash === '#/create') {
+    //     //le pasa como parametro #/about a la función showTemplate
+    //     return showTemplate(hash);
+    // }
 
     if (hash === '') {
         //le pasa como parametro #/ a la función showTemplate
