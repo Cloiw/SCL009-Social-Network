@@ -9,64 +9,101 @@
    body{
     background-color: rgb(255, 255, 255);
    }
-   header{
+   .logo{
        text-align: center;
-      
-   }
-   .subtitulo{
-       text-align: center;
-        color: #BC0202;
-        font-family: 'Cousine', monospace;
         
    }
-   .penter{
-    background-color: #BC0202;
-    color: white;
-    padding: 30px;
-    margin-top: 50px;
-    margin-bottom: 30px;
+  p{
+     margin-top: 30px;
+     text-align: center;
+     color: darkslategray;
+     font-family: 'Cousine', monospace;
+        
+   }
+   hr{
+       margin-top: 20px;
+       margin-left: 480px;
+       height: 5px;
+       width: 400px;
+       border-color: #BC0202;
+       background-color: #BC0202; 
+   }
+   .email{
     text-align: center;
-    margin-left: 500px;
-    margin-right: 500px;
-    border-radius: 20px;
-    border: 5px solid #7a7a7a;
+    margin-left: 550px;
+    margin-top: 10px;
+    width: 20%;
+    padding: 12px 60px;
+    border-color: #BC0202;
+}
+   
+.password{
+    text-align: center;
+    margin-left: 550px;
+    margin-top: 30px;
+    width: 20%;
+    padding: 12px 60px;
+    border-color: #BC0202;
+
+}
+.btn-login{
+    padding: 10px 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 680px;
+    margin-right: 490px;
+    background-color: rgb(188, 2, 2);
+    color: white;
+    text-align: center;
     font-family: 'Cousine', monospace;
-    font-size: 26px;
+    font-size: 18px;
+    border-radius: 10px;
+     
+}
+
+   .btn-google-login{
+       text-align: center;
+    background-color: rgba(188, 2, 2, 0.562);
+    color: white;
+    padding: 12px 50px;
+    margin-top: 10px;
+    margin-left: 550px;
+    margin-right: 450px;
+    text-align: center;
+    font-family: 'Cousine', monospace;
+    font-size: 18px;
     
     }
-    a{
-        text-decoration: none;
-    }
-    .textregister{
-        background-color: #7a7a7a;
-        padding: 30px;
+    .btn-register{
         text-align: center;
+        background-color: #BC0202;
         color: white;
-        font-family: 'Cousine', monospace;
-        font-size: 26px;
-            }
-    .pass{
+        padding: 12px 60px;
+        border-radius: 10px;
+        margin-bottom: 50px;   
+        margin-left: 520px;
+        margin-right: 500px;
         text-align: center;
-        margin-top: 30px;
-        size: 100px;
+    font-family: 'Cousine', monospace;
+    font-size: 20px;
+    }
+    
 
-    }
-    .mail{
-        text-align: center;
-        margin-top: 10px;
-        size:100px;
-    }
 
  
    /* Mobile Styles */
    @media only screen and (max-width: 400px) {
-    .logoimg{
+    .logo{
         width: auto;
-        height: 20vh;
+        height: 10vh;   
     }
-    .subtitulo{
-        font-size: 18px;
-    }
+    p{
+        margin-top: 10px;
+        text-align: center;
+        color: #BC0202;
+        font-family: 'Cousine', monospace;
+           
+      }
     .penter{
     padding: 20px;
     margin-top: 50px;
