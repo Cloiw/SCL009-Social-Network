@@ -1,52 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Archivo:400,400i,600&display=swap');
 
-
- * {
+* {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    
-   }
-   body{
-    background-color: rgb(255, 255, 255);
-   }
-   .logo{
-       text-align: center;
-        
-   }
-  p{
-     margin-top: 30px;
-     text-align: center;
-     color: darkslategray;
-     font-family: 'Cousine', monospace;
-        
-   }
-   hr{
-       margin-top: 20px;
-       margin-left: 480px;
-       height: 5px;
-       width: 400px;
-       border-color: #BC0202;
-       background-color: #BC0202; 
-   }
-   .email{
-    text-align: center;
-    margin-left: 550px;
-    margin-top: 10px;
-    width: 20%;
-    padding: 12px 60px;
-    border-color: #BC0202;
 }
-   
-.password{
-    text-align: center;
-    margin-left: 550px;
-    margin-top: 30px;
-    width: 20%;
-    padding: 12px 60px;
-    border-color: #BC0202;
 
+body {
+    background-color: #F5F5F5;
 }
-.btn-login{
+
+.div-top {
+    text-align: center;
+}
+
+.logo {
+
+    width: auto;
+    height: 30vh;
+}
+
+.subtitle {
+    margin: 0 auto 2%;
+    font-family: 'Archivo';
+    font-style: italic;
+    font-weight: 400;
+    color: black;
+    font-size: 13px;
+}
+
+.hr-home {
+    height: 3px;
+    color: #BC0202;
+    background-color: #BC0202;
+    border: none;
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    -webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.4);
+}
+
+.btn-google-login {
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    padding: 10px 50px;
+    margin: 20px auto 20px auto;
+    border: 30px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 18px;
+    background: url('img/icon_google.png') 15px 8px no-repeat;
+    background-size: 10%;
+    background-color: #CF4332;
+}
+
+/* .btn-login {
     padding: 10px 40px;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -58,92 +67,51 @@
     font-family: 'Cousine', monospace;
     font-size: 18px;
     border-radius: 10px;
-     
-}
 
-   .btn-google-login{
-       text-align: center;
-    background-color: rgba(188, 2, 2, 0.562);
+} 
+
+
+.btn-register {
+    text-align: center;
+    background-color: #BC0202;
     color: white;
-    padding: 12px 50px;
-    margin-top: 10px;
-    margin-left: 550px;
-    margin-right: 450px;
+    padding: 12px 60px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    margin-left: 520px;
+    margin-right: 500px;
     text-align: center;
     font-family: 'Cousine', monospace;
-    font-size: 18px;
-    
-    }
-    .btn-register{
-        text-align: center;
-        background-color: #BC0202;
-        color: white;
-        padding: 12px 60px;
-        border-radius: 10px;
-        margin-bottom: 50px;   
-        margin-left: 520px;
-        margin-right: 500px;
-        text-align: center;
-    font-family: 'Cousine', monospace;
     font-size: 20px;
-    }
-    
+}
 
 
- 
-   /* Mobile Styles */
-   @media only screen and (max-width: 400px) {
-    .logo{
-        width: auto;
-        height: 10vh;   
-    }
-    p{
-        margin-top: 10px;
-        text-align: center;
-        color: #BC0202;
-        font-family: 'Cousine', monospace;
-           
-      }
-    .penter{
-    padding: 20px;
-    margin-top: 50px;
-    margin-bottom: 100px;
-    margin-left: 50px;
-    margin-right: 50px;
-    border-radius: 20px;
-    font-size: 26px;
-    }
-    
-   }
-   
-   /* Tablet Styles */
-   @media only screen and (min-width: 401px) and (max-width: 960px) {
-    .logoimg{
-        width: auto;
-        height: 30vh;
-    }
-    .subtitulo{
-        font-size: 20px;
-    }
-    .penter{
-        padding: 30px;
-        margin-top: 50px;
-        margin-bottom: 100px;
-        margin-left: 150px;
-        margin-right: 150px;
-        border-radius: 20px;
-        font-size: 26px;
-        }
-   }
-   
-   /* Desktop Styles */
-   @media only screen and (min-width: 961px) {
-    .logoimg{
-        width: auto;
-        height: 50vh;
-    }
-    .subtitulo{
-        font-size: 30px;
-    }
-    
-   }
+.email {
+    text-align: center;
+    margin-left: 550px;
+    margin-top: 10px;
+    width: 20%;
+    padding: 12px 60px;
+    border-color: #BC0202;
+}
+
+.password {
+    text-align: center;
+    margin-left: 550px;
+    margin-top: 30px;
+    width: 20%;
+    padding: 12px 60px;
+    border-color: #BC0202;
+}
+ */
+
+
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {}
