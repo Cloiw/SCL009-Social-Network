@@ -10,6 +10,7 @@ export const templateHome = () => {
    
     <button class="btn-google-login" id="btn-google-login">&nbsp&nbsp&nbspEntrar con Google</button> 
     <hr class="hr-home">
+    <p class="subtitle-register">¿No tienes una cuenta?</p>
     <button class="btn-register" id="btn-register">Registrarse</button>
 </div>
    </div>`
