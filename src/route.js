@@ -3,7 +3,8 @@
 //importación de los templates construidos
 import {templateHome} from './assets/views/templateHome.js';
 import {templateWall} from './assets/views/templateWall.js';
-// import {templateCreate} from './assets/views/templateCreate.js';
+import {templateCreate} from './assets/views/templateCreate.js';
+
 
 
 /*Crear una función que reciba el hash (#) y según la coincidencia retorne otra función que va imprimir
@@ -26,6 +27,11 @@ const changeRoute = (hash) =>{
         return showTemplate(hash);
     }
 
+    if (hash === '#/create') {
+        //le pasa como parametro #/ a la función showTemplate
+        return showTemplate(hash);
+
+    }
 }
 
 /*La función showTemplate(), se encarga de imprimir el template en el index.html*/
@@ -43,6 +49,9 @@ const showTemplate = (hash) =>{
             break;
         case '':
             templateHome();
+            break;
+        case 'create':
+            templateCreate();
             break;
         case 'wall':
             templateWall();
