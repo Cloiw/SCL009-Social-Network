@@ -7,12 +7,8 @@ export const templateCreate = () => {
     `<div>
     <div class="div-top">  <img class="logo" src="assets/img/logo_full.png" alt=""> 
     
-<<<<<<< Updated upstream
     <p class="p-register">Registro<p>
-=======
-    <p>Registro<p>
     <p id="error-name"></p>
->>>>>>> Stashed changes
     <input class="input-register"  id="user-name" placeholder="Nombre del personaje"><br>
     <p id="error-age"></p>
     <input class="input-register"  id="user-age" placeholder="Edad del personaje"><br>
