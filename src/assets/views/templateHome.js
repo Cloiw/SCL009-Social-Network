@@ -9,11 +9,17 @@ export const templateHome = () => {
    
     <button class="btn-google-login" id="btn-google-login">&nbsp&nbsp&nbspEntrar con Google</button> 
     <hr class="hr-home"></div>
+    <button class="btn-create-account" id="btn-create-account">Registrarse</button>
+
    </div>`
 document.getElementById("btn-google-login").addEventListener('click', ()=>{
 loginGoogle()
+})
 
-})}
+document.getElementById("btn-create-account").addEventListener('click', ()=>{
+   window.location.hash= "#/create";
+   })
+}
  // <input class="email" type="email" id="email" placeholder="Correo">
     // <input class="password" type="password" id="password" placeholder="Contraseña"> <br>
     // <button class="btn-login" id="login">Log In</button>  
