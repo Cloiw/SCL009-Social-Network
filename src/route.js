@@ -2,6 +2,7 @@
 
 //importación de los templates construidos
 import {templateHome} from './assets/views/templateHome.js';
+import {templateWall} from './assets/views/templateWall.js';
 // import {templateCreate} from './assets/views/templateCreate.js';
 
 
@@ -15,10 +16,10 @@ const changeRoute = (hash) =>{
         return showTemplate(hash);
     }
 
-    // if (hash === '#/create') {
-    //     //le pasa como parametro #/about a la función showTemplate
-    //     return showTemplate(hash);
-    // }
+    if (hash === '#/wall') {
+        //le pasa como parametro #/about a la función showTemplate
+        return showTemplate(hash);
+    }
 
     if (hash === '') {
         //le pasa como parametro #/ a la función showTemplate
@@ -43,8 +44,8 @@ const showTemplate = (hash) =>{
         case '':
             templateHome();
             break;
-        case 'create':
-            templateCreate();
+        case 'wall':
+            templateWall();
             break;
         default:
             containerRoot.innerHTML = `<p>Error 404</p>`
