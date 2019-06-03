@@ -1,4 +1,5 @@
 import{loginGoogle}from "./../js/auth.js";
+import{templateCreate}from "./templateCreate.js"
 export const templateHome = () => {
 
     document.getElementById("root").innerHTML =
@@ -8,15 +9,16 @@ export const templateHome = () => {
     <hr class="hr-home">
    
     <button class="btn-google-login" id="btn-google-login">&nbsp&nbsp&nbspEntrar con Google</button> 
-    <hr class="hr-home"></div>
-    <button class="btn-create-account" id="btn-create-account">Registrarse</button>
-
+    <hr class="hr-home">
+    <button class="btn-register" id="btn-register">Registrarse</button>
+</div>
    </div>`
 document.getElementById("btn-google-login").addEventListener('click', ()=>{
 loginGoogle()
 })
 
-document.getElementById("btn-create-account").addEventListener('click', ()=>{
+document.getElementById("btn-register").addEventListener('click', ()=>{
+   templateCreate();
    window.location.hash= "#/create";
    })
 }
