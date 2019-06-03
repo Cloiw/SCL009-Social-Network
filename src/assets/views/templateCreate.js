@@ -6,7 +6,7 @@ export const templateCreate = () => {
     `<div>
     <div class="div-top">  <img class="logo" src="assets/img/logo_full.png" alt=""> 
     
-    <p>Registro<p>
+    <p class="p-register">Registro<p>
     <input class="input-register"  id="user-name" placeholder="Nombre del personaje"><br>
     <input class="input-register"  id="user-age" placeholder="Edad del personaje"><br>
     <input class="input-register"  id="user-location" placeholder="Pais/Ciudad del personaje"><br>

@@ -54,6 +54,70 @@ body {
     background-size: 10%;
     background-color: #CF4332;
 }
+.btn-register{
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: #BC0202;
+    padding: 10px 90px;
+    margin: 20px auto 20px auto;
+    border: 30px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 18px;
+    background-size: 10%;
+    border-radius: 10px;
+    }
+.subtitle-register {
+    margin-top: 40px;
+    font-family: 'Archivo';
+    font-style: italic;
+    font-weight: 400;
+    color: black;
+    font-size: 13px;
+}
+.input-register{
+    text-align: center;
+    margin-top: 20px;
+    width: 20%;
+    padding: 12px 60px;
+    outline: none;
+    border-color: solid #BC0202;
+    }
+.btn-create-account{
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    padding: 10px 140px;
+    margin: 20px auto 20px auto;
+    border: 30px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 18px;
+    background-size: 10%;
+    background-color: #BC0202;
+    border-radius: 10px;
+}
+.btn-back{
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    padding: 10px 50px;
+    margin: 20px auto 20px auto;
+    margin-left: 480px;
+    border: 30px;
+    font-family: 'Archivo', sans-serif;
+    font-size: 18px;
+    background-size: 10%;
+    background-color: #BC0202;
+    border-radius: 10px;
+}
+.p-register{
+    margin-top: 40px;
+    font-family: 'Archivo';
+    font-style: italic;
+    font-weight: 400;
+    color: black;
+    font-size: 13px;
+}
 
 /* .btn-login {
     padding: 10px 40px;
