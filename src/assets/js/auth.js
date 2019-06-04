@@ -18,25 +18,19 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
    // ...
  });}
 
-//  /*Función Observador, que verifica que el usuario se encuentra logueado*/
-// export const observer = () => {
-//   firebase.auth().onAuthStateChanged(function (user) {
-//     if (user) {
-//       console.log('existe usuario activo')
-//       if (!user.displayName && user.email) {
-//         getName(user.email);
-//       }
-//       if (document.getElementById("useremail")) {
-//         document.getElementById("useremail").innerHTML = user.email;
-//       }
-//     } else {
-//       console.log('no existe usuario activo');
-//       window.location.hash = "";
-//     }
-//   });
-// }
 
+ /*Función que envia un correo de validación de la cuenta 
+una vez que el usuario se registra satisfactoriamente*/
+function emailVerification() {
+  let user = firebase.auth().currentUser;
 
+  user.sendEmailVerification().then(function () {
+    console.log("enviando correo");
+    // Update successful.
+  }).catch(function (error) {
+    console.log(error);
+  })
+}
 
 export const createAccount = (userName, userAge,userLocation, userEmail, userPassword) => {
   let dbProfiles = firebase.firestore();
@@ -45,6 +39,7 @@ export const createAccount = (userName, userAge,userLocation, userEmail, userPas
     /*Función de Firebase para registrar nuevos usuarios*/
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
       .then(function () {
+        emailVerification();
         /*Base de datos, para almacenar de manera paralela en cloud firestore 
         dichos datos del usuario*/
         dbProfiles.collection("users").add({
@@ -75,6 +70,24 @@ export const createAccount = (userName, userAge,userLocation, userEmail, userPas
         }
       });
   }
+
+//  /*Función Observador, que verifica que el usuario se encuentra logueado*/
+// export const observer = () => {
+//   firebase.auth().onAuthStateChanged(function (user) {
+//     if (user) {
+//       console.log('existe usuario activo')
+//       if (!user.displayName && user.email) {
+//         getName(user.email);
+//       }
+//       if (document.getElementById("useremail")) {
+//         document.getElementById("useremail").innerHTML = user.email;
+//       }
+//     } else {
+//       console.log('no existe usuario activo');
+//       window.location.hash = "";
+//     }
+//   });
+// }
   
 
 

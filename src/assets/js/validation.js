@@ -1,10 +1,9 @@
 /*VALIDACIONES: Estas se deben testear en auth.spec.js*/
 
-/*Validaciones de la función Iniciar Sesión();*/
+/*Validaciones de la función Iniciar Sesión()*/
 
 /*Función que valida que el usuario llene todos los campos*/
 import {createAccount} from "./auth.js"
-
 
 export const validateSignIn = (emailSignIn, passwordSignIn) => {
   if (emailSignIn === "" || passwordSignIn === "" || passwordSignIn.length < 6 || !validateEmail(emailSignIn)) {
@@ -15,14 +14,15 @@ export const validateSignIn = (emailSignIn, passwordSignIn) => {
 }
 
 //Función que valida que el usuario debe ingresar un @ cuando ingresa un correo
-const validateEmail = (emailSignIn) => {
+export const validateEmail = (emailSignIn) => {
 //expresión regular que simula el patron de búsqueda del correo electrónico
   let pattern = /\S+@\S+\.\S+/;
   return pattern.test(emailSignIn);
 }
 
+/*Validaciones de la función Crear cuenta()*/
 //Recibe los inputs del formulario y entrega un objeto que indica si estan correctos o no :)
-const validateEachInput = (userName, userAge, userLocation, userEmail, userPassword) => {
+export const validateEachInput = (userName, userAge, userLocation, userEmail, userPassword) => {
   let result = {};
   result["name"] = true;
   result["age"] = true;
@@ -48,7 +48,7 @@ const validateEachInput = (userName, userAge, userLocation, userEmail, userPassw
 }
 
 // Muestra mensaje de error segun los datos del objeto computado en la funcion validateEachInput
-const showErrorMsg = (errorName, errorAge, errorLocation, errorEmail, errorPassword, resultValidateEachInput) => {
+export const showErrorMsg = (errorName, errorAge, errorLocation, errorEmail, errorPassword, resultValidateEachInput) => {
   resetError(errorName, errorAge, errorLocation, errorEmail, errorPassword)
   if (!resultValidateEachInput["name"]) {
     errorName.innerHTML = `Debes ingresar un nombre.`;
@@ -68,7 +68,7 @@ const showErrorMsg = (errorName, errorAge, errorLocation, errorEmail, errorPassw
 }
 
 //Limpia los mensajes de error
-const resetError = (errorName, errorAge, errorLocation, errorEmail, errorPassword) => {
+export const resetError = (errorName, errorAge, errorLocation, errorEmail, errorPassword) => {
   errorName.innerHTML = '';
   errorAge.innerHTML = '';
   errorLocation.innerHTML = '';
@@ -77,7 +77,7 @@ const resetError = (errorName, errorAge, errorLocation, errorEmail, errorPasswor
 }
 
 //Valida que cada valor del objeto sea correcto :)
-const areAllValidated = (resultValidateEachInput) => {
+export const areAllValidated = (resultValidateEachInput) => {
   let result = true
   Object.values(resultValidateEachInput).forEach(value => {
     if (!value) {
