@@ -1,5 +1,5 @@
 import{templateHome}from "./templateHome.js"
-import{validateInput}from "./../js/validation.js"
+import{validateAndCreateAccount}from "./../js/validation.js"
 export const templateCreate = () => {
     
      
@@ -38,6 +38,6 @@ export const templateCreate = () => {
         let errorMsgLocation=document.getElementById("error-location");
         let errorMsgEmail=document.getElementById("error-email");
         let errorMsgPassword=document.getElementById("error-password");
-        validateInput (errorMsgName,errorMsgAge, errorMsgLocation, errorMsgEmail, errorMsgPassword,userName,userAge,userLocation,userEmail,userPassword)
+        validateAndCreateAccount (errorMsgName,errorMsgAge, errorMsgLocation, errorMsgEmail, errorMsgPassword,userName,userAge,userLocation,userEmail,userPassword)
         })
 }
