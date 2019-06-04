@@ -51,19 +51,19 @@ const validateEachInput = (userName, userAge, userLocation, userEmail, userPassw
 const showErrorMsg = (errorName, errorAge, errorLocation, errorEmail, errorPassword, resultValidateEachInput) => {
   resetError(errorName, errorAge, errorLocation, errorEmail, errorPassword)
   if (!resultValidateEachInput["name"]) {
-    errorName.innerHTML = `*Debes ingresar un nombre.`;
+    errorName.innerHTML = `Debes ingresar un nombre.`;
   }
   if (!resultValidateEachInput["age"]) {
-    errorAge.innerHTML = `*Debes ingresar una edad.`;
+    errorAge.innerHTML = `Debes ingresar una edad.`;
   }
   if (!resultValidateEachInput["location"]) {
-    errorLocation.innerHTML = `*Debes ingresar una locacion.`;
+    errorLocation.innerHTML = `Debes ingresar un pais o ciudad.`;
   }
   if (!resultValidateEachInput["email"]) {
-    errorEmail.innerHTML = `*Debes ingresar un correo válido.`;
+    errorEmail.innerHTML = `Debes ingresar un correo válido.`;
   }
   if (!resultValidateEachInput["password"]) {
-    errorPassword.innerHTML = `*Debes ingresar una contraseña con mínimo 6 caracteres.`;
+    errorPassword.innerHTML = `Debes ingresar una contraseña con mínimo 6 caracteres.`;
   }
 }
 

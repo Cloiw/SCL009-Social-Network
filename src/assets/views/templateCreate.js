@@ -8,19 +8,21 @@ export const templateCreate = () => {
     <div class="div-top">  <img class="logo" src="assets/img/logo_full.png" alt=""> 
     
     <p class="p-register">Registro<p>
-    
+    <div>
     <input class="input-register"  id="user-name" placeholder="Nombre del personaje">
-    <p id="error-name"></p>
+    <p class="p-error" id="error-name"></p>
     <input class="input-register"  id="user-age" placeholder="Edad del personaje">
-    <p id="error-age"></p>
+    <p class="p-error" id="error-age"></p>
     <input class="input-register"  id="user-location" placeholder="Pais/Ciudad del personaje">
-    <p id="error-location"></p>
+    <p class="p-error" id="error-location"></p>
     <input class="input-register"  id="user-email" placeholder="Correo">
-    <p id="error-email"></p>
+    <p class="p-error" id="error-email"></p>
     <input class="input-register"  id="user-password"   type="password" placeholder="Contraseña">
-    <p id="error-password"></p>
+    <p class="p-error" id="error-password"></p>
     
-    <button class="btn-create-account" id="btn-create-account">Crear Cuenta</button></div>
+    <button class="btn-create-account" id="btn-create-account">Crear Cuenta</button>
+    
+    </div></div>
     <button class="btn-back" id="btn-back">Volver</button></div>
    </div>`
    document.getElementById("btn-back").addEventListener('click', ()=>{
