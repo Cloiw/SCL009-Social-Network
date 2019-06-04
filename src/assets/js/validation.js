@@ -3,6 +3,8 @@
 /*Validaciones de la función Iniciar Sesión();*/
 
 /*Función que valida que el usuario llene todos los campos*/
+import{createAccount }from "./auth.js"
+
 
 export const validateSignIn = (emailSignIn,passwordSignIn) => {
     if(emailSignIn === ""|| passwordSignIn ==="" || passwordSignIn.length<6 || !validateEmail(emailSignIn)){
@@ -19,34 +21,40 @@ export const validateSignIn = (emailSignIn,passwordSignIn) => {
     return pattern.test(emailSignIn);
   }
 
-  export const validateInput = (username,errorname,errorage, errorlocation, erroremail, errorpassword, userage,userlocation,useremail,userpassword)=>{
-  if (username===""){
-   errorname.innerHTML=`*Debes ingresar un nombre.`;      
+  export const validateInput = (errorName,errorAge,errorLocation,errorEmail,errorPassword,userName,userAge,userLocation,userEmail,userPassword)=>{
+  if (userName===""){
+   errorName.innerHTML=`*Debes ingresar un nombre.`;
+   return false;      
   }else{
-    errorname.innerHTML='';
+    errorName.innerHTML='';
   }
 
-  if (userage===""){
-    errorage.innerHTML=`*Debes ingresar tu edad.`;
+  if(userAge===""){
+    errorAge.innerHTML=`*Debes ingresar una edad.`;
+    return false;
   }else{
-    errorage.innerHTML='';
+    errorAge.innerHTML='';
   } 
 
-  if (userlocation===""){
-    errorlocation.innerHTML=`*Debes ingresar una localización.`;
+  if (userLocation===""){
+    errorLocation.innerHTML=`*Debes ingresar una localización.`;
+    return false;
   }else{
-    errorlocation.innerHTML='';
+    errorLocation.innerHTML='';
   }
 
-  if(useremail==="" || !validateEmail(useremail)){
-   erroremail.innerHTML=`*Debes ingresar un correo válido.`;
+ if(userEmail==="" || !validateEmail(userEmail)){
+   errorEmail.innerHTML=`*Debes ingresar un correo válido.`;
+   return false;
   }else{
-    erroremail.innerHTML='';
+    errorEmail.innerHTML='';
   }
 
-  if(userpassword==="" || userpassword.length<6){
-    errorpassword.innerHTML=`*Debes ingresar una contraseña con mínimo 6 caracteres.`;
+  if(userPassword==="" || userPassword.length<6){
+    errorPassword.innerHTML=`*Debes ingresar una contraseña con mínimo 6 caracteres.`;
+    return false;
   }else{
-    errorpassword.innerHTML='';
+    errorPassword.innerHTML='';
   }
+  return createAccount(userName, userAge,userLocation, userEmail, userPassword);
 }

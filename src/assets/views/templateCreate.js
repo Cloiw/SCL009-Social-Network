@@ -8,16 +8,17 @@ export const templateCreate = () => {
     <div class="div-top">  <img class="logo" src="assets/img/logo_full.png" alt=""> 
     
     <p class="p-register">Registro<p>
+    
+    <input class="input-register"  id="user-name" placeholder="Nombre del personaje">
     <p id="error-name"></p>
-    <input class="input-register"  id="user-name" placeholder="Nombre del personaje"><br>
+    <input class="input-register"  id="user-age" placeholder="Edad del personaje">
     <p id="error-age"></p>
-    <input class="input-register"  id="user-age" placeholder="Edad del personaje"><br>
+    <input class="input-register"  id="user-location" placeholder="Pais/Ciudad del personaje">
     <p id="error-location"></p>
-    <input class="input-register"  id="user-location" placeholder="Pais/Ciudad del personaje"><br>
+    <input class="input-register"  id="user-email" placeholder="Correo">
     <p id="error-email"></p>
-    <input class="input-register"  id="user-email" placeholder="Correo"><br>
+    <input class="input-register"  id="user-password"   type="password" placeholder="Contraseña">
     <p id="error-password"></p>
-    <input class="input-register"  id="user-password"   type="password" placeholder="Contraseña"><br>
     
     <button class="btn-create-account" id="btn-create-account">Crear Cuenta</button></div>
     <button class="btn-back" id="btn-back">Volver</button></div>
@@ -37,6 +38,6 @@ export const templateCreate = () => {
         let errorMsgLocation=document.getElementById("error-location");
         let errorMsgEmail=document.getElementById("error-email");
         let errorMsgPassword=document.getElementById("error-password");
-        validateInput (userName,errorMsgName,errorMsgAge, errorMsgLocation, errorMsgEmail, errorMsgPassword,userAge,userLocation,userEmail,userPassword)
+        validateInput (errorMsgName,errorMsgAge, errorMsgLocation, errorMsgEmail, errorMsgPassword,userName,userAge,userLocation,userEmail,userPassword)
         })
 }
