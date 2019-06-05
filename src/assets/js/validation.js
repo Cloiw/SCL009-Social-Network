@@ -1,17 +1,10 @@
 /*VALIDACIONES: Estas se deben testear en auth.spec.js*/
 
-/*Validaciones de la función Iniciar Sesión()*/
+
 
 /*Función que valida que el usuario llene todos los campos*/
 import {createAccount} from "./auth.js"
 
-export const validateSignIn = (emailSignIn, passwordSignIn) => {
-  if (emailSignIn === "" || passwordSignIn === "" || passwordSignIn.length < 6 || !validateEmail(emailSignIn)) {
-    return false;
-  } else {
-    return true;
-  }
-}
 
 //Función que valida que el usuario debe ingresar un @ cuando ingresa un correo
 export const validateEmail = (emailSignIn) => {
@@ -67,8 +60,8 @@ export const showErrorMsg = (errorName, errorAge, errorLocation, errorEmail, err
   }
 }
 
-//Limpia los mensajes de error
-export const resetError = (errorName, errorAge, errorLocation, errorEmail, errorPassword) => {
+//Limpia los mensajes de error 
+const resetError = (errorName, errorAge, errorLocation, errorEmail, errorPassword) => {
   errorName.innerHTML = '';
   errorAge.innerHTML = '';
   errorLocation.innerHTML = '';
@@ -97,3 +90,48 @@ export const validateAndCreateAccount = (errorName, errorAge, errorLocation, err
 
 }
 
+
+//Validaciones de iniciar sesion
+
+//Revisa cada input y entrega un objeto que indica si esta correcto o no
+export const validateSignInInput = (userEmail,userPassword)=>{
+  let result = {}
+  result["email"] = true;
+  result["password"] = true;
+  
+  if (userEmail === "" || !validateEmail(userEmail)) {
+    result["email"] = false;
+  }
+  if (userPassword === "" || userPassword.length < 6) {
+    result["password"] = false;
+  }
+  return result
+}
+
+//Limpia los mensajes de error 
+const resetErrorSignIn = (errorEmail, errorPassword) => {
+  errorEmail.innerHTML = '';
+  errorPassword.innerHTML = '';
+}
+
+//Muestra mensajes de error segun los datos computados en la funcion validateSignInInput
+export const showErrorMsgSignIn = (errorEmail,errorPassword,resultValidateSignInInput)=>{
+  resetErrorSignIn(errorEmail,errorPassword)
+  
+  if (!resultValidateSignInInput["email"]) {
+    errorEmail.innerHTML = `Debes ingresar un correo válido.`;
+  }
+  if (!resultValidateSignInInput["password"]) {
+    errorPassword.innerHTML = `Debes ingresar una contraseña válida.`;
+  }
+
+}
+
+//Logea la cuenta o muestra los errores si es que los hay
+export const validateAndLogIn = (errorEmail,errorPassword,userEmail,userPassword) =>{
+  const resultValidateSignInInput =  validateSignInInput(userEmail,userPassword);
+  showErrorMsgSignIn(errorEmail,errorPassword,resultValidateSignInInput);
+  if (areAllValidated(resultValidateSignInInput)) {
+    signIn(emailSignIn, passwordSignIn)
+  }
+}
