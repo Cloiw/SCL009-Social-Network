@@ -1,3 +1,4 @@
+import { validateAccount, validateSignIn } from './validation.js';
 
 export const loginGoogle = () =>{
     let provider = new firebase.auth.GoogleAuthProvider();
@@ -34,9 +35,7 @@ function emailVerification() {
 
 export const createAccount = (userName, userAge,userLocation, userEmail, userPassword) => {
   let dbProfiles = firebase.firestore();
-  /*Si la validación realizada en el archivo validation.js fue true, ingresa al if*/
- 
-    /*Función de Firebase para registrar nuevos usuarios*/
+  /*Función de Firebase para registrar nuevos usuarios*/
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
       .then(function () {
         emailVerification();
@@ -70,6 +69,28 @@ export const createAccount = (userName, userAge,userLocation, userEmail, userPas
         }
       });
   }
+
+  /* Función para realizar login usando un la cuenta creada*/
+
+export const signIn = (emailSignIn, passwordSignIn) => {
+  /*Si la validación realizada en el archivo validation.js fue true ingresa*/
+  if (validateSignIn(emailSignIn, passwordSignIn)) {
+    /*Función firebase para ingreso de usuarios registrados*/
+    firebase.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn)
+      .then(function () {
+        alert("Has iniciado sesión con exito");
+        window.location.hash = '#/wall';
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(error.message);
+      });
+  } else {
+    alert("Error en el ingreso del usuario");
+  }
+}
 
 //  /*Función Observador, que verifica que el usuario se encuentra logueado*/
 // export const observer = () => {

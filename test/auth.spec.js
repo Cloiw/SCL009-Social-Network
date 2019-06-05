@@ -1,7 +1,7 @@
 import {areAllValidated,validateEachInput,validateEmail,validateSignInInput} from "./../src/assets/js/validation.js"
 
 
-/*Validaciones de las funciones que chequean crear cuenta()*/
+//Test de las funciones para validar campos de registro
 
 const result = 
 {name:true,
@@ -32,6 +32,8 @@ describe ("validateEmail",()=>{
     })
 });
 
+//Test de la funcion para validar campos de logeo
+
 const resultValidateSignInInput =
     {email:false,
     password:false,
@@ -39,4 +41,5 @@ const resultValidateSignInInput =
 test("validateSignInInput, Deberia retornar un objeto con ambos parametros false", () =>{
     expect(validateSignInInput("soyuncorreo@novalido","pass")).toEqual(resultValidateSignInInput)
 });
+
    
