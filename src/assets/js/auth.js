@@ -72,7 +72,7 @@ export const createAccount = (userName, userAge,userLocation, userEmail, userPas
   /* Función para realizar login usando un la cuenta creada*/
 
 export const signIn = (emailSignIn, passwordSignIn) => {
-  /*Si la validación realizada en el archivo validation.js fue true ingresa*/
+     document.getElementById("error-fb").innerHTML=""
  
     /*Función firebase para ingreso de usuarios registrados*/
     firebase.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn)
@@ -84,7 +84,7 @@ export const signIn = (emailSignIn, passwordSignIn) => {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        alert(error.message);
+        document.getElementById("error-fb").innerHTML= `${errorMessage}`;
       });
   }
 

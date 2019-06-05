@@ -3,7 +3,7 @@
 
 
 /*Función que valida que el usuario llene todos los campos*/
-import {createAccount} from "./auth.js"
+import {createAccount,signIn} from "./auth.js"
 
 
 //Función que valida que el usuario debe ingresar un @ cuando ingresa un correo
@@ -132,6 +132,6 @@ export const validateAndSignIn = (errorEmail,errorPassword,userEmail,userPasswor
   const resultValidateSignInInput =  validateSignInInput(userEmail,userPassword);
   showErrorMsgSignIn(errorEmail,errorPassword,resultValidateSignInInput);
   if (areAllValidated(resultValidateSignInInput)) {
-    signIn(emailSignIn, passwordSignIn)
+    signIn(userEmail, userPassword)
   }
 }
