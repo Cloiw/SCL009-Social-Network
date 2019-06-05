@@ -3,7 +3,7 @@
 
 
 /*Función que valida que el usuario llene todos los campos*/
-import {createAccount} from "./auth.js"
+import {createAccount,signIn} from "./auth.js"
 
 
 //Función que valida que el usuario debe ingresar un @ cuando ingresa un correo
