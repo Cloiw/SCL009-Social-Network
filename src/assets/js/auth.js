@@ -1,9 +1,4 @@
-<<<<<<< Updated upstream
-
-
-//Logeao con Google
-=======
->>>>>>> Stashed changes
+//Logueo con Google
 export const loginGoogle = () =>{
     let provider = new firebase.auth.GoogleAuthProvider();
 firebase.auth().signInWithPopup(provider).then(function(result) {

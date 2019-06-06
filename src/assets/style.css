@@ -122,32 +122,13 @@ body {
 .btn-back{
     margin-top: 5px;
 }
-<<<<<<< Updated upstream
 .btn-google-login:hover{
 background-color: rgb(240, 93, 76)
-=======
-.input-register{
-    text-align: left;
-    margin-top: 20px;
-    width: 60%;
-    height: 30px;
-    border: 1px solid #BC0202;
-    padding-left: 10px;
-    font-family: 'Archivo';
-    font-weight: 400;
-    -webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.4);
-    box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.4);
-  }
-
-  .p-error{
-      margin-top: 4px;
-      color: #BC0202;
-      font-family: 'Archivo';
-      font-weight: 400;
-  }
-  
-  #nav-wall{
+}
+.btn-register:hover,.btn-create-account:hover,.btn-back:hover,.btn-signin:hover{
+    background-color: rgb(216, 22, 22);
+}
+#nav-wall{
     top:0px;
     background-color:rgb(179, 176, 176);
     height:60px;
@@ -165,54 +146,6 @@ background-color: rgb(240, 93, 76)
     border:none;      
 }
 
-/* .btn-login {
-    padding: 10px 40px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    margin-left: 680px;
-    margin-right: 490px;
-    background-color: rgb(188, 2, 2);
-    color: white;
-    text-align: center;
-    font-family: 'Cousine', monospace;
-    font-size: 18px;
-    border-radius: 10px;
-
-} 
-
-
-.btn-register {
-    text-align: center;
-    background-color: #BC0202;
-    color: white;
-    padding: 12px 60px;
-    border-radius: 10px;
-    margin-bottom: 50px;
-    margin-left: 520px;
-    margin-right: 500px;
-    text-align: center;
-    font-family: 'Cousine', monospace;
-    font-size: 20px;
->>>>>>> Stashed changes
-}
-.btn-register:hover,.btn-create-account:hover,.btn-back:hover,.btn-signin:hover{
-    background-color: rgb(216, 22, 22);
-}
-<<<<<<< Updated upstream
-=======
-
-.password {
-    text-align: center;
-    margin-left: 550px;
-    margin-top: 30px;
-    width: 20%;
-    padding: 12px 60px;
-    border-color: #BC0202;
-}
- */
- 
-
->>>>>>> Stashed changes
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
    }
