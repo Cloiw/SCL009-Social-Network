@@ -152,6 +152,20 @@ export const signOut = () =>{
  }
 }
 
+export const observer=() =>{
+  firebase.auth().onAuthStateChanged(function(user) {
+if (user && user.emailVerified) {
+  console.log(user.displayName)
+  window.location.hash = '#/wall';
+  // User is signed in.
+} else {
+  console.log("No hay usuario")
+  window.location.hash = '';
+  // No user is signed in.
+}
+})
+}
+
 
 
 

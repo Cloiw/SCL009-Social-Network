@@ -12,7 +12,7 @@ export const templateCreate = () => {
 <div class="container-col-2">
     <div class="col-inputs">
     
-        <input class="input-register"  id="user-name" placeholder="Nombre del personaje">
+        <input class="input-register"  id="user-name" autofocus placeholder="Nombre del personaje">
         <p class="p-error" id="error-name"></p>
         <input class="input-register"  id="user-age" placeholder="Edad del personaje">
         <p class="p-error" id="error-age"></p>

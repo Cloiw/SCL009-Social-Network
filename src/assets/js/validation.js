@@ -1,8 +1,4 @@
-/*VALIDACIONES: Estas se deben testear en auth.spec.js*/
 
-
-
-/*Función que valida que el usuario llene todos los campos*/
 import {createAccount,signIn} from "./auth.js"
 
 
