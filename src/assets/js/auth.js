@@ -1,6 +1,4 @@
-
-
-//Logeao con Google
+//Logueo con Google
 export const loginGoogle = () =>{
     let provider = new firebase.auth.GoogleAuthProvider();
 firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -139,7 +137,20 @@ export const signIn = (emailSignIn, passwordSignIn) => {
   
   
   
+/*Función signOut(), sirve para que usuario cierre sesión, lo dirigia a la pantalla home*/
 
+export const signOut = () =>{
+  if(confirm("¿Realmente deseas cerrar sesión?")){
+  firebase.auth().signOut()
+  .then(function() {
+    alert("Has cerrado tu sesión");
+    window.location.hash='';
+    }).catch(function(error) {
+    // An error happened.
+    console.error("Error removing document: ", error);
+  });
+ }
+}
 
 
 
