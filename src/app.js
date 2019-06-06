@@ -8,9 +8,10 @@ import {observer} from './assets/js/auth.js';
 
 const init = () => {
 
-    initRouter();
+    
     initFirebase();
     observer();
+    initRouter();
 }
 
 window.addEventListener('load', init);

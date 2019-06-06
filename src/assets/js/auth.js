@@ -92,50 +92,6 @@ export const signIn = (emailSignIn, passwordSignIn) => {
       });
 }
 
-//  /*Función Observador, que verifica que el usuario se encuentra logueado*/
-// export const observer = () => {
-//   firebase.auth().onAuthStateChanged(function (user) {
-//     if (user) {
-//       console.log('existe usuario activo')
-//       if (!user.displayName && user.email) {
-//         getName(user.email);
-//       }
-//       if (document.getElementById("useremail")) {
-//         document.getElementById("useremail").innerHTML = user.email;
-//       }
-//     } else {
-//       console.log('no existe usuario activo');
-//       window.location.hash = "";
-//     }
-//   });
-// }
-
-// export const observer= () =>{
-// firebase.auth().onAuthStateChanged(user => {
-//     if (user && user.emailVerified()) {
-//       window.location.hash = '#/wall';
-//       ;
-//     } else {
-//       console.log('no existe usuario activo');
-//       window.location.hash = ""
-      
-//     }
-// })}
-
-
-// firebase.auth().onAuthStateChanged(function(user) {
-//   if (user) {
-//     // User is signed in.
-//   } else {
-//     // No user is signed in.
-//   }
-// });
-
-
-// firebase.auth().currentUser;
-// if (user.emailVerified()) {
-  
-  
   
 /*Función signOut(), sirve para que usuario cierre sesión, lo dirigia a la pantalla home*/
 
@@ -154,7 +110,7 @@ export const signOut = () =>{
 
 export const observer=() =>{
   firebase.auth().onAuthStateChanged(function(user) {
-if (user && user.emailVerified) {
+if (user) {
   console.log(user.displayName)
   window.location.hash = '#/wall';
   // User is signed in.
