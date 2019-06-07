@@ -1,12 +1,12 @@
-import{loginGoogle, observer}from "./../js/auth.js";
+import{loginGoogle,observer}from "./../js/auth.js";
 import{validateAndSignIn}from "./../js/validation.js";
 import{templateCreate}from "./templateCreate.js"
 export const templateHome = () => {
-    observer();
+observer()
     document.getElementById("root").innerHTML =
 `<div class="container-col">
         <img class="logo" src="assets/img/logo_full.png" alt="">
-        <p class="subtitle">La red social para amantes del Teatro</p>
+        <p class="subtitle">La red social para amantes del Teatro<br>Crea tu personaje e interactua con otros, como en una obra de teatro.</p>
 </div>
         <hr class="hr-home-top">
 <div class="container-col-2">

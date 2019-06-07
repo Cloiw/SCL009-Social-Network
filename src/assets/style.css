@@ -6,7 +6,9 @@ body {
     background-color: #F5F5F5;
 }
 
+
 .container-col,.container-col-2,.container-col-3,.container-nav{
+
     display:flex;
     flex-direction:column;
     align-items: center;
@@ -129,7 +131,7 @@ background-color: rgb(240, 93, 76)
 .btn-register:hover,.btn-create-account:hover,.btn-back:hover,.btn-signin:hover{
     background-color: rgb(216, 22, 22);
 }
-#nav-wall{
+/* #nav-wall{
     top:0px;
     height:60px;
     width:100%;
@@ -137,12 +139,7 @@ background-color: rgb(240, 93, 76)
     flex-direction: row;
     flex-wrap: nowrap;
     position: fixed; 
-    right:0px;
-    background-color:#BC0202;
-}
-
-.signOut{
-}
+}*/
 
 #logout,#btn-signout,#btn-up,#up{
     height:95%;        

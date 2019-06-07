@@ -1,7 +1,7 @@
 import { signOut,observer } from "./../js/auth.js";
 
 export const templateWall = () => {
-    observer();
+    observer()
     document.getElementById("root").innerHTML =
         
     `<div class="container-nav">
