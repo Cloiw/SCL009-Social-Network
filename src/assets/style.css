@@ -7,21 +7,58 @@ body {
 }
 
 
-.container-col,.container-col-2,.container-col-3,.container-nav{
+.container-col,.container-col-2,.container-col-3{
 
     display:flex;
     flex-direction:column;
     align-items: center;
 }
+.right-col{
+    display: flex;
+    flex-direction:column;
+    align-items: flex-end;       
+}
+.center-col{
+    width:100%;
+    display: flex;
+    flex-direction:column;  
+    
+}
+.left-col{
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+    
+}
 
 .container-col-2,.container-col-3{
     justify-content: center;
 }
-.row-btn-signin,.row-btn-google,.row-create-account,.row-btn-back{
+
+
+.row-btn-signin,.row-btn-google,.row-create-account,.row-btn-back,.nav-wall,.elements-row,.nav-wall,.container-row,.icons-row{
     display: flex;
     flex-direction:row;
     align-self: flex-end;
     width: 50%;
+}
+.icons-row{
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.container-row{
+    width:100%;
+    background-color: #BC0202;
+    
+}
+.nav-wall{
+    align-items: flex-end;
+    width:60%;
+    flex-wrap: wrap;
+}
+.elements-row{
+    justify-content: space-between;
 }
 .row-btn-google{
     width:100%;
@@ -39,13 +76,24 @@ body {
     width: 80%;
     display: flex;
     flex-direction:column;
-    align-self: center;}
+    align-self: center;
+}
+
 
 .logo {
     width: auto;
     height: 30vh;
 }
-
+.logo-icon{
+    width: auto;
+    height:8vh;
+    margin:20px 30px 20px 20px;  
+}
+.btn-icons{
+    width: auto;
+    height:8vh;
+    margin:20px;
+}
 .hr-home-top, .hr-home-bot {
     height: 3px;
     color: #BC0202;
@@ -94,7 +142,7 @@ body {
     align-self: center;
 }
 
-.btn-google-login, .btn-register,.btn-create-account,.btn-back,.btn-signin {
+.btn-google-login, .btn-register,.btn-create-account,.btn-back,.btn-signin,#btn-signout {
     width:100%;
     text-align: center;
     cursor: pointer;
@@ -126,10 +174,15 @@ body {
     margin-top: 5px;
 }
 .btn-google-login:hover{
-background-color: rgb(240, 93, 76)
+    background-color: rgb(240, 93, 76)
 }
 .btn-register:hover,.btn-create-account:hover,.btn-back:hover,.btn-signin:hover{
     background-color: rgb(216, 22, 22);
+}
+.icon-btn{
+    background: transparent;
+    border: none;
+    cursor:pointer;
 }
 /* #nav-wall{
     top:0px;
@@ -140,21 +193,39 @@ background-color: rgb(240, 93, 76)
     flex-wrap: nowrap;
     position: fixed; 
 }*/
-
+/* 
 #logout,#btn-signout,#btn-up,#up{
     height:95%;        
     justify-content: space-between;  
     background-color: transparent; 
     border:none;      
-}
+} */
  
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
+    .btn-icons{
+        height:4vh;
+        margin:10px;
+    }
+    .logo-icon{
+      
+        height:4vh;
+        margin:10px 20px 10px 10px;  
+    }
    }
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 767px) {
-   }
+    .btn-icons{
+        height:5vh;
+        margin:10px;
+    }
+    .logo-icon{
+       
+        height:5vh;
+        margin:10px 20px 10px 10px;  
+    }
+}
 
 /* Desktop Styles */
 @media only screen and (min-width: 700px) {
