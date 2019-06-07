@@ -23,7 +23,7 @@ describe("areAllValidated",()=>{
     password:false,
   }
 test("validateEachInput, Deberia retornar un objeto con todos los parametros en true menos la contraseña", () => {
-    expect(validateEachInput("Betsi","35","Santiago","nsakh@gmail.com","1234")).toEqual(resulValidateEachInput)
+    expect(validateEachInput("micorreo","35","Santiago","nsakh@gmail.com","1234")).toEqual(resulValidateEachInput)
 });
 
 describe ("validateEmail",()=>{
@@ -42,4 +42,6 @@ test("validateSignInInput, Deberia retornar un objeto con ambos parametros false
     expect(validateSignInInput("soyuncorreo@novalido","pass")).toEqual(resultValidateSignInInput)
 });
 
-   
+
+
+
