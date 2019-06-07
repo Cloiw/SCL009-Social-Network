@@ -10,7 +10,7 @@ const init = () => {
 
     
     initFirebase();
-    observer();
+    
     initRouter();
 }
 

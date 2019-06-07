@@ -64,6 +64,10 @@ export const createAccount = (userName, userAge,userLocation, userEmail, userPas
       });
   }
 
+// export const signInPersistance = (emailSignIn, passwordSignIn)=>{
+//   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => { 
+//     signIn(emailSignIn, passwordSignIn);
+//   })}
 
   //Permite iniciar sesión solo a usuarios que hayan verificado su correo
 export const signIn = (emailSignIn, passwordSignIn) => {
@@ -72,17 +76,24 @@ export const signIn = (emailSignIn, passwordSignIn) => {
     //Función firebase para ingreso de usuarios registrados
     firebase.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn)
       .then(function () {
-        firebase.auth().onAuthStateChanged(user => {
+        let user = firebase.auth().currentUser;
+        
           if(!user.emailVerified){
             console.log(user.emailVerified)
-            window.location.hash = '';
-            document.getElementById("error-fb").innerHTML= `Verifica tu correo para poder iniciar sesión`;
+            document.getElementById("error-fb").innerHTML= `Verifica tu correo para poder iniciar sesión`
+            firebase.auth().signOut()
+            //<br>
+            //<p id="sendEmailAgain">Enviame otro correo!</a>
+            // document.getElementById("sendEmailAgain").addEventListener('click', ()=>{
+            //   emailVerification()
+            //   document.getElementById("error-fb").innerHTML=""
+            //   firebase.auth().signOut()
+            //   })
           }
-          if(user.emailVerified){
-            console.log(user.emailVerified)
+          else{ 
             window.location.hash = '#/wall';
           }
-        }) 
+         
       })
       .catch(function (error) {
           var errorCode = error.code;
@@ -108,19 +119,40 @@ export const signOut = () =>{
  }
 }
 
+// export const observer2=() =>{
+//   firebase.auth().onAuthStateChanged(function(user) {
+
+// if (user) {
+//   console.log(user.email)
+//   window.location.hash = '#/wall';
+//   // User is signed in.
+// } else {
+//   console.log("No hay usuario")
+//   window.location.hash = '';
+//   // No user is signed in.
+// }
+//   })
+// }
+
+
 export const observer=() =>{
   firebase.auth().onAuthStateChanged(function(user) {
-if (user) {
-  console.log(user.displayName)
+console.log(user)
+if(user===null){
+  console.log("No hay usuario")
+  return  window.location.hash = '';}
+if (user.emailVerified) {
+  console.log(user.email)
   window.location.hash = '#/wall';
   // User is signed in.
-} else {
-  console.log("No hay usuario")
-  window.location.hash = '';
-  // No user is signed in.
 }
-})
-}
+ if (!user.emailVerified && window.location.hash != '' && window.location.hash != '#/home'){
+   console.log("No verificado, redireccionando a home")
+   window.location.hash = '';
+ }
+
+  })
+} 
 
 
 
