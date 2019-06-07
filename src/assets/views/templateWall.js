@@ -54,5 +54,33 @@ export const templateWall = () => {
     //});    
 }
 
+<<<<<<< Updated upstream
 
 //<img src="assets/img/logout.png" id="logout" alt="Boton salir aplicación"/>
+=======
+/*Función que imprime el html de los mensajes publicados*/
+export const renderPost =(doc) =>{
+    let postDate = new Date(doc.data().date);
+    document.getElementById('wall').innerHTML +=
+    `   
+        <article class="post-read">
+            <h3>${doc.data().name}</h3>
+            <h5>${postDate.toLocaleDateString('es-cl')} ${postDate.toLocaleTimeString('es-cl')}</h5>
+            <h4>${doc.data().message}</h4>             
+            <button id="like_${doc.id}" class="btn-like">Like</button>                       
+    `
+    if(firebase.auth().currentUser.email===doc.data().user){
+        document.getElementById('wall').innerHTML +=
+        `
+        <div class="btntimeline">
+            <button id="update_${doc.id}" class="btn-update">Editar</button>
+            <button id="delete_${doc.id}" class="btn-delete">Eliminar</button>
+        </div>
+        `
+    }        
+        document.getElementById('wall').innerHTML +=
+        `           
+        </article>
+        `   
+}
+>>>>>>> Stashed changes
