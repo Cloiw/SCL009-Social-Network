@@ -54,10 +54,7 @@ export const templateWall = () => {
     //});    
 }
 
-<<<<<<< Updated upstream
 
-//<img src="assets/img/logout.png" id="logout" alt="Boton salir aplicación"/>
-=======
 /*Función que imprime el html de los mensajes publicados*/
 export const renderPost =(doc) =>{
     let postDate = new Date(doc.data().date);
@@ -83,4 +80,4 @@ export const renderPost =(doc) =>{
         </article>
         `   
 }
->>>>>>> Stashed changes
+
