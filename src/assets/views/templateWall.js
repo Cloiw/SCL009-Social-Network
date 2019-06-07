@@ -1,6 +1,7 @@
-import { signOut } from "./../js/auth.js";
+import { signOut,observer } from "./../js/auth.js";
 
 export const templateWall = () => {
+    observer();
     document.getElementById("root").innerHTML =
         
     `<div class="container-nav">
