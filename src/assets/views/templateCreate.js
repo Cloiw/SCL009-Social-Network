@@ -1,9 +1,9 @@
 import{templateHome}from "./templateHome.js"
 import{validateAndCreateAccount}from "./../js/validation.js"
+
 export const templateCreate = () => {
     
-     
-    document.getElementById("root").innerHTML =
+     document.getElementById("root").innerHTML =
     ` <div class="container-col">
         <img class="logo" src="assets/img/logo_full.png" alt="">
         <p class="subtitle">Registro</p>

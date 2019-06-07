@@ -1,6 +1,7 @@
 import{loginGoogle,observer}from "./../js/auth.js";
 import{validateAndSignIn}from "./../js/validation.js";
 import{templateCreate}from "./templateCreate.js"
+
 export const templateHome = () => {
 observer()
     document.getElementById("root").innerHTML =

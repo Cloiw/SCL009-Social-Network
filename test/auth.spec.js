@@ -1,4 +1,4 @@
-import {areAllValidated,validateEachInput,validateEmail,validateSignInInput} from "./../src/assets/js/validation.js"
+import {areAllValidated,validateEachInput,validateEmail,validateSignInInput,validatePost} from "./../src/assets/js/validation.js"
 
 
 //Test de las funciones para validar campos de registro
@@ -43,5 +43,17 @@ test("validateSignInInput, Deberia retornar un objeto con ambos parametros false
 });
 
 
+//validación función validatePost
 
+describe("validatePost",()=>{
+    it('deberia retornar false, si el input es vacío',()=>{
+        expect(validatePost("")).toBe(false);
+    })
+})
+
+describe("validatePost", () =>{
+    it('deberia retornar true, si el input tiene texto',()=>{
+        expect(validatePost("hola como estas?")).toBe(true);
+    })
+})
 

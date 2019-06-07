@@ -131,3 +131,12 @@ export const validateAndSignIn = (errorEmail,errorPassword,userEmail,userPasswor
     signIn(userEmail, userPassword)
   }
 }
+//Validación input vacio del post
+export const validatePost = (userPost) =>{
+  if(userPost === ""|| userPost.length<2){
+    return false;
+
+  } else{
+    return true;
+  }
+}
