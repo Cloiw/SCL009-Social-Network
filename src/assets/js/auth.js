@@ -4,8 +4,29 @@ export const loginGoogle = () =>{
 firebase.auth().signInWithPopup(provider).then(function(result) {
   let token = result.credential.accessToken;
    let user = result.user;
+   console.log(user.email);
+   let db = firebase.firestore();
+   const userRef = db.collection('users').doc(user.uid);
+   
+        userRef.get().then(function(doc) {
+            if (doc.exists) {
+               console.log (doc.data().name)
+            } else { 
+              db.collection("users").doc(user.uid).set({
+              name: user.displayName,
+              age:"99",
+              location: "Por ahi",
+              email: user.email});
+                
+            }
+
    alert(user.displayName+" Has iniciado sesión con exito")
    window.location.hash = '#/wall';
+   
+   
+
+
+
    
 }).catch(function(error) {
    // Handle Errors here.
@@ -16,7 +37,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
    // The firebase.auth.AuthCredential type that was used.
    var credential = error.credential;
    // ...
- });}
+ });})}
 
 
  //Envia un correo de validación de la cuenta una vez que el usuario se registra satisfactoriamente
@@ -31,30 +52,25 @@ function emailVerification() {
   })
 }
 
-//Crea una cuenta y guarda los datos. Envia un correo de verificación luego del registro.
+//Crea una cuenta y guarda los datos con la misma ID. Envia un correo de verificación luego del registro.
 export const createAccount = (userName, userAge,userLocation, userEmail, userPassword) => {
   let dbProfiles = firebase.firestore();
   // Función de Firebase para registrar nuevos usuarios
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
-      .then(function () {
-        emailVerification();
+      .then(cred => {
         //Base de datos, para almacenar de manera paralela en cloud firestore  dichos datos del usuario
-        dbProfiles.collection("users").add({
+        dbProfiles.collection("users").doc(cred.user.uid).set({
           name: userName,
           age: userAge,
           location: userLocation,
-          email: userEmail
-        })
-          .then(function () {
+          email: userEmail});
+          emailVerification();
+        }).then(function () {
             console.log("Document successfully written!");
             alert("El usuario ha sido creado con éxito. Hemos enviado un correo de verificación de cuenta.");
             window.location.hash = '';
           })
-          .catch(function (error) {
-            //Si no ocurre el regitro, imprime un mensaje de error
-            console.error("Error writing document: ", error);  
-          });
-      })
+      
       .catch(function (error) {
         if (error) {
           //Si no sucede el registro, envia menseaje de error al usuario
@@ -79,7 +95,7 @@ export const signIn = (emailSignIn, passwordSignIn) => {
         let user = firebase.auth().currentUser;
         
           if(!user.emailVerified){
-            console.log(user.emailVerified)
+            console.log("No verificado, cerrando sesion")
             document.getElementById("error-fb").innerHTML= `Verifica tu correo para poder iniciar sesión`
             firebase.auth().signOut()
             //<br>
@@ -135,24 +151,24 @@ export const signOut = () =>{
 // }
 
 
+
 export const observer=() =>{
   firebase.auth().onAuthStateChanged(function(user) {
-console.log(user)
-if(user===null){
+if(user===null && window.location.hash != "#/create"){
   console.log("No hay usuario")
-  return  window.location.hash = '';}
-if (user.emailVerified) {
-  console.log(user.email)
+   return window.location.hash = '';}
+  if(user===null && window.location.hash == "#/create"){
+    return console.log("Usuario registrando")
+  }
+if (user.emailVerified && window.location.hash =='' || window.location.hash == '#/home'  || window.location.hash == '#/create') {
+  console.log("Usuario activo, redireccionado a Wall")
   window.location.hash = '#/wall';
-  // User is signed in.
 }
- if (!user.emailVerified && window.location.hash != '' && window.location.hash != '#/home'){
-   console.log("No verificado, redireccionando a home")
-   window.location.hash = '';
- }
+
 
   })
 } 
+
 
 
 

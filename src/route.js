@@ -4,6 +4,7 @@
 import {templateHome} from './assets/views/templateHome.js';
 import {templateWall} from './assets/views/templateWall.js';
 import {templateCreate} from './assets/views/templateCreate.js';
+import {templatePost} from './assets/views/templatePost.js'
 
 
 
@@ -30,7 +31,11 @@ const changeRoute = (hash) =>{
     if (hash === '#/create') {
         //le pasa como parametro #/ a la función showTemplate
         return showTemplate(hash);
+    }
 
+    if (hash === '#/post') {
+        //le pasa como parametro #/ a la función showTemplate
+        return showTemplate(hash);
     }
 }
 
@@ -55,6 +60,9 @@ const showTemplate = (hash) =>{
             break;
         case 'wall':
             templateWall();
+            break;
+        case 'post':
+            templatePost();
             break;
         default:
             containerRoot.innerHTML = `<p>Error 404</p>`

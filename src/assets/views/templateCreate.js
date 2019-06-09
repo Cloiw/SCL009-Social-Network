@@ -1,8 +1,11 @@
 import{templateHome}from "./templateHome.js"
 import{validateAndCreateAccount}from "./../js/validation.js"
+import { observer } from "./../js/auth.js";
+
+
 
 export const templateCreate = () => {
-    
+    observer()
      document.getElementById("root").innerHTML =
     ` <div class="container-col">
         <img class="logo" src="assets/img/logo_full.png" alt="">

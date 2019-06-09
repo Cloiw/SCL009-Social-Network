@@ -1,5 +1,5 @@
 import {validatePost} from'./validation.js';
-import {renderPost} from "../views/templateTimeLine.js";
+import {renderPost} from "../views/templateWall.js";
 
 /*Función para crear un nuevo post se traspasa desde el template el texto de la publicación*/
 export const postCreate = (userPost) =>{

@@ -112,7 +112,7 @@ body {
     font-style: italic;
     font-weight: 400;
     color: black;
-    font-size: 18px;
+    font-size: 15px;
     text-align: center;
 }
 
@@ -150,9 +150,9 @@ body {
     padding: 10px 50px;
     border: 30px;
     font-family: 'Archivo', sans-serif;
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 10px;
-    background: url('img/icon_google.png') 15px 8px no-repeat;
+    background: url('img/icon_google.png') 15px 6px no-repeat;
     background-size: 25px;
     background-color: #CF4332;
 }
@@ -213,6 +213,9 @@ body {
         height:4vh;
         margin:10px 20px 10px 10px;  
     }
+    .logo{
+        height: 25vh;
+    }
    }
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 767px) {
@@ -231,8 +234,13 @@ body {
 @media only screen and (min-width: 700px) {
     .col-inputs{
         width: 40%;
+        
     }
     .row-create-account{
         width: 40%;
     }
+    .input-signin, .input-register {
+        padding: 2% 0 2% 0.5em; 
+
+}
 }
