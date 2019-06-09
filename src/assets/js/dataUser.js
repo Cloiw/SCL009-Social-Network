@@ -1,17 +1,18 @@
 
 
+
+
 export const userData = () =>{
 
     firebase.auth().onAuthStateChanged(function(user) {
-            
+           if(!user){
+               return
+           }
         const dbPost = firebase.firestore();
         const userRef = dbPost.collection('users').doc(user.uid);
         userRef.get().then(function(doc) {
             if (doc.exists) {
-               console.log (doc.data().name)
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
+                document.getElementById("bleh").innerHTML = `Bienvenido ${doc.data().location}`
             }
         }).catch(function(error) {
             console.log("Error getting document:", error);
@@ -24,12 +25,4 @@ export const userData = () =>{
 
 
 
-
-export const validateName =() =>{
-    let nameProfile = firebase.auth().currentUser.profileName;
-    if(firebase.auth().currentUser.displayName){
-        nameProfile = firebase.auth().currentUser.displayName;
-    }
-    return nameProfile;
-}
 

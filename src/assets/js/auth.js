@@ -1,54 +1,38 @@
 //Logueo con Google
 export const loginGoogle = () =>{
-    let provider = new firebase.auth.GoogleAuthProvider();
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  let token = result.credential.accessToken;
+  let provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then(result=> {
    let user = result.user;
-   console.log(user.email);
    let db = firebase.firestore();
    const userRef = db.collection('users').doc(user.uid);
-   
-        userRef.get().then(function(doc) {
-            if (doc.exists) {
-               console.log (doc.data().name)
-            } else { 
-              db.collection("users").doc(user.uid).set({
-              name: user.displayName,
-              age:"99",
-              location: "Por ahi",
-              email: user.email});
-                
-            }
-
-   alert(user.displayName+" Has iniciado sesión con exito")
-   window.location.hash = '#/wall';
-   
-   
-
-
-
-   
-}).catch(function(error) {
-   // Handle Errors here.
-   var errorCode = error.code;
-   var errorMessage = error.message;
-   // The email of the user's account used.
-   var email = error.email;
-   // The firebase.auth.AuthCredential type that was used.
-   var credential = error.credential;
-   // ...
- });})}
+    userRef.get().then(doc=>{
+      if (doc.exists) {
+        return
+      }else{ 
+        db.collection("users").doc(user.uid).set({
+        name: user.displayName,
+        age:"99",
+        location: "Por ahi",
+        email: user.email});
+      }
+      alert(user.displayName+" Has iniciado sesión con exito")
+      window.location.hash = '#/wall';
+    })
+    .catch(error=> {
+      console.log(error.message);
+    })
+  })
+}
 
 
  //Envia un correo de validación de la cuenta una vez que el usuario se registra satisfactoriamente
-function emailVerification() {
+const emailVerification = () =>{
   let user = firebase.auth().currentUser;
-
-  user.sendEmailVerification().then(function () {
+  user.sendEmailVerification().then(() =>{
     console.log("enviando correo");
-    // Update successful.
-  }).catch(function (error) {
-    console.log(error);
+  })
+  .catch(error=>{
+    console.log(error.message);
   })
 }
 
@@ -56,48 +40,39 @@ function emailVerification() {
 export const createAccount = (userName, userAge,userLocation, userEmail, userPassword) => {
   let dbProfiles = firebase.firestore();
   // Función de Firebase para registrar nuevos usuarios
-    firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
-      .then(cred => {
-        //Base de datos, para almacenar de manera paralela en cloud firestore  dichos datos del usuario
-        dbProfiles.collection("users").doc(cred.user.uid).set({
-          name: userName,
-          age: userAge,
-          location: userLocation,
-          email: userEmail});
-          emailVerification();
-        }).then(function () {
-            console.log("Document successfully written!");
-            alert("El usuario ha sido creado con éxito. Hemos enviado un correo de verificación de cuenta.");
-            window.location.hash = '';
-          })
-      
-      .catch(function (error) {
-        if (error) {
-          //Si no sucede el registro, envia menseaje de error al usuario
-          alert('No se ha podido crear el usuario');
-      
+  firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
+    .then(cred => {
+      //Base de datos, para almacenar de manera paralela en cloud firestore  dichos datos del usuario
+      dbProfiles.collection("users").doc(cred.user.uid).set({
+        name: userName,
+        age: userAge,
+        location: userLocation,
+        email: userEmail});
+        emailVerification();
+      })
+      .then(()=>{
+          console.log("Document successfully written!");
+          alert("El usuario ha sido creado con éxito. Hemos enviado un correo de verificación de cuenta.");
+          window.location.hash = '';
+      })
+      .catch(error=> {
+        if (error) { 
+          document.getElementById("error-fb").innerHTML= `${error.message}`;
         }
       });
-  }
+}
 
-// export const signInPersistance = (emailSignIn, passwordSignIn)=>{
-//   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => { 
-//     signIn(emailSignIn, passwordSignIn);
-//   })}
-
-  //Permite iniciar sesión solo a usuarios que hayan verificado su correo
+//Permite iniciar sesión solo a usuarios que hayan verificado su correo
 export const signIn = (emailSignIn, passwordSignIn) => {
-     document.getElementById("error-fb").innerHTML=""
- 
-    //Función firebase para ingreso de usuarios registrados
-    firebase.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn)
-      .then(function () {
-        let user = firebase.auth().currentUser;
-        
-          if(!user.emailVerified){
-            console.log("No verificado, cerrando sesion")
-            document.getElementById("error-fb").innerHTML= `Verifica tu correo para poder iniciar sesión`
-            firebase.auth().signOut()
+  document.getElementById("error-fb").innerHTML=""
+ //Función firebase para ingreso de usuarios registrados
+  firebase.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn).then(() =>{
+    let user = firebase.auth().currentUser;
+    console.log(user)
+    if(!user.emailVerified){
+      console.log("No verificado, cerrando sesion")
+      document.getElementById("error-fb").innerHTML= `Verifica tu correo para poder iniciar sesión`
+      firebase.auth().signOut()
             //<br>
             //<p id="sendEmailAgain">Enviame otro correo!</a>
             // document.getElementById("sendEmailAgain").addEventListener('click', ()=>{
@@ -105,67 +80,38 @@ export const signIn = (emailSignIn, passwordSignIn) => {
             //   document.getElementById("error-fb").innerHTML=""
             //   firebase.auth().signOut()
             //   })
-          }
-          else{ 
-            window.location.hash = '#/wall';
-          }
-         
-      })
-      .catch(function (error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          document.getElementById("error-fb").innerHTML= `${errorMessage}`;
-          console.log(errorCode);
-      });
+    }else{ 
+        window.location.hash = '#/wall';
+    }
+  })
+  .catch(error =>{
+    document.getElementById("error-fb").innerHTML= `${error.message}`;
+  });
 }
 
   
-/*Función signOut(), sirve para que usuario cierre sesión, lo dirigia a la pantalla home*/
-
+//Cierra la sesión del usuario y lo redirecciona a la pantalla home
 export const signOut = () =>{
   if(confirm("¿Realmente deseas cerrar sesión?")){
-  firebase.auth().signOut()
-  .then(function() {
-    alert("Has cerrado tu sesión");
-    window.location.hash='';
-    }).catch(function(error) {
-    // An error happened.
-    console.error("Error removing document: ", error);
-  });
- }
+    firebase.auth().signOut().then(()=> {
+          window.location.hash='';
+    })
+  }
 }
-
-// export const observer2=() =>{
-//   firebase.auth().onAuthStateChanged(function(user) {
-
-// if (user) {
-//   console.log(user.email)
-//   window.location.hash = '#/wall';
-//   // User is signed in.
-// } else {
-//   console.log("No hay usuario")
-//   window.location.hash = '';
-//   // No user is signed in.
-// }
-//   })
-// }
-
 
 
 export const observer=() =>{
   firebase.auth().onAuthStateChanged(function(user) {
-if(user===null && window.location.hash != "#/create"){
-  console.log("No hay usuario")
-   return window.location.hash = '';}
-  if(user===null && window.location.hash == "#/create"){
-    return console.log("Usuario registrando")
-  }
-if (user.emailVerified && window.location.hash =='' || window.location.hash == '#/home'  || window.location.hash == '#/create') {
-  console.log("Usuario activo, redireccionado a Wall")
-  window.location.hash = '#/wall';
-}
-
-
+    if(user===null && window.location.hash != "#/create"){
+      console.log("No hay usuario")
+      return window.location.hash = '';}
+    if(user===null && window.location.hash == "#/create"){
+        return
+      }
+    if (user.emailVerified === true && ( window.location.hash =='' || window.location.hash == '#/home'  || window.location.hash == '#/create')) {
+      console.log("Usuario activo, redireccionado a Wall")
+      window.location.hash = '#/wall';
+    }
   })
 } 
 

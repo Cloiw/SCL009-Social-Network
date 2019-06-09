@@ -1,5 +1,5 @@
-
 import {createAccount,signIn} from "./auth.js"
+import { postCreate } from "./data.js";
 
 
 //Función que valida que el usuario debe ingresar un @ cuando ingresa un correo
@@ -37,7 +37,7 @@ export const validateEachInput = (userName, userAge, userLocation, userEmail, us
 }
 
 // Muestra mensaje de error segun los datos del objeto computado en la funcion validateEachInput
-export const showErrorMsg = (errorName, errorAge, errorLocation, errorEmail, errorPassword, resultValidateEachInput) => {
+const showErrorMsg = (errorName, errorAge, errorLocation, errorEmail, errorPassword, resultValidateEachInput) => {
   resetError(errorName, errorAge, errorLocation, errorEmail, errorPassword)
   if (!resultValidateEachInput["name"]) {
     errorName.innerHTML = `Debes ingresar un nombre.`;
@@ -131,12 +131,43 @@ export const validateAndSignIn = (errorEmail,errorPassword,userEmail,userPasswor
     signIn(userEmail, userPassword)
   }
 }
-//Validación input vacio del post
-export const validatePost = (userPost) =>{
-  if(userPost === ""|| userPost.length<2){
-    return false;
 
-  } else{
-    return true;
+//Validación text areas vacios de la publicacion
+export const validateTextPost = (userPost,userStageDirection) =>{
+  let result= {}
+  result["stageDirection"] = true;
+  result["post"] = true;
+
+  if(userStageDirection === ""|| userStageDirection.length<3){
+    result["stageDirection"] = false;
+  }
+  if(userPost === ""|| userPost.length<2){
+    result["post"] = false;
+  }
+  return result;
+}
+
+const resetErrorPost = (errorPost,errorStageDirection) => {
+  errorPost.innerHTML = "";
+  errorStageDirection.innerHTML = "";
+}
+
+
+const showErrorMsgPost = (errorPost,errorStageDirection,resultValidateTextPost)=>{
+  resetErrorPost(errorPost,errorStageDirection);
+
+  if (!resultValidateTextPost["stageDirection"]) {
+    errorStageDirection.innerHTML = `Por favor, ingresa una acotación mayor a 3 carácteres.`;
+  }
+  if (!resultValidateTextPost["post"]) {
+  errorPost.innerHTML = `Por favor, ingresa una publicacíón mayor a dos carácteres.`;}
+}
+
+export const validateAndPost = (errorPost,errorStageDirection,userPost,userStageDirection) =>{
+  const resultValidateTextPost = validateTextPost(userPost,userStageDirection);
+  showErrorMsgPost(errorPost,errorStageDirection,resultValidateTextPost);
+  if(areAllValidated(resultValidateTextPost)){
+  postCreate(userPost,userStageDirection);
   }
 }
+

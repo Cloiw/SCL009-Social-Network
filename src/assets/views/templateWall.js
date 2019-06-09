@@ -1,7 +1,9 @@
 import { signOut,observer } from "./../js/auth.js";
-import {userData} from "./../js/dataUser.js";
+import {readingPosts} from "./../js/data.js";
 export const templateWall = () => {
     observer()
+    
+
     document.getElementById("root").innerHTML =
     
     `
@@ -32,15 +34,15 @@ export const templateWall = () => {
     </div>
     
     <section class="template-wall">
-                            <h2>Bienvenido${userData()}</h2>
-                            <section id="section-wall">
+                            <h2 id="bleh" ></h2>
+                            <section id="wall">
                             
                           
                             </section>   
                         </section>                
                         `
 
-    //evento para cerrar la sesión del usuario
+    //botones de la barra superior
     document.getElementById('btn-logout').addEventListener('click', () => {
         signOut();
     })
@@ -51,37 +53,11 @@ export const templateWall = () => {
         window.location.hash = "/wall"
     })
 
-    console.log(userData())
-    //evento que sirve para volver al inicio de la pantalla
+    readingPosts()
+}
+
+
+//evento que sirve para volver al inicio de la pantalla
     //document.getElementById('up').addEventListener('click',()=>{
     //    window.scrollTo(0,0);
     //});    
-}
-
-
-/*Función que imprime el html de los mensajes publicados*/
-export const renderPost =(doc) =>{
-    let postDate = new Date(doc.data().date);
-    document.getElementById('wall').innerHTML +=
-    `   
-        <article class="post-read">
-            <h3>${doc.data().name}</h3>
-            <h5>${postDate.toLocaleDateString('es-cl')} ${postDate.toLocaleTimeString('es-cl')}</h5>
-            <h4>${doc.data().message}</h4>             
-            <button id="like_${doc.id}" class="btn-like">Like</button>                       
-    `
-    if(firebase.auth().currentUser.email===doc.data().user){
-        document.getElementById('wall').innerHTML +=
-        `
-        <div class="btntimeline">
-            <button id="update_${doc.id}" class="btn-update">Editar</button>
-            <button id="delete_${doc.id}" class="btn-delete">Eliminar</button>
-        </div>
-        `
-    }        
-        document.getElementById('wall').innerHTML +=
-        `           
-        </article>
-        `   
-}
-

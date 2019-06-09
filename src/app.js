@@ -12,6 +12,7 @@ const init = () => {
     initFirebase();
     
     initRouter();
+  
 }
 
 window.addEventListener('load', init);

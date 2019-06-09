@@ -14,7 +14,7 @@ export const templateCreate = () => {
     <hr class="hr-home-top">
 <div class="container-col-2">
     <div class="col-inputs">
-    
+        <p class="p-error-fb" id="error-fb"></p>
         <input class="input-register"  id="user-name" autofocus placeholder="Nombre del personaje">
         <p class="p-error" id="error-name"></p>
         <input class="input-register"  id="user-age" placeholder="Edad del personaje">
@@ -38,6 +38,7 @@ export const templateCreate = () => {
     window.location.hash= "#/home";
     })
     document.getElementById("btn-create-account").addEventListener('click', ()=>{
+        document.getElementById("error-fb").innerHTML= ""
         let userName=document.getElementById("user-name").value;
         let userAge=document.getElementById("user-age").value;
         let userLocation=document.getElementById("user-location").value;

@@ -36,6 +36,7 @@ observer()
         <button class="btn-register" id="btn-register">Registrarse</button>
     </div>
 </div>`
+
 document.getElementById("btn-google-login").addEventListener('click', ()=>{
 loginGoogle()
 })
@@ -53,9 +54,5 @@ document.getElementById("btn-register").addEventListener('click', ()=>{
    window.location.hash= "#/create";
 })
 }
- // <input class="email" type="email" id="email" placeholder="Correo">
-    // <input class="password" type="password" id="password" placeholder="Contraseña"> <br>
-    // <button class="btn-login" id="login">Log In</button>  
-    // <p>¿No tienes una cuenta?<p>
-    // <button class="btn-register" id="login">Registrarse</button> 
+ 
     

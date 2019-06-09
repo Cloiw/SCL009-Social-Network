@@ -1,10 +1,10 @@
-import {observer} from "./../js/auth.js";
-import {postCreate,validateName} from "./../js/dataWall.js"
-import {templateWall} from "./templateWall.js"
+import { signOut,observer } from "./../js/auth.js";
+import { validateAndPost } from "../js/validation.js";
+
 
 export const templatePost =()=>{
-    observer();
-    // let nameProfile = validateName();
+    
+   
     document.getElementById("root").innerHTML=
     `
     <div class="container-row">
@@ -29,10 +29,14 @@ export const templatePost =()=>{
                 </button>
             </div>
         </div>
-    </div>                                                                               
+    </div> 
+
     </section>
-        <textarea id="textpost" placeholder="¿Qué estás pensando?" autofocus></textarea>   
-        <button id="post">Publicar</button> 
+    <textarea id="text-stage-direction" placeholder="Acotación" autofocus></textarea>
+    <p id="error-stage-direction" class="p-error"></p>  
+        <textarea id="text-post" placeholder="Diálogo" autofocus></textarea> 
+        <p id="error-post" class="p-error"></p>  
+        <button class="btn-signin" id="btn-create-post">Publicar</button>
     </section> 
                         `
                     
@@ -45,29 +49,13 @@ document.getElementById('btn-post').addEventListener('click', () => {
 document.getElementById('btn-logout').addEventListener('click', () => {
     signOut();
 })
-                   
-                        
-                    }
 
+document.getElementById('btn-create-post').addEventListener('click', ()=>{
+let userPost = document.getElementById('text-post').value;
+let userStageDirection = document.getElementById('text-stage-direction').value;
+let errorPost = document.getElementById('error-post');
+let errorStageDirection = document.getElementById('error-stage-direction');
+validateAndPost(errorPost,errorStageDirection,userPost,userStageDirection);
+})
 
-    //evento para publicar un mensaje   
-//     document.getElementById('post').addEventListener('click',()=>{
-//         let userPost = document.getElementById('text-post').value;
-
-//         if(userPost===''|| userPost.length<10){
-//             document.getElementById('post-error').innerHTML=`*Debes ingresar una publicación con más de 2 caracteres.`;
-//         }
-//         else{
-//             document.getElementById('post-error').innerHTML='';
-//         }
-        
-//         postCreate(userPost);
-
-//     })   
-    
-//     //evento que permite ir al templateTimeLine
-//     document.getElementById('btn-return-wall').addEventListener('click',()=>{
-//         templateWall();
-//         window.location.hash="#/wall";        
-//     })
-// }
+}
