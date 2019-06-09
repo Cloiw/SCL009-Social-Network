@@ -4,8 +4,8 @@ export const postCreate = (userPost,userStageDirection) =>{
     let db = firebase.firestore();
     let date= Date.now()
     console.log(date)
-    firebase.auth().onAuthStateChanged(function(user) {
-        db.collection('users').doc(user.uid).get().then(function(doc) {
+    firebase.auth().onAuthStateChanged(user=> {
+        db.collection('users').doc(user.uid).get().then(doc=> {
             db.collection("post").add({
                 author: user.uid,
                 name: doc.data().name,
@@ -43,6 +43,5 @@ const renderPost =(doc) =>{
                      
             <button id="like_${doc.id}" class="btn-like">Like</button>   
             <p class="post-date">${postDate.toLocaleDateString()} a las ${postDate.toLocaleTimeString()}</p>                    
-        `
-        
+        `      
 }

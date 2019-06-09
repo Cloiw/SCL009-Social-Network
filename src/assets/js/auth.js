@@ -101,7 +101,7 @@ export const signOut = () =>{
 
 
 export const observer=() =>{
-  firebase.auth().onAuthStateChanged(function(user) {
+  firebase.auth().onAuthStateChanged(user => {
     if(user===null && window.location.hash != "#/create"){
       console.log("No hay usuario")
       return window.location.hash = '';}
