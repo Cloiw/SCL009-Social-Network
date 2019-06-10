@@ -15,7 +15,9 @@ export const postCreate = (userPost,userStageDirection) =>{
                 message: userPost,
                 stage_direction: userStageDirection,
                 likes: 0
-            });  
+            }).then(()=> {
+                window.location.hash='/wall';
+            })  
         })
     })
 }
@@ -26,7 +28,7 @@ export const readingPosts = () =>{
     let db = firebase.firestore();
     db.collection("post").orderBy("date","desc").get().then((post)=>{
         post.forEach((doc) => {
-            renderPost(doc);
+            renderPost(doc)
         })
     })
 }
