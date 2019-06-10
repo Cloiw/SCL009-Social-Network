@@ -34,14 +34,26 @@ export const readingPosts = () =>{
 //Toma los posts y los muestra en el HTML
 const renderPost =(doc) =>{
     let postDate = new Date(doc.data().date);
-    document.getElementById('wall').innerHTML +=
-        `<article class="post-read">
-            <p class="post-user-name">${doc.data().name}</p>,
-            <p class="post-user-age">(${doc.data().age} años)</p>
-            <p>(${doc.data().stage_direction})</p>
-            <p class="post-message">${doc.data().message}</p> 
-                     
-            <button id="like_${doc.id}" class="btn-like">Like</button>   
-            <p class="post-date">${postDate.toLocaleDateString()} a las ${postDate.toLocaleTimeString()}</p>                    
+    document.getElementById('post-wall').innerHTML +=
+        `<div class="post-container">
+            <div class="post-read">
+                <p>
+                    <span class="post-date">${postDate.toLocaleDateString()} a las ${postDate.toLocaleTimeString()}</span>
+                    <br> 
+                    <span class="post-top">${doc.data().name}</span><br>
+                    <span>(${doc.data().stage_direction}):</span>
+                    <br><br>
+                    <span class="post-message">${doc.data().message}</span>
+                    <br>
+                    <br>
+                    <span> ${doc.data().likes}❤️</span>
+                    
+                </p>    
+                <button id="like_${doc.id}" class="btn-like">Like</button>
+                
+                <p class="post-age-location">( ${doc.data().name}, ${doc.data().age} años... de ${doc.data().location} ) <br></p>
+            
+            </div> 
+        </div>                 
         `      
 }

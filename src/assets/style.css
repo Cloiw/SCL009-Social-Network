@@ -1,42 +1,46 @@
 @import url('https://fonts.googleapis.com/css?family=Archivo:400,400i,600&display=swap');
 
-*
+*{
+    font-family: 'Archivo';
+    font-weight: 400;
+}
 
 body {
     background-color: #F5F5F5;
 }
 
 
-.container-col,.container-col-2,.container-col-3{
-
+.container-col,.container-col-center,.center-col,.left-col,.col-inputs,.col-main-75{
     display:flex;
     flex-direction:column;
     align-items: center;
 }
-.right-col{
-    display: flex;
-    flex-direction:column;
-    align-items: flex-end;       
-}
+
 .center-col{
     width:100%;
-    display: flex;
-    flex-direction:column;  
-    
 }
 .left-col{
-    display: flex;
-    flex-direction:column;
     align-items: flex-start;
+}
+.col-inputs{
+    width: 80%;
+    align-items: stretch;
+}
+.col-main-75{
+    width: 75%;
+    align-items: stretch;
     
 }
-
-.container-col-2,.container-col-3{
-    justify-content: center;
+.hr-post{
+    display: flex;
+    flex-direction:row;
+}
+textarea { 
+    resize: none; 
+    height: auto;
 }
 
-
-.row-btn-signin,.row-btn-google,.row-create-account,.row-btn-back,.nav-wall,.elements-row,.nav-wall,.container-row,.icons-row{
+.row-btn-signin,.row-btn-google,.row-create-account,.row-btn-back,.nav-wall,.elements-row,.nav-wall,.container-row-nav,.icons-row{
     display: flex;
     flex-direction:row;
     align-self: flex-end;
@@ -47,9 +51,10 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.container-row{
+.container-row-nav{
     width:100%;
     background-color: #BC0202;
+    margin-bottom: 2%;
     
 }
 .nav-wall{
@@ -70,12 +75,6 @@ body {
 }
 .row-create-account{
     width:80%;
-    align-self: center;
-}
-.col-inputs{
-    width: 80%;
-    display: flex;
-    flex-direction:column;
     align-self: center;
 }
 
@@ -108,7 +107,6 @@ body {
     margin-bottom: 15px;
 }
 .subtitle, .subtitle-register,.p-register {
-    font-family: 'Archivo';
     font-style: italic;
     font-weight: 400;
     color: black;
@@ -116,14 +114,12 @@ body {
     text-align: center;
 }
 
-.input-signin,.input-register{
+.input-signin,.input-register,#text-stage-direction,#text-post{
     padding: 4% 0 4% 0.5em;
     margin-bottom: 5px;
     margin-top: 5px;
     text-align: left;
     border: 1px solid #BC0202;
-    font-family: 'Archivo';
-    font-weight: 400;
     font-size:18px;
     -webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.4);
@@ -132,8 +128,6 @@ body {
 
 .p-error,.p-error-fb{
     color: #BC0202;
-    font-family: 'Archivo';
-    font-weight: 400;
     font-size: 15px;
     margin:0;
     align-self: flex-start;
@@ -149,7 +143,6 @@ body {
     color: white;
     padding: 10px 50px;
     border: 30px;
-    font-family: 'Archivo', sans-serif;
     font-size: 15px;
     margin-bottom: 10px;
     background: url('img/icon_google.png') 15px 6px no-repeat;
@@ -184,23 +177,25 @@ body {
     border: none;
     cursor:pointer;
 }
-/* #nav-wall{
-    top:0px;
-    height:60px;
-    width:100%;
-    display:flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    position: fixed; 
-}*/
-/* 
-#logout,#btn-signout,#btn-up,#up{
-    height:95%;        
-    justify-content: space-between;  
-    background-color: transparent; 
-    border:none;      
-} */
- 
+.post-container{
+    border-bottom: 1px solid black;
+}
+.post-read{
+    word-wrap: break-word;
+}
+.post-date,.post-age-location{
+    font-size: 14px;
+    color: rgb(90, 89, 89);
+    font-style: italic;
+    margin-bottom: 10px;
+    display:inline-block; 
+}
+.post-age-location{
+    margin:10px 10px 10px 0;
+    text-align:right;
+    display:block; 
+    
+}
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
@@ -216,6 +211,11 @@ body {
     .logo{
         height: 25vh;
     }
+    .post-date,.post-age-location{
+        font-size: 15px;
+        text-align:left;
+        display:inline-block;
+    }
    }
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 767px) {
@@ -228,6 +228,7 @@ body {
         height:5vh;
         margin:10px 20px 10px 10px;  
     }
+   
 }
 
 /* Desktop Styles */
@@ -239,7 +240,7 @@ body {
     .row-create-account{
         width: 40%;
     }
-    .input-signin, .input-register {
+    .input-signin, .input-register,#text-stage-direction,#text-post {
         padding: 2% 0 2% 0.5em; 
 
 }

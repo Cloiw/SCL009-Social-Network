@@ -1,13 +1,11 @@
 import { signOut,observer } from "./../js/auth.js";
 import {readingPosts} from "./../js/data.js";
 export const templateWall = () => {
-    observer()
+observer()
     
-
-    document.getElementById("root").innerHTML =
-    
+document.getElementById("root").innerHTML =
     `
-    <div class="container-row">
+    <nav class="container-row-nav">
         <div class="left-col">
             <div class="btn-nav">
                 <div class="icon-btn">
@@ -28,32 +26,34 @@ export const templateWall = () => {
                     <img id="btn-post" class="btn-icons" src="assets/img/logout_icon.png">
                 </button>
             </div>
-        </div>
+        </div> 
+    </nav>
 
-        
-    </div>
-    
-    <section class="template-wall">
-                            <h2 id="bleh" ></h2>
-                            <section id="wall">
-                            
-                          
-                            </section>   
-                        </section>                
-                        `
+    <header>
+        <h1 class="subtitle">Muro de la comunidad</h1>
+    </header>
+    <div class="container-col-center"> 
+        <div class="col-main-75">
+            <div>
+                <hr class="hr-home-top">
+            </div>
+        <div id="post-wall">
+        </div>   
+        </div>   
+    </div>                              
+    `
 
-    //botones de la barra superior
-    document.getElementById('btn-logout').addEventListener('click', () => {
-        signOut();
-    })
-    document.getElementById('btn-post').addEventListener('click', () => {
-        window.location.hash = "/post"
-    })
-    document.getElementById('btn-wall').addEventListener('click', () => {
-        window.location.hash = "/wall"
-    })
-
-    readingPosts()
+//botones de la barra superior
+document.getElementById('btn-logout').addEventListener('click', () => {
+    signOut();
+})
+document.getElementById('btn-post').addEventListener('click', () => {
+    window.location.hash = "/post"
+})
+document.getElementById('btn-wall').addEventListener('click', () => {
+    window.location.hash = "/wall"
+})
+readingPosts()
 }
 
 

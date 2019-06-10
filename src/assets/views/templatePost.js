@@ -5,9 +5,10 @@ import { validateAndPost } from "../js/validation.js";
 export const templatePost =()=>{
     
    
-    document.getElementById("root").innerHTML=
+document.getElementById("root").innerHTML=
+
     `
-    <div class="container-row">
+    <nav class="container-row-nav">
         <div class="left-col">
             <div class="btn-nav">
                 <div class="icon-btn">
@@ -29,15 +30,23 @@ export const templatePost =()=>{
                 </button>
             </div>
         </div>
-    </div> 
+    </nav> 
 
-    </section>
-    <textarea id="text-stage-direction" placeholder="Acotación" autofocus></textarea>
-    <p id="error-stage-direction" class="p-error"></p>  
-        <textarea id="text-post" placeholder="Diálogo" autofocus></textarea> 
-        <p id="error-post" class="p-error"></p>  
-        <button class="btn-signin" id="btn-create-post">Publicar</button>
-    </section> 
+    <header>
+        <h1 class="subtitle">Crea tu publicación</h1>
+    </header>
+    <div class="container-col-center"> 
+        <div class="col-main-75">
+            <div>
+                <hr class="hr-home-top">
+            </div>
+            <textarea id="text-stage-direction" placeholder="Acotación" rows="1" autofocus></textarea>
+            <p id="error-stage-direction" class="p-error"></p>  
+            <textarea id="text-post" placeholder="Diálogo" rows="10"></textarea> 
+            <p id="error-post" class="p-error"></p>  
+            <button class="btn-signin" id="btn-create-post">Publicar</button>
+        </div>
+    </div>
                         `
                     
 document.getElementById('btn-wall').addEventListener('click', () => {
