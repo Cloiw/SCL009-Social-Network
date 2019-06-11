@@ -27,7 +27,14 @@ let db = firebase.firestore();
     db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
        
         snapshot.docChanges().forEach((change)=>{
-             renderPost2(change,db)
+            if(change.type == 'added'){
+                console.log(change.type)
+             renderPost3(change,db);
+             }if(change.type == 'modified'){change.type = 'added'
+                 document.getElementById("count_"+change.doc.id).innerHTML =  change.doc.data().likes
+                 
+                 console.log(change.type)
+             }
              })
 
 
@@ -39,10 +46,11 @@ export const readingPosts = () =>{
     let db = firebase.firestore();
     db.collection("post").orderBy("date","desc").get().then((post)=>{
         post.forEach((doc) => {
-             renderPost(doc,db)
+             renderPost3(doc,db)
         })
     })
 }
+
 
 
  
@@ -180,3 +188,45 @@ const addLike = (doc,userLikes,likeCount,db)=>{
                 
             
             }
+
+const renderPost3 = (doc,db) =>{
+    // Creating a div element
+var divElement = document.createElement("Div");
+divElement.id = "divID";
+
+// Styling it
+divElement.style.textAlign = "center";
+divElement.style.fontWeight = "bold";
+divElement.style.fontSize = "smaller";
+divElement.style.paddingTop = "15px";
+
+// Adding a paragraph to it
+var paragraph = document.createElement("P");
+paragraph.id="count_"+doc.doc.id
+var text = document.createTextNode(doc.doc.data().likes+"❤️");
+paragraph.appendChild(text);
+divElement.appendChild(paragraph);
+
+// Adding a button, cause why not!
+var button = document.createElement("Button");
+var textForButton = document.createTextNode("Release the alert");
+button.appendChild(textForButton);
+button.addEventListener("click", function(){
+        db.collection("post").doc(doc.doc.id).update({ likes: Number(doc.doc.data().likes)+1, liked: true})
+      
+    })
+
+
+    
+
+        
+    
+    
+
+divElement.appendChild(button);
+
+// Appending the div element to body
+document.getElementById("post-wall").appendChild(divElement);
+
+}
+

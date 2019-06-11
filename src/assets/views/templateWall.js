@@ -53,7 +53,7 @@ document.getElementById('btn-post').addEventListener('click', () => {
 document.getElementById('btn-wall').addEventListener('click', () => {
     window.location.hash = "/wall"
 })
-readingPosts()
+readingPosts2()
 }
 
 
