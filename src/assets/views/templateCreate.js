@@ -5,7 +5,7 @@ import { observer } from "./../js/auth.js";
 
 
 export const templateCreate = () => {
-    observer()
+    
      document.getElementById("root").innerHTML =
     ` 
     <header>

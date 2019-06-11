@@ -1,7 +1,7 @@
 import { signOut,observer } from "./../js/auth.js";
-import {readingPosts} from "./../js/data.js";
+import {readingPosts,readingPosts2} from "./../js/data.js";
 export const templateWall = () => {
-observer()
+
     
 document.getElementById("root").innerHTML =
     `

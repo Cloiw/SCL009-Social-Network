@@ -5,6 +5,7 @@ import {templateHome} from './assets/views/templateHome.js';
 import {templateWall} from './assets/views/templateWall.js';
 import {templateCreate} from './assets/views/templateCreate.js';
 import {templatePost} from './assets/views/templatePost.js'
+import { observer } from './assets/js/auth.js';
 
 
 
@@ -80,6 +81,7 @@ export const initRouter = () =>{
     if('onhashchange' in window){
         //cuando reconoce un cambio de hash, llama a la función changeRoute para qur cambie la vista
         window.onhashchange = () =>{
+            observer()
             changeRoute(window.location.hash);
         }
     }

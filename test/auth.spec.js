@@ -1,4 +1,4 @@
-import {areAllValidated,validateEachInput,validateEmail,validateSignInInput,validatePost} from "./../src/assets/js/validation.js"
+import {areAllValidated,validateEachInput,validateEmail,validateSignInInput,validateTextPost} from "./../src/assets/js/validation.js"
 
 
 //Test de las funciones para validar campos de registro
@@ -11,7 +11,7 @@ const result =
  password:true,
 }
 describe("areAllValidated",()=>{
-    it("deberia retornar false, cuando alguno de los campos sea false",()=>{
+    it("Deberia retornar false, cuando alguno de los campos sea false",()=>{
         expect(areAllValidated(result)).toBe(false);
     })
 });
@@ -35,25 +35,23 @@ describe ("validateEmail",()=>{
 //Test de la funcion para validar campos de logeo
 
 const resultValidateSignInInput =
-    {email:false,
-    password:false,
-  }
+  {email:false,
+    password:false
+}
+
 test("validateSignInInput, Deberia retornar un objeto con ambos parametros false", () =>{
     expect(validateSignInInput("soyuncorreo@novalido","pass")).toEqual(resultValidateSignInInput)
 });
 
 
-//validación función validatePost
+//validación función validateTextPost
 
-describe("validatePost",()=>{
-    it('deberia retornar false, si el input es vacío',()=>{
-        expect(validatePost("")).toBe(false);
-    })
-})
+const resultValidateTextPost =
+{stageDirection:false,
+ post:true,
+}
+test("validateTextPost, Deberia retornar un objeto con el parametro de stage true y el de post false", () =>{
+    expect(validateTextPost("acotacion valida","as")).toEqual(resultValidateTextPost)
+});
 
-describe("validatePost", () =>{
-    it('deberia retornar true, si el input tiene texto',()=>{
-        expect(validatePost("hola como estas?")).toBe(true);
-    })
-})
 

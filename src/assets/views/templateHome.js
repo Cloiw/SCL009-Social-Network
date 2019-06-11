@@ -3,7 +3,7 @@ import{validateAndSignIn}from "./../js/validation.js";
 import{templateCreate}from "./templateCreate.js"
 
 export const templateHome = () => {
-observer()
+
 document.getElementById("root").innerHTML =
 
     `
@@ -54,6 +54,7 @@ let userPassword = document.getElementById("password-signin").value;
 })
 
 document.getElementById("btn-register").addEventListener('click', ()=>{
+
    templateCreate();
    window.location.hash= "#/create";
 })

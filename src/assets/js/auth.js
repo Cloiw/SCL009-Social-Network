@@ -42,7 +42,6 @@ export const createAccount = (userName, userAge,userLocation, userEmail, userPas
   // Función de Firebase para registrar nuevos usuarios
   firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
     .then(cred => {
-      //Base de datos, para almacenar de manera paralela en cloud firestore  dichos datos del usuario
       dbProfiles.collection("users").doc(cred.user.uid).set({
         name: userName,
         age: userAge,
@@ -101,19 +100,28 @@ export const signOut = () =>{
 
 
 export const observer=() =>{
-  firebase.auth().onAuthStateChanged(user => {
-    if(user===null && window.location.hash != "#/create"){
-      console.log("No hay usuario")
-      return window.location.hash = '';}
-    if(user===null && window.location.hash == "#/create"){
-        return
-      }
-    if (user.emailVerified === true && ( window.location.hash =='' || window.location.hash == '#/home'  || window.location.hash == '#/create')) {
-      console.log("Usuario activo, redireccionado a Wall")
-      window.location.hash = '#/wall';
-    }
-  })
-} 
+  // firebase.auth().onAuthStateChanged(user => {
+  //   if(user){
+  //     console.log("oliadsa")
+  //     window.location.hash = '#/wall';
+  //   }
+  // else{
+  //   window.location.hash = "";
+
+  }
+  
+//     if(user===null && window.location.hash != "#/create"){
+//       console.log("No hay usuario")
+//       return window.location.hash = '';}
+//     if(user===null && window.location.hash == "#/create"){
+//         return
+//       }
+//     if (user.emailVerified === true && ( window.location.hash =='' || window.location.hash == '#/home'  || window.location.hash == '#/create')) {
+//       console.log("Usuario activo, redireccionado a Wall")
+//       window.location.hash = '#/wall';
+//     }
+//   })
+// } 
 
 
 
