@@ -4,6 +4,7 @@ export const templateWall = () => {
 
     
 document.getElementById("root").innerHTML =
+
     `
     <nav class="container-row-nav">
         <div class="left-col">
@@ -55,6 +56,9 @@ document.getElementById('btn-wall').addEventListener('click', () => {
 })
 readingPosts2()
 }
+
+
+    
 
 
 //evento que sirve para volver al inicio de la pantalla

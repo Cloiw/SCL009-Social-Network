@@ -28,7 +28,7 @@ export const readingPosts2 = () =>{
     
     snapshot.docChanges().forEach((change)=>{ 
         console.log(change.type);
-  
+  renderPost2(change.doc,db)
    
     console.log(change.doc.id)
     console.log(change.type);
@@ -177,6 +177,19 @@ export const postEdit = (id) =>{
         .catch(function(error) {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
+        });
+    }
+}
+/*Función para eliminar post*/
+
+export const postDelete=(id)=>{
+    let dbPost = firebase.firestore();
+    if(confirm("¿Realmente deseas eliminar esta publicación?")){
+        dbPost.collection("post").doc(id).delete().then(function() {
+            console.log("Document successfully deleted!");
+            postRead();        
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
         });
     }
 }
