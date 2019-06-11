@@ -157,46 +157,26 @@ export const readingPosts2 = () =>{
                 document.getElementById("like_"+change.doc.id).addEventListener('click', ()=>{
                     console.log(change.doc.data().likes)
                     db.collection("post").doc(change.doc.id).update({ likes: Number(change.doc.data().likes)+1, liked: true})
-                  })}
-
-
-
-
-
-
-
-//FUNCIONA CADA BOTON PERO CREA UNO NUEVO
-// export const readingPosts2 = () =>{
-//                     let db = firebase.firestore();
-//                         db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
-                           
-//                             snapshot.docChanges().forEach((change)=>{
-//                                  renderPost2(change,db)
-//                                  })
-                    
-//                     }) }
-
-
-
-//FUNCIONA SOLO UNA VEZ
-// export const readingPosts2 = () =>{
-//     let db = firebase.firestore();
-//     db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
+                  })
+                
+        }
        
-//     snapshot.docChanges().forEach((change)=>{ 
-       
-//     if(document.getElementById("btn-like-"+change.doc.id)==null){
-//     renderPost2(change.doc,db)
-//     console.log( document.getElementById("btn-like-"+change.doc.id))
-//     }else{
-//         document.getElementById("count_"+change.id).innerHTML = change.doc.data().likes+"❤️"
-//     }
-    
-    
-    
-        
+ /*Función que permite editar una publicación seleccionada por el usuario*/
 
-    
-//      })
-                    
-//     }) }
+export const postEdit = (id) =>{
+    let dbPost = firebase.firestore();
+    let textPost = document.getElementById("textpost").value;
+    if(validatePost(textPost)){
+        return dbPost.collection("post").doc(id).update({
+            message : textPost
+        }).then(function() {
+            console.log("Document successfully updated!");
+            //templateWall();
+            window.location.hash="#/wall"; 
+        })
+        .catch(function(error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
+    }
+}

@@ -1,315 +1,341 @@
-# Creando una Red Social
-
-## Índice
-
-* [Preámbulo](#preámbulo)
-* [Resumen del proyecto](#resumen-del-proyecto)
-* [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
-* [Consideraciones generales](#consideraciones-generales)
-* [Parte obligatoria](#parte-obligatoria)
-* [Hacker Edition](#hacker-edition)
-* [Consideraciones técnicas](#consideraciones-técnicas-front-end)
-* [Contenido de referencia](#pistas-/-tips-/-lecturas-complementarias)
-
+***
+⭐️ Readme Social Network ⭐️
 ***
 
-## Preámbulo
+Para el proyecto de Red Social se creó una red pensada en los amantes del teatro a la que podrán acceder directamente en sus teléfonos móviles, llamada Sala Red de Teatro.
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
-vivir sin ellas.
+¿Qué es Sala Red de Teatro?
 
-Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
-en una ronda de financiamiento con inversionistas, se presentó una red social
-para químicos en la que los usuarios podían publicar artículos sobre sus
-investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
-de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
-más comentado.
+Sala Red de Teatro nace como una aplicación pensanda en la necesidad de unir a las personas que de alguna manera tienen afficción por el teatro.
 
-## Resumen del proyecto
-
-En este proyecto construirás una Red Social sobre lo que decidan tú y tu equipo.
-Podría ser, por ejemplo, sobre alimentación saludable, feminismo, educación,
-salud, energías renovables, amantes de las [empanadas](https://es.wikipedia.org/wiki/Empanada) o de
-los [tacos de canasta](https://es.wikipedia.org/wiki/Taco), etc.
-
-Tu Red Social tendrá que permitir a cualquier usuario crear una cuenta de
-acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
-
-## Objetivos de Aprendizaje
-
-El objetivo principal de aprendizaje de este proyecto es construir una
-[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-[_responsive_](https://github.com/Laboratoria/curricula-js/tree/master/topics/css/02-responsive)
- (con más de una vista / página) en la que podamos **leer y escribir datos.**
-
-## Consideraciones generales
-
-- Este proyecto se debe "resolver" en tríos.
-
-- La lógica del proyecto debe estar implementada completamente en JavaScript (ES6+),
-HTML y CSS :smiley:. Para este proyecto no está permitido utilizar
-frameworks o librerías de CSS y JS.
-
-- La división del trabajo debe permitir que todo el equipo
-practique el aprendizaje de todo lo esperado **cada sprint**. _No se dividan el
-trabajo como en una fábrica._
-
-- Trabajen en una sola historia por vez, no pueden avanzar a la siguiente sin
-haber completado la anterior.
-
-Para comenzar tendrás que hacer un _fork_ y _clonar_ este
-repositorio.
-
-## Parte obligatoria
-
-### General
-
-Este proyecto no incluye un _boilerplate_, así es que tendrás que definir la
-estructura de carpetas y escribir tus propias Pruebas Unitarias (tests). Para
-hacerlo, puedes guiarte de los proyectos anteriores.
-
-### Definición del producto
-
-En el `README.md` cuéntanos brevemente cómo descubriste las necesidades de los
-usuarios y cómo llegaste a la definición final de tu producto. Comparte fotos de
-entrevistas (si las tienes), cuestionarios y tus sketches/(bocetos).
-
-Es importante que detalles:
-
-* Quiénes son los principales usuarios de producto.
-* Qué problema resuelve el producto / para qué le servirá a estos usuarios.
-
-### Historias de usuario
-
-Una vez que entiendas las necesidades de tus usuarixs, escribe las Historias de
-Usuario que representen todo lo que necesitan hacer/ver en la Red Social.
-
-Cada una de tus Historias de Usuario debe tener:
-- **Criterios de Aceptación:** todo lo que debe ocurrir para satisfacer las
-  necesidades del usuario.
-
-- **Definición de terminado:** todos los aspectos técnicos que deben cumplirse
-para que, como equipo, sepan que esa historia está terminada y lista
-para publicarse. **Todas** tus Historias de Usuario (salvo excepciones), deben
-incluir estos aspectos en su Definición de Terminado (más todas las que
-  necesiten agregar):
-
-  * Debe ser una SPA.
-  * Debe ser _responsive_.
-  * Debes haber recibido _code review_ de al menos una compañera de otro equipo.
-  * Haces _test_ unitarios y, además, has testeado tu producto manualmente.
-  * Hiciste _pruebas_ de usabilidad e incorporaste el _feedback_ del usuario.
-  * Desplegaste tu aplicación y has etiquetado tu versión (git tag).
-
-### Diseño de la Interfaz de Usuario (prototipo de baja fidelidad)
-
-Debes definir cuál será el flujo que seguirá el usuario dentro de tu producto y
-con eso deberás diseñar la Interfaz de Usuario (UI por sus siglas en inglés) de
-esta red social que siga este flujo.
-Este diseño debe representar la solución que se implementará finalmente en
-código.
-
-### Responsive
-
-Debe verse bien en dispositivos de pantallas grandes
-(computadoras/es, laptops, etc.) y pequeñas (tablets, celulares, etc.). Te
-sugerimos seguir la técnica de `mobile first` (más detalles sobre esta técnica
-al final).
-
-### Pruebas unitarias (unit tests)
-
-Los tests unitarios deben cubrir un mínimo del 70% de _statements_, _functions_,
-_lines_, y _branches_.
-
-### Implementación de la Interfaz de Usuario (UI y comportamiento de Interfaz de Usuario)
-
-Estas son consideraciones para que escribas las Definiciones de Terminado de
-tus H.U.:
-
-#### Creación de cuenta de usuario e inicio de sesión
-
-* Login con Firebase:
-  - Para el login y las publicaciones en el muro puedes utilizar [Firebase](https://firebase.google.com/products/database/)
-  - Creación de cuenta de acceso y autenticación con cuenta de correo y
-    contraseña, y con cuenta de Google.
-* Validaciones:
-  - La aplicación solo permitirá el acceso a usuarios con cuentas válidas.
-  - No pueden haber usuarios repetidos.
-  - La cuenta de usuario debe ser un correo electrónico válido.
-  - Lo que se escriba en el campo (_input_) de contraseña debe ser secreto.
-* Comportamiento:
-  - Al enviarse un formulario de registro o inicio de sesión, debe validarse.
-  - En caso haya errores, el sistema debe mostrar mensajes de error para
-    ayudar al usuario a corregirlos.
-  - Al recargar la aplicación, se debe verificar si el usuario está
-    logueado antes de mostrarle el contenido.
-
-
-#### Muro/timeline de la red social
-
-* Validaciones:
-  - Al apretar el botón de publicar, debe validar que exista contenido en
-  el _input_.
-* Comportamiento:
-  - Poder publicar un _post_.
-  - Poder dar y quitar _like_ a una publicación.
-  - Llevar un conteo de los _likes_.
-  - Poder eliminar un post específico.
-  - Pedir confirmación antes de eliminar un _post_.
-  - Al dar _click_ para editar un _post_, debe cambiar el texto por un _input_
-    que permita editar el texto y luego guardar los cambios.
-  - Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la
-    información editada.
-  - Al recargar la página debo de poder ver los textos editados.
-
-### Hacker edition
-
-* Permite crear posts con imágenes.
-* Permite buscar usuarios, agregar y eliminar "amigos".
-* Permite definir la privacidad de los _posts_ (público o solamente para amigos).
-* Permite ver su muro de cualquier usuario "no-amigo" (solamente los
-  posts _públicos_).
-* Permite comentar o responder una publicación.
-* Permite editar perfil.
-
-### Consideraciones técnicas Front-end
-
-El corazón de este proyecto incluye:
-
-* Separar la manipulación del DOM de la lógica (Separación de responsabilidades).
-* Contar con multiples vistas para esto tu aplicacion debera ser una
- [Single Page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
-* Que el sitio sea responsive, ya dicho.
-* Alterar y persistir datos. Los datos que agregues o modifiques deberán
-  persistir a lo largo de la aplicación, te recomendamos que uses
-  [Firebase](https://firebase.google.com/).
-
-Además, podrías agregar algunas tareas nuevas de acuerdo a tus decisiones:
-
-* Recuerda que no hay un setup de **tests** definido, dependerá de
-  la estructura de tu proyecto también, pero algo que no debes de olvidar es
-  pensar en éstas pruebas, incluso te podrían ayudar a definir la estructura y
-  nomenclatura de tu lógica.
-
-### Consideraciones técnicas UX
-
-Desde el punto de vista de UX, deberás:
-
-* Hacer al menos 2 o 3 entrevistas con usuarios.
-* Hacer un  prototipo de baja fidelidad.
-* Asegurarte de que la implementación en código siga los lineamientos del
-  diseño.
-* Hacer sesiones de testing con el producto en HTML.
-
-## Entrega
-
-El proyecto será _entregado_ subiendo tu código a GitHub (`commit`/`push`) y la
-interfaz será desplegada usando GitHub pages u otro servicio de hosting que
-puedas haber encontrado en el camino.
-
-## Evaluación
-
-Recuerda revisar la [rúbrica](https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vRktPN4ilZtkRN5tUb3DVhgeihwlzk63_-JI3moA-bXpKDbHDioAK2H3qbrwWNb0Ql4wX22Tgv7-PDv/pubhtml)
-para ver la descripción detallada de cada habilidad y cada nivel. Esta es una
-lista de todas las habilidades involucradas en este proyecto y que evaluaremos
-cuando lo completes:
-
-### Habilidades Blandas/Socioemocionales
-
-| Habilidad |
-|-----------|
-| Planificación y organización |
-| Autoaprendizaje |
-| Solución de Problemas |
-| Dar y recibir feedback |
-| Adaptabilidad |
-| Trabajo en equipo |
-| Responsabilidad |
-| Comunicación eficaz |
-| Presentaciones |
-
-
-### Habilidades Técnicas, Front-end
-
-| Habilidad |
-|-----------|
-| **JavaScript** |
-| Estilo |
-| Nomenclatura/semántica |
-| Funciones/modularidad |
-| Estructuras de datos |
-| Tests |
-| **HTML** |
-| Validación |
-| Estilo |
-| Semántica |
-| SEO |
-| **CSS** |
-| DRY |
-| Responsive |
-| **SCM** |
-| Git |
-| GitHub |
-| **CS** |
-| Lógica |
-| Arquitectura |
-
-### Habilidades Técnicas, UX
-
-| Habilidad |
-|-----------|
-| User Centricity |
-| Visual Desing |
+Esto facilitará las comunicaciones, contribuyendo con la creación de una comunidad para amantes del teatro.
 
 ***
-
-## Pistas / Tips / Lecturas complementarias
-
-### Mobile first
-
-El concepto de [_mobile first_](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-hace referencia a un proceso de diseño y desarrollo donde partimos de cómo se ve
-y cómo funciona la aplicación en un dispositivo móvil primero, y más adelante se
-ve como adaptar la aplicación a pantallas progresivamente grandes y
-características específicas del entorno desktop. Esto es en contraposición al
-modelo tradicional, donde primero se diseñaban los websites (o webapps) para
-desktop y después se trataba de _arrugar_ el diseño para que entre en pantallas
-más chicas. La clave acá es asegurarse de que desde el principio diseñan usando
-la vista _responsive_ de las herramientas de desarrollador (developer tools) del
-navegador. De esa forma, partimos de cómo se ve y comporta la aplicación en una
-pantalla y entorno móvil.
-
-### Múltiples vistas
-
-En proyectos anteriores nuestras aplicaciones habían estado compuestas de una
-sola _vista_ principal (una sóla _página_). En este proyecto se introduce la
-necesidad de tener que dividir nuestra interfaz en varias _vistas_ o _páginas_
-y ofrecer una manera de navegar entre estas vistas. Este problema se puede
-afrontar de muchas maneras: con archivos HTML independientes (cada uno con su
-URL) y links tradicionales, manteniendo estado en memoria y rederizando
-condicionalmente (sin refrescar la página), [manipulando el historial del
-navegador](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
-con [`window.history`](https://developer.mozilla.org/es/docs/Web/API/Window/history).
-En este proyecto te invitamos a explorar opciones y decidir una opción
-de implementación.
-
-### Escritura de datos
-
-En los proyectos anteriores hemos consumido (leído) datos, pero todavía no
-habíamos escrito datos (salvar cambios, crear datos, borrar, ...). En este
-proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
-modificar datos existentes. Estos datos se podrán guardar de forma remota
-usando [Firebase](https://firebase.google.com/).
-
-Otras:
-
-* [Modulos: Export](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export)
-* [Modulos: Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
-* [Diseño web, responsive design y la importancia del mobile first - Media Click](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
-* [Mobile First: el enfoque actual del diseño web móvil - 1and1](https://www.1and1.es/digitalguide/paginas-web/diseno-web/mobile-first-la-nueva-tendencia-del-diseno-web/)
-* [Mobile First - desarrolloweb.com](https://desarrolloweb.com/articulos/mobile-first-responsive.html)
-* [Mobile First - ZURB](https://zurb.com/word/mobile-first)
-* [Mobile First Is NOT Mobile Only - Nielsen Norman Group](https://www.nngroup.com/articles/mobile-first-not-mobile-only/)
+## Planificación 🚀
+***
+La planificacion fue realizada en trello, la cual puedes revisar
 
 ***
+## Usuarios 👪
+***
+
+Lo primero y esencial es conocer al usuario. Para ello se realizó una encuesta en la que se pudo identificar las siguientes respuestas:
+
+Con esto, se logró identificar los usuarios:
+
+El primero es un usuario que le gusta el teatro, que quiere buscar eventos y personas que tengan la misma aficción.
+
+El segundo usuario son las personas que quieren compartir experiencias y gustos por el teatro.
+
+El tercer usuario son los usuarios que quieren crear un personaje para interactuar con personajes o avatares de otros usuarios.
+
+***
+## Fase de Prototipado 📋
+***
+Una vez reconocido el usuario, comienza el proceso creativo compuesto por diferentes pasos que buscan dar con un resultado esperado por nosotras, pero principalmente pensado para el usuario.
+
+Diagrama de flujo: esquema que grafica el flujo que debería tener la aplicación, considerando cambios de interfaces y filtración de información.
+
+¿Cuál es la necesidad de nuestros usuarios?
+
+A partir de la encuesta realizada nacen distintas historias de usuario (HU) que describen las necesidades de los usuarios, buscando cubrirlas a partir de los criterios de aceptación (CA) y definición de terminado (DT)que se desarrollan en cada una de ellas.
+
+
+1) Yo como nuevo usuario quiero poder crear mi perfil mediante mi cuenta de google. Para ingresar a la red social.
+
+Criterios de aceptación: Para realizar la historia de usuario N°1 voy a :
+
+- Debe haber un botón para iniciar sesión con google.
+- Se abre pop-up para loguearse con google.
+- El usuario puede ingresar su gmail y contraseña.
+- Si los datos son validos, se crea un perfil y le permite entrar a la red social.
+- Si los datos no son validos, le envía un mensaje de error.
+
+
+Definición de Terminado: Para realizar la historia de usuario N°1 voy a :
+
+- Realizar flujo y prototipo de baja fidelidad para esta pantalla.
+- Hacer prototipo de alta fidelidad para esta pantalla.
+- Debe ser una SPA.
+- Debe ser responsive.
+- Enlazar botón de ingreso a cuenta google con firebase.
+- Hacer pruebas de usabilidad e incorporar el feedback del usuario.
+- Desplegar  aplicación y etiquetar versión (git tag).
+- Utilizar flexbox y mediaQuery.
+- Se hace deploy para testear que los tamaños sean acordes a los distintos dispositivos.
+
+2) Yo como usuario nuevo quiero poder registrarme con cualquier correo y contraseña para poder ingresar a la red social de forma segura.
+
+Criterios de aceptación: Para realizar la historia de usuario N°2 voy a :
+
+- Que el usuario pueda escribir su correo.
+- Que el usuario pueda escribir una contraseña.
+- Debe haber un botón para crear cuenta.
+- Que se envíe un mensaje de error si la contraseña es menor a 6 caracteres.
+- Que envíe un mensaje de error si el correo no es valido.
+- Que envíe un correo de verificación cuando la cuenta ha sido creada exitosamente.
+
+Definición de Terminado: Para realizar la historia de usuario N°2 voy a :
+
+- Realizar flujo y prototipo de baja fidelidad para esta pantalla.
+- Hacer prototipo de alta fidelidad para esta pantalla.
+- Debe haber un botón que vincule al formulario para  crear cuenta.
+- Debe existir un imput para que el usuario coloque su correo.
+- Debe existir un input para que el usuario ingrese su contraseña.
+- Debe enviar un mensaje de confirmación exitosa de la cuenta o de lo contrario un mensaje de error.
+- Debe enviar correo electrónico para verificar la creación de la cuenta.
+- Debe ser una SPA.
+- Debe ser responsive.
+- Recibir al menos un Code Review de al menos una compañera de otro equipo.
+- Hacer test unitarios.
+- Hacer pruebas de usabilidad e incorporar feedback de usuario.
+- Desplegar la aplicación y etiquetar la versión (git tag).
+- Se hace deploy para testear que los tamaños sean acordes a los distintos dispositivos.
+
+3) Yo como usuario ya registrado quiero poder ingresar con mi correo y contraseña para poder entrar a la red social.
+
+Criterios de aceptación: Para realizar la historia de usuario N°3 voy a :
+
+- Debe haber un botón que muestre campos para ingresar el correo y contraseña.
+- El usuario debe poder escribir su correo en el primer campo.
+- El usuario debe poder escribir su contraseña en el segundo campo.
+- Debe haber un botón que envíe los datos.
+- Si los datos son validos, el usuario puede ingresar a la red social.
+- Si los datos no son validos se genera un mensaje de error.
+
+Definición de Terminado: Para realizar la historia de usuario N°3 voy a :
+
+- Realizar flujo y prototipo de baja fidelidad para esta pantalla.
+- Hacer prototipo de alta fidelidad para esta pantalla.
+- Debe ser una SPA.
+- Debe ser responsive.
+- Botón que al apretar muestre dos inputs, uno para el correo y otro para la contraseña.
+- Tiene que tener input para ingresar correo y otro para ingresar contraseña
+- Botón que permita validar los datos.
+- Recibir al menos un Code Review de al menos una compañera de otro equipo.
+- Hacer test unitarios.
+- Hacer pruebas de usabilidad e incorporar el feedback del usuario.
+- Desplegar la aplicación y etiquetar la versión (git tag).
+- Utilizar flexbox y mediaQuery.
+- Se hace deploy para testear que los tamaños sean acordes a los distintos dispositivos.
+
+
+4) Yo como usuario ya logueado, quiero poder ver  y darle like a las publicaciones de la comunidad.
+
+Criterios de aceptación: Para realizar la historia de usuario N°4 voy a :
+
+- Muestra sección  dónde aparecen publicaciones de la comunidad.
+- El usuario puede dar like por medio de un botón a las publicaciones que le interesen.
+- El usuario por medio de un botón puede quitar like a las publicaciones que el quiera.
+
+
+Definición de Terminado: Para realizar la historia de usuario N°4 voy a :
+
+- Realizar flujo y prototipo de baja fidelidad para esta pantalla.
+- Debe ser una SPA.
+- Hacer prototipo de alta fidelidad para esta pantalla.
+- Debe ser responsive.
+- El usuario  puede dar o quitar like de publicaciones de la comunidad.
+- Cada publicación tendrá un conteo de likes.
+- Debe haber recibido code review de al menos una compañera de otro equipo.
+- Hacer test unitarios y, además, testear producto manualmente.
+- Hacer pruebas de usabilidad e incorporar el feedback del usuario.
+- Desplegar la aplicación y etiquetar la versión (git tag).
+- Utilizar flexbox y mediaQuery.
+- Se hace deploy para testear que los tamaños sean acordes a los distintos dispositivos.
+
+5) Yo como usuario registrado quiero poder crear una publicación para compartir con la comunidad.
+
+Criterios de aceptación: Para realizar la historia de usuario N°5 voy a :
+
+- El usuario puede poder crear un post visible para la comunidad.
+- Que los post se muestren en orden de publicación.
+- Los post creados deben tener el nombre de quien los publicó y la fecha  de publicación.
+
+
+Definición de Terminado: Para realizar la historia de usuario N°5 voy a :
+
+- Realizar flujo y prototipo de baja fidelidad para esta pantalla.
+- Debe ser una SPA.
+- Debe ser responsive.
+- Tiene que tener un campo de texto donde el usuario pueda escribir su publicación.
+- Botón que permita publicar el texto.
+- Al apretar el botón para publicar debe validar que exista contenido en el input.
+- Debe haber recibido code review de al menos una compañera de otro equipo.
+- Hacer test unitarios y, además, testear producto manualmente.
+- Hacer pruebas de usabilidad e incorporar el feedback del usuario.
+- Desplegar  aplicación y etiquetar  versión (git tag).
+- Se hace deploy para testear que los tamaños sean acordes a los distintos dispositivos.
+
+6) Yo como usuario registrado quiero poder editar mi publicación para poder corregir algún posible error.
+
+Criterios de aceptación: Para realizar la historia de usuario N°6 voy a :
+
+- El usuario puede editar su publicación mediante un botón.
+- La publicación se actualizara con los cambios realizados  una vez presione el botón guardar.
+
+
+Definición de Terminado: Para realizar la historia de usuario N°6 voy a :
+
+- Realizar flujo y prototipo de baja fidelidad para esta pantalla.
+- Hacer prototipo de alta fidelidad para esta pantalla.
+- Debe ser una SPA.
+- Debe ser responsive.
+- Tiene que tener un botón para editar.
+- Al dar click para editar un post debe cambiar el texto por un input que permita editar el texto y luego guardar los cambios.
+- Botón que permita guardar los cambios.
+- Al guardar los cambios debe cambiar de vuelta a un texto normal pero con la información editada.
+- Debe haber recibido code review de al menos una compañera de otro equipo.
+- Hacer test unitarios y, además, testear producto manualmente.
+- Desplegar  aplicación y etiquetar  versión (git tag).
+- Utilizar flexbox y mediaQuery.
+- Se hace deploy para testear que los tamaños sean acordes a los distintos dispositivos.
+
+7) Yo como miembro de la comunidad quiero poder eliminar un post que he subido anteriormente.
+
+Criterios de aceptación: Para realizar la historia de usuario N°7 voy a :
+
+- Que haya un botón para eliminar las publicaciones.
+- Error de acción, que se pregunte al usuario si esta seguro de eliminar la publicación.
+- Que el post quede eliminado de muro del usuario y el muro de la comunidad.
+
+Definición de Terminado: Para realizar la historia de usuario N°7 voy a :
+
+- Realizar flujo y prototipo de baja fidelidad para esta pantalla.
+- Hacer prototipo de alta fidelidad para esta pantalla.
+- Debe ser una SPA.
+- Debe ser responsive.
+- Tener un botón para eliminar el post.
+- Al dar click para eliminar un post debe desaparecer del muro y del perfil del usuario.
+- Debe haber recibido code review de al menos una compañera de otro equipo.
+- Hacer test unitarios y, además, testear producto manualmente.
+- Hacer pruebas de usabilidad e incorporar el feedback del usuario.
+- Desplegar  aplicación y etiquetar  versión (git tag).
+- Utilizar flexbox y mediaQuery.
+- Se hace deploy para testear que los tamaños sean acordes a los distintos dispositivos.
+
+8) Yo como usuario de la red social deseo poder cerrar mi sesión de forma segura.
+
+Criterios de aceptación: Para realizar la historia de usuario N°8 voy a :
+
+- El usuario debe poder cerrar su sesión de forma segura cuando lo desee.
+- Error de acción, que se pregunte al usuario si esta seguro de cerrar la sesión.
+- Que al cerrar la sesión se vuelva a la pantalla de inicio de la red social.
+
+Definición de Terminado: Para realizar la historia de usuario N°8 voy a :
+
+- Debe haber un botón que desencadene la acción de cerrar la sesión del usuario en la comunidad.
+- Que se envíe un mensaje para confirmar si el usuario desea cerrar la sesión.
+- Enviar un mensaje al confirmar que la sesión ha sido cerrada.
+- Debe volver a la pantalla principal una vez cerrada la sesión.
+- Debe haber recibido code review de al menos una compañera de otro equipo.
+- Hacer test unitarios y, además, testear producto manualmente.
+- Hacer pruebas de usabilidad e incorporar el feedback del usuario.
+- Desplegar  aplicación y etiquetar  versión (git tag).
+- Se hace deploy para testear que los tamaños sean acordes a los distintos dispositivos.
+***
+## Prototipo de Baja Fidelidad
+***
+
+Una vez reconocido el usuario, comienza el proceso creativo de prototipado creando un boceto con las diferentes interfaces y usos que se proponen para la aplicación.
+
+Acá podemos revisar la página de inicio de nuestra aplicación, donde el usuario puede iniciar sesión o crear su cuenta. 
+
+
+***
+## Prototipo de Alta Fidelidad
+***
+
+Al reconocer al usuario se definió los colores, el tipo de información y su distribución a desplegarse en la app web. A partir del prototipo de baja fidelidad se realizaron algunos ajustes en cuanto a la presentación de la pantalla de inicio de sesión y el muro principal.
+
+El prototipo fue probado con posibles futuros usuarios, quienes  por medio de feedback recomendaron mejoras a aplicar en la aplicación.
+
+Las tareas realizadas fueron:
+Registrarse como usuario nuevo.
+Iniciar sesión en la aplicación con usuario creado.
+Crear una publicación con un texto deseado.
+Editar la publicación.
+Eliminar la publicación.
+Cerrar sesión.
+
+El prototipo de Alta Fidelidad fue realizado en Figma.
+***
+## Consideraciones en el desarrollo 🛠️
+***
+Ejecución del interfaz de usuario HTML, CSS, JS
+
+La lógica del proyecto fue implementada usando JS, HTML y CSS, usando para el diseño Flexbox.
+
+Implementación de la interfaz
+
+- Se usó firebase como plataforma de desarrollo.
+- Creación de distintas vistas, gestionadas por un archivo (router.js) que permite su visualización, dependiendo de las elecciones del usuario.
+- Desarrollo de funciones para autentificar usuarios, al momento de ingresar por una cuenta creada o correo gmail.
+- Desarrollo de funciones para que el usuario pueda realizar publicaciones, leerlas, editarlas o eliminarlas (CRUD), utilizando la base de datos cloud firestore.
+- Implementación de validaciones; como es el caso de campos vacíos, ingreso de cantidad de caracteres mínimos, formato de correo. Todo esto testeado en el archivo auth.spec.js.
+- Manejo de estilos CSS pensado en mobile first; usando flexbox y media queries para celulares y tablets.
+- Testeos de usabilidad y code review por cada historia de usuario finalizada.
+- Trabajo colaborativo mediante el uso de Git y GitHub, realizando realeses por cada historia de usuario terminada.
+- Deploy con gh-pages de la aplicación
+- Deploy con firebase de la aplicación
+
+### Implementación de vistas
+
+templateCreate: vista que permite al usuario crear una cuenta en la aplicación.
+
+templateEditPost: vista que permite al usuario editar una publicación realizada por él. Esta no puede ser vacía e inferior a 2 carácteres.
+
+templatePost: vista que permite al usuario crear una publicación. Esta no puede ser vacía e inferior a 2 carácteres.
+
+templateProfile: vista que permite al usuario visualizar su perfil.
+
+templateHome: vista inicial, que permite al usuario iniciar sesión, con cuenta creada o correo de google.
+
+templateWall: vista del muro, que permite al usuario ver todas las publicaciones realizadas en Sala Red de Teatro. Aquí puede crear una nueva publicación, editar o eliminar una realizada.
+
+### Implementación de funciones💻
+
+Se puede diferenciar dos archivos para la implementación de las principales funciones de la aplicación, siendo auth.js y data.js
+
+auth.js
+
+createAccount(userName, userAge,userLocation, userEmail, userPassword), para lograr crear una nueva cuenta de usuario. Los parámetros solicitados son obligatorios.
+
+loginGoogle(), para iniciar sesion en Sala Red de teatro usando un correo de Google.
+
+signIn(emailSignIn, passwordSignIn) , para iniciar sesión usando la cuenta creada. Los parámetros solicitados son obligatorios.
+
+data.js
+
+postCreate(userPost,userStageDirection), necesaria para crear una nueva publicación.
+
+renderPost(), necesaria para mostrar la publicación creada en el muro de la red social.
+
+postDelete(id), para eliminar una publicación del muro. El usuario solo podrá eliminar sus publicaciones y se le solicitará confirmación antes de realizarlo.
+
+postEdit(id), para editar una publicación del muro. El usuario solo podrá editar sus publicaciones.
+
+### Aspectos técnicos
+
+Se realizó test para comprobar el funcionamiento de la aplicación, logrando los siguientes resultados:
+
+***
+## Futuras mejoras ⌨️
+***
+
+### Implementar la Hacker Edition
+- Crear posts con imágenes.
+- Buscar usuarios, agregar y eliminar "amigos".
+- Definir la privacidad de los posts (público o solamente para amigos).
+- Que el usuario pueda ver el muro de cualquier usuario "no-amigo" (solamente los posts públicos).
+- Comentar o responder una publicación.
+- El usuario pueda editar perfil.
+
+### Autoras 📌
+- Claudia Sirvent
+- Betsi Salas
+- Tatiana Castro
+
+9° Generación de Laboratoria.
+
+Junio, 2019.

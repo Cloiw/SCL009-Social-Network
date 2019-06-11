@@ -170,4 +170,12 @@ export const validateAndPost = (errorPost,errorStageDirection,userPost,userStage
   postCreate(userPost,userStageDirection);
   }
 }
+//Validación input vacio del post
+export const validatePost = (userPost) =>{
+  if(userPost === ""|| userPost.length<2){
+    return false;
 
+  } else{
+    return true;
+  }
+}
