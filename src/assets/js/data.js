@@ -1,5 +1,3 @@
-
-//Crea nuevo post dentro de la coleccion "posts", con los valores dados por el usuario en los text area.
 export const postCreate = (userPost,userStageDirection) =>{
     let db = firebase.firestore();
     let date= Date.now()
@@ -22,140 +20,115 @@ export const postCreate = (userPost,userStageDirection) =>{
         })
     })
 }
+
 export const readingPosts2 = () =>{
-let db = firebase.firestore();
-    db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
-       
-        snapshot.docChanges().forEach((change)=>{
-            if(change.type == 'added'){
-                console.log(change.type)
-             renderPost3(change,db);
-             }if(change.type == 'modified'){change.type = 'added'
-                 document.getElementById("count_"+change.doc.id).innerHTML =  change.doc.data().likes
-                 
-                 console.log(change.type)
-             }
-             })
-
-
-
-
-}) }
-//Lee todos los posts y para cada uno llama a renderPost()
-export const readingPosts = () =>{
     let db = firebase.firestore();
-    db.collection("post").orderBy("date","desc").get().then((post)=>{
-        post.forEach((doc) => {
-             renderPost3(doc,db)
-        })
-    })
-}
-
-
-
- 
-            
-        
-
-//Toma los posts y los muestra en el HTML
-const renderPost =(doc,db) =>{
-    let postDate = new Date(doc.data().date);
     
-    document.getElementById('post-wall').innerHTML +=
-        `<div class="post-container">
-            <div class="post-read">
-                <p>
-                    <span class="post-date">${postDate.toLocaleDateString()} a las ${postDate.toLocaleTimeString()}</span>
-                    <br> 
-                    <span class="post-top">${doc.data().name}</span><br>
-                    <span>(${doc.data().stage_direction}):</span>
-                    <br><br>
-                    <span class="post-message">${doc.data().message}</span>
-                    <br>
-                    <br>
-                    <span id="like_count_${doc.id}">${doc.data().likes}❤️</span>
-                    
-                </p>    
-                <button id="like_${doc.id}" onclick=${hola("like_"+doc.id,db,doc,"like_count_"+doc.id)} >Like</button>
-                <button id="dislike_${doc.id}">dislike</button>
-                <p class="post-age-location">( ${doc.data().name}, ${doc.data().age} años... de ${doc.data().location} ) <br></p>
-            
-            </div> 
-        </div>                 
-        `   
-        // if(change.doc.data().liked){
-        //     document.getElementById("like_"+doc.id).style.display = "none";
-        //     document.getElementById("dislike_"+doc.id).style.display = "visible";
-        // }else{
-        //     document.getElementById("like_"+doc.id).style.display = "visible";
-        //     document.getElementById("dislike_"+doc.id).style.display = "none";
-        // }
-       
+    db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
     
-     
-       
-
-}
-const hola = (btnLike,db,doc,likeCount) =>{
-    db.collection("post").get().then(()=>{
-    document.getElementById(btnLike).addEventListener('click', ()=>{
-     db.collection("post").doc(doc.id).onSnapshot((snapshot)=>{
-        db.collection("post").doc(doc.id).update({ likes: Number(doc.data().likes)+1, liked: true}).then(()=>{
-        document.getElementById(likeCount).innerHTML =snapshot.data().likes+"❤️"})});
-    })})
-}
+    snapshot.docChanges().forEach((change)=>{ 
+        console.log(change.type);
   
-
-const likePost = (buttonId,userLikes,doc,likeCount,db) => {
-
-    
-        db.collection("post").get().then(()=>{
-            const btnLike = document.getElementById(buttonId)
-            
-            
-            btnLike.addEventListener('click', ()=>{
-                
-                addLike(doc,userLikes,likeCount,db)
-                
-            })
-            
-    })
-};
-
-
-const addLike = (doc,userLikes,likeCount,db)=>{
-  
-
    
-    db.collection("post").doc(doc.id).onSnapshot((snapshot)=>{ 
-        db.collection("post").doc(doc.id).update({ likes: Number(userLikes)+1, liked: true});
-        document.getElementById(likeCount).innerHTML =snapshot.data().likes+"❤️"
-        
-    })
- }
+    console.log(change.doc.id)
+    console.log(change.type);
 
-    const disLike = (doc,userLikes,likeCount,db)=>{
 
-        db.collection("post").doc(doc.id).update({ likes: Number(userLikes)-1, liked: false});
-        db.collection("post").doc(doc.id).onSnapshot((querySnapshot)=>{
-            
-            document.getElementById(likeCount).innerHTML =querySnapshot.data().likes+"❤️"
-            document.getElementById("like_"+doc.id).style.display = "visible";
-            document.getElementById("dislike_"+doc.id).style.display = "none";
-        
-        })   
     
+
+
+     })
+                    
+    }) }
+    
+    
+
+    const renderPost2 = (change,db) =>{
+    
+    const postDate = new Date(change.data().date);
+
+        // Contenedor
+    let divContainer = document.createElement("Div");
+    divContainer.setAttribute("class", "post-container" );
+    
+
+    let divElement = document.createElement("Div");
+    divElement.setAttribute("class", "post-read");
+    divContainer.appendChild(divElement);
+
+    //Creando parrafo contenedor de informacion
+    const allData = document.createElement("P");
+    divElement.appendChild(allData);
+
+    //Span Fecha
+    const dateSpan = document.createElement("Span");
+    const textDate = document.createTextNode(postDate.toLocaleDateString()+" a las "+postDate.toLocaleTimeString());
+    dateSpan.setAttribute("class","post-date")
+    dateSpan.appendChild(textDate);
+    divElement.appendChild(dateSpan);
+    //BR
+    const brDate = document.createElement("br");
+    divElement.appendChild(brDate);
+   
+    //Span Nombre
+    const nameSpan = document.createElement("Span");
+    const textName = document.createTextNode(change.data().name)
+    nameSpan.setAttribute("class","post-top");
+    nameSpan.appendChild(textName);
+    divElement.appendChild(nameSpan);
+
+    //BR
+    const brName = document.createElement("br");
+    divElement.appendChild(brName);
+
+    //Span Stage
+    const stageSpan = document.createElement("span");
+    const textStage = document.createTextNode("( "+change.data().stage_direction+" ) :")
+    stageSpan.appendChild(textStage);
+    divElement.appendChild(stageSpan);
+
+    //P MSG
+    const msgSpan = document.createElement("p");
+    const textMsg = document.createTextNode(change.data().message);
+    msgSpan.setAttribute("class","post-message");
+    msgSpan.appendChild(textMsg)
+    divElement.appendChild(msgSpan)
+    
+
+    // Span de likes
+    const likeSpan = document.createElement("span");
+    likeSpan.setAttribute("id","count_"+change.id)
+    const textLike = document.createTextNode(change.data().likes+"❤️");
+    likeSpan.appendChild(textLike);
+    divElement.appendChild(likeSpan);
+    
+    // Botones
+    let btnLike = document.createElement("Button");
+    btnLike.id="btn-like-"+change.id
+    var textForButton = document.createTextNode("Like");
+    btnLike.appendChild(textForButton);
+     divContainer.appendChild(btnLike)
+
+
+    //P para nombre abajo
+    const footer = document.createElement("p");
+    const textFooter = document.createTextNode("( "+change.data().name+", "+change.data().age+"años... de "+change.data().location+" ) ")
+    footer.setAttribute("class","post-age-location")
+    footer.appendChild(textFooter);
+    divContainer.appendChild(footer);
+
+    btnLike.addEventListener("click", function(){
+        db.collection("post").doc(change.id).update({ likes: Number(change.data().likes)+1, liked: true});
+        
+           
+           console.log(change.data().likes)
+        })
+       
+    document.getElementById("post-wall").appendChild(divContainer);
     }
+        
 
-    // <button id="like_${doc.id}" onclick=${likePost("like_"+doc.id,doc.data().likes,doc,"like_count_"+doc.id,db)}" class="btn-like">Like</button>
-
-
-    const addLike2 = (db,doc,userLikes)=>{
-
-        db.collection("post").doc(doc).update({ likes: Number(userLikes)+1, liked: true});}
-
-
-        const renderPost2 =(change,db) =>{
+        const renderPost3 =(change,db) =>{
             let postDate = new Date(change.doc.data().date);
             
             document.getElementById('post-wall').innerHTML +=
@@ -180,53 +153,50 @@ const addLike = (doc,userLikes,likeCount,db)=>{
                     </div> 
                 </div>                 
                 `   
-                console.log( document.getElementById("like_"+change.doc.id))
+               
                 document.getElementById("like_"+change.doc.id).addEventListener('click', ()=>{
-                    console.log("hola")
+                    console.log(change.doc.data().likes)
                     db.collection("post").doc(change.doc.id).update({ likes: Number(change.doc.data().likes)+1, liked: true})
-                  })
-                
-            
-            }
-
-const renderPost3 = (doc,db) =>{
-    // Creating a div element
-var divElement = document.createElement("Div");
-divElement.id = "divID";
-
-// Styling it
-divElement.style.textAlign = "center";
-divElement.style.fontWeight = "bold";
-divElement.style.fontSize = "smaller";
-divElement.style.paddingTop = "15px";
-
-// Adding a paragraph to it
-var paragraph = document.createElement("P");
-paragraph.id="count_"+doc.doc.id
-var text = document.createTextNode(doc.doc.data().likes+"❤️");
-paragraph.appendChild(text);
-divElement.appendChild(paragraph);
-
-// Adding a button, cause why not!
-var button = document.createElement("Button");
-var textForButton = document.createTextNode("Release the alert");
-button.appendChild(textForButton);
-button.addEventListener("click", function(){
-        db.collection("post").doc(doc.doc.id).update({ likes: Number(doc.doc.data().likes)+1, liked: true})
-      
-    })
+                  })}
 
 
+
+
+
+
+
+//FUNCIONA CADA BOTON PERO CREA UNO NUEVO
+// export const readingPosts2 = () =>{
+//                     let db = firebase.firestore();
+//                         db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
+                           
+//                             snapshot.docChanges().forEach((change)=>{
+//                                  renderPost2(change,db)
+//                                  })
+                    
+//                     }) }
+
+
+
+//FUNCIONA SOLO UNA VEZ
+// export const readingPosts2 = () =>{
+//     let db = firebase.firestore();
+//     db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
+       
+//     snapshot.docChanges().forEach((change)=>{ 
+       
+//     if(document.getElementById("btn-like-"+change.doc.id)==null){
+//     renderPost2(change.doc,db)
+//     console.log( document.getElementById("btn-like-"+change.doc.id))
+//     }else{
+//         document.getElementById("count_"+change.id).innerHTML = change.doc.data().likes+"❤️"
+//     }
     
-
+    
+    
         
+
     
-    
-
-divElement.appendChild(button);
-
-// Appending the div element to body
-document.getElementById("post-wall").appendChild(divElement);
-
-}
-
+//      })
+                    
+//     }) }
