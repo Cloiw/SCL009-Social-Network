@@ -22,21 +22,37 @@ export const postCreate = (userPost,userStageDirection) =>{
 }
 
 export const readingPosts2 = () =>{
+
+
+
     let db = firebase.firestore();
-    
+
+    const newlikes= ()=>{
     db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
+        snapshot.forEach(function(doc) {
+          console.log(doc.data().likes)
+        })
+
+    })
+        
+}
+newlikes()
+    db.collection("post").orderBy("date","desc").get().then((post)=>{
+        post.forEach((doc) => {
     
-    snapshot.docChanges().forEach((change)=>{ 
-   renderPost2(change.doc,db)
+    // db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
+    
+    // snapshot.docChanges().forEach((change)=>{ 
+   renderPost2(doc,db)
    
 
-     })
+        })})
                     
-    }) }
+    }
     
     
 
-    const renderPost2 = (change,db) =>{
+    const renderPost2 = (change,db,newlikes) =>{
     
     const postDate = new Date(change.data().date);
 
@@ -114,16 +130,8 @@ export const readingPosts2 = () =>{
       
         db.collection("post").doc(change.id).update({ likes: Number(change.data().likes)+1, liked: true});
 
-        db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
-        
-        snapshot.docChanges().forEach((change)=>{
-
-        document.getElementById("count_"+change.doc.id).innerHTML = change.doc.data().likes+"❤️";
-               console.log(change.doc.data().likes)
-        
-            })
-        })
-           console.log(change.data().likes)
+               console.log(change.data().likes)
+   
         })
        
     document.getElementById("post-wall").appendChild(divContainer);
@@ -157,7 +165,7 @@ export const readingPosts2 = () =>{
                 `   
                
                 document.getElementById("like_"+change.doc.id).addEventListener('click', ()=>{
-                    console.log(change.doc.data().likes)
+                    
                     db.collection("post").doc(change.doc.id).update({ likes: Number(change.doc.data().likes)+1, liked: true})
                   })
                 
