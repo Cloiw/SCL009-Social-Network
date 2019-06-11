@@ -27,15 +27,8 @@ export const readingPosts2 = () =>{
     db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
     
     snapshot.docChanges().forEach((change)=>{ 
-        console.log(change.type);
-  
+   renderPost2(change.doc,db)
    
-    console.log(change.doc.id)
-    console.log(change.type);
-
-
-    
-
 
      })
                     
@@ -118,9 +111,18 @@ export const readingPosts2 = () =>{
     divContainer.appendChild(footer);
 
     btnLike.addEventListener("click", function(){
+      
         db.collection("post").doc(change.id).update({ likes: Number(change.data().likes)+1, liked: true});
+
+        db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
         
-           
+        snapshot.docChanges().forEach((change)=>{
+
+        document.getElementById("count_"+change.doc.id).innerHTML = change.doc.data().likes+"❤️";
+               console.log(change.doc.data().likes)
+        
+            })
+        })
            console.log(change.data().likes)
         })
        
