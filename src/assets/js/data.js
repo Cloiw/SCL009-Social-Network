@@ -14,48 +14,111 @@ export const postCreate = (userPost,userStageDirection) =>{
                 stage_direction: userStageDirection,
                 likes: 0,
                 liked:""
-            }).then(()=> {
-                window.location.hash='/wall';
+            
             })  
         })
     })
 }
 
-export const readingPosts2 = () =>{
+
+
+
+
+//real-time
+export const realTime = () => {
+   console.log("fjida")
     let db = firebase.firestore();
-    
     db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
-    
-    snapshot.docChanges().forEach((change)=>{ 
+    let changes = snapshot.docChanges();
+    changes.forEach(change=>{
         console.log(change.type);
+<<<<<<< HEAD
   renderPost2(change.doc,db)
    
     console.log(change.doc.id)
     console.log(change.type);
+=======
+        if(change.type == 'added'){
+>>>>>>> fa6708422df5265c2a66ee2ebcc1426a00106405
 
 
+        }else if(change.type == 'removed'){console.log("jsdad");
+            let post = document.getElementById("div-container-"+change.doc.id)
+            if(post==null){
+                return
+            }
+            document.getElementById("post-wall").removeChild(post);
+        }else if ( change.type == 'modified'){
+        
+
+
+            
+        
+        
+        
+            //Conteo de Likes
+            let likes = document.getElementById("count_"+change.doc.id)
+            likes.innerHTML = change.doc.data().likes+"❤️"
+
+            let btnLike = document.getElementById("btn-like-"+change.doc.id)
+            let btnLikeClone = btnLike.cloneNode(true);
+            btnLike.parentNode.replaceChild(btnLikeClone, btnLike)
+            btnLikeClone.addEventListener("click", ()=>{      
+            db.collection("post").doc(change.doc.id).update({ likes: (Number(change.doc.data().likes)+1), liked: true});
+            })
+           
+            let btnDislike = document.getElementById("btn-dislike-"+change.doc.id);
+            let btnDislikeClone = btnDislike.cloneNode(true);
+            btnDislike.parentNode.replaceChild(btnDislikeClone, btnDislike)
+            
+            btnDislikeClone.addEventListener("click", ()=>{
+                if(change.doc.data().likes != "0"){
+                db.collection("post").doc(change.doc.id).update({ likes: (Number(change.doc.data().likes)-1), liked: false});}
+            })
+
+
+
+            change.type = "add"
+
+        }
     
+    })
+})
 
 
-     })
-                    
-    }) }
-    
-    
+}
 
-    const renderPost2 = (change,db) =>{
+export const renderPost = (change,db) =>{
     
     const postDate = new Date(change.data().date);
 
-        // Contenedor
-    let divContainer = document.createElement("Div");
+    // Contenedor 
+    const divContainer = document.createElement("Div");
     divContainer.setAttribute("class", "post-container" );
-    
+    divContainer.id="div-container-"+change.id;
 
-    let divElement = document.createElement("Div");
+    //COL para botones superiores
+    const divBtnRowFirst = document.createElement("Div");
+    divBtnRowFirst.setAttribute("class", "col-btn-post-icons" );
+    divContainer.appendChild(divBtnRowFirst)   
+
+     // Boton Borrar
+    const btnDelete = document.createElement("Button");
+    btnDelete.id="btn-delete-"+change.id
+    btnDelete.setAttribute("class","btn-post");
+    divBtnRowFirst.appendChild(btnDelete);
+
+    //IMG para boton Borrar
+    const imgBtnDelete = document.createElement("img");
+    imgBtnDelete.setAttribute("class", "btn-delete-icon");
+    imgBtnDelete.setAttribute("src", "assets/img/delete_icon.png")
+    btnDelete.appendChild(imgBtnDelete);
+
+    //Contenedor 
+    const divElement = document.createElement("Div");
     divElement.setAttribute("class", "post-read");
     divContainer.appendChild(divElement);
-
+    
     //Creando parrafo contenedor de informacion
     const allData = document.createElement("P");
     divElement.appendChild(allData);
@@ -65,121 +128,141 @@ export const readingPosts2 = () =>{
     const textDate = document.createTextNode(postDate.toLocaleDateString()+" a las "+postDate.toLocaleTimeString());
     dateSpan.setAttribute("class","post-date")
     dateSpan.appendChild(textDate);
-    divElement.appendChild(dateSpan);
+    allData.appendChild(dateSpan);
+   
     //BR
     const brDate = document.createElement("br");
-    divElement.appendChild(brDate);
-   
+    allData.appendChild(brDate);
+    
     //Span Nombre
     const nameSpan = document.createElement("Span");
     const textName = document.createTextNode(change.data().name)
     nameSpan.setAttribute("class","post-top");
     nameSpan.appendChild(textName);
-    divElement.appendChild(nameSpan);
+    allData.appendChild(nameSpan);
 
     //BR
     const brName = document.createElement("br");
-    divElement.appendChild(brName);
+    allData.appendChild(brName);
 
     //Span Stage
     const stageSpan = document.createElement("span");
     const textStage = document.createTextNode("( "+change.data().stage_direction+" ) :")
     stageSpan.appendChild(textStage);
-    divElement.appendChild(stageSpan);
+    allData.appendChild(stageSpan);
 
-    //P MSG
+    //Parrafo Msg
     const msgSpan = document.createElement("p");
     const textMsg = document.createTextNode(change.data().message);
     msgSpan.setAttribute("class","post-message");
     msgSpan.appendChild(textMsg)
-    divElement.appendChild(msgSpan)
-    
-
+    allData.appendChild(msgSpan)
+        
     // Span de likes
     const likeSpan = document.createElement("span");
     likeSpan.setAttribute("id","count_"+change.id)
     const textLike = document.createTextNode(change.data().likes+"❤️");
     likeSpan.appendChild(textLike);
-    divElement.appendChild(likeSpan);
+    allData.appendChild(likeSpan);
+
+     //Parrafo firma
+     const footer = document.createElement("p");
+     const textFooter = document.createTextNode("( "+change.data().name+", "+change.data().age+" años... de "+change.data().location+" ) ")
+     footer.setAttribute("class","post-age-location")
+     footer.appendChild(textFooter);
+     divElement.appendChild(footer);
+
+    //Div contenedor de botones like y dislike 
+    const divBtnRow = document.createElement("Div");
+    divBtnRow.setAttribute("class", "row-btn-post" );
+    divContainer.appendChild(divBtnRow)
     
-    // Botones
-    let btnLike = document.createElement("Button");
+        
+    // Boton Like
+    const btnLike = document.createElement("Button");
     btnLike.id="btn-like-"+change.id
-    var textForButton = document.createTextNode("Like");
+    btnLike.setAttribute("class","btn-post");
+    const textForButton = document.createTextNode("Like");
     btnLike.appendChild(textForButton);
-     divContainer.appendChild(btnLike)
+    divBtnRow.appendChild(btnLike)
+
+    // Botone DisLike
+    const btnDislike = document.createElement("Button");
+    btnDislike.id="btn-dislike-"+change.id
+    btnDislike.setAttribute("class","btn-post");
+    const textForButtonDislike = document.createTextNode("Dislike...");
+    btnDislike.appendChild(textForButtonDislike);
+    divBtnRow.appendChild(btnDislike)
+
+    
 
 
-    //P para nombre abajo
-    const footer = document.createElement("p");
-    const textFooter = document.createTextNode("( "+change.data().name+", "+change.data().age+"años... de "+change.data().location+" ) ")
-    footer.setAttribute("class","post-age-location")
-    footer.appendChild(textFooter);
-    divContainer.appendChild(footer);
 
-    btnLike.addEventListener("click", function(){
-        db.collection("post").doc(change.id).update({ likes: Number(change.data().likes)+1, liked: true});
-        
-           
-           console.log(change.data().likes)
-        })
-       
-    document.getElementById("post-wall").appendChild(divContainer);
+    //quitando eventlistener
+   let btnDeleteClone = btnDelete.cloneNode(true);
+
+    btnDelete.parentNode.replaceChild(btnDeleteClone, btnDelete);
+
+    btnDeleteClone.addEventListener('click', ()=>{
+        if(confirm("¿Realmente quieres eliminar esta publicación?")){
+        db.collection('post').doc(change.id).delete()  
     }
-        
+    })
 
-        const renderPost3 =(change,db) =>{
-            let postDate = new Date(change.doc.data().date);
-            
-            document.getElementById('post-wall').innerHTML +=
-                `<div class="post-container">
-                    <div class="post-read">
-                        <p>
-                            <span class="post-date">${postDate.toLocaleDateString()} a las ${postDate.toLocaleTimeString()}</span>
-                            <br> 
-                            <span class="post-top">${change.doc.data().name}</span><br>
-                            <span>(${change.doc.data().stage_direction}):</span>
-                            <br><br>
-                            <span class="post-message">${change.doc.data().message}</span>
-                            <br>
-                            <br>
-                            <span id="like_count_${change.doc.id}">${change.doc.data().likes}❤️</span>
-                            
-                        </p>    
-                        <button id="like_${change.doc.id}"  class="btn-like">Like</button>
-                        <button id="dislike_${change.id}">dislike</button>
-                        <p class="post-age-location">( ${change.doc.data().name}, ${change.doc.data().age} años... de ${change.doc.data().location} ) <br></p>
-                    
-                    </div> 
-                </div>                 
-                `   
-               
-                document.getElementById("like_"+change.doc.id).addEventListener('click', ()=>{
-                    console.log(change.doc.data().likes)
-                    db.collection("post").doc(change.doc.id).update({ likes: Number(change.doc.data().likes)+1, liked: true})
-                  })
-                
-        }
-       
- /*Función que permite editar una publicación seleccionada por el usuario*/
+    
 
-export const postEdit = (id) =>{
-    let dbPost = firebase.firestore();
-    let textPost = document.getElementById("textpost").value;
-    if(validatePost(textPost)){
-        return dbPost.collection("post").doc(id).update({
-            message : textPost
-        }).then(function() {
-            console.log("Document successfully updated!");
-            //templateWall();
-            window.location.hash="#/wall"; 
+    //Funcion boton like
+    btnLike.addEventListener("click", ()=>{
+    db.collection("post").doc(change.id).update({ likes: (Number(change.data().likes)+1), liked: true});
+    
+    })
+    //Funcion boton dislike
+    btnDislike.addEventListener("click", ()=>{
+        if(change.data().likes != "0"){
+        db.collection("post").doc(change.id).update({ likes: (Number(change.data().likes)-1), liked: false});}
         })
-        .catch(function(error) {
-            // The document probably doesn't exist.
-            console.error("Error updating document: ", error);
-        });
+        
+     
+    // Unir todo a div contenedor post-wall    
+    const algo = document.getElementById("post-wall");
+    if(algo!=null){
+    algo.appendChild(divContainer);
+}
+ 
+userPostDelete(change)
+}
+
+
+
+
+
+const userPostDelete = (change) =>{
+    firebase.auth().onAuthStateChanged(user => {
+        const btnDelete = document.getElementById("btn-delete-"+change.id);
+        if(btnDelete == null || user==null){
+            return
+        }
+    if(user.uid == change.data().author){
+        btnDelete.style.display = "visible";
+    }else{
+        btnDelete.style.display = "none";
+    }})}
+
+const isLikeOrDislike = (change) =>{
+        const btnLike = document.getElementById("btn-like-"+change.id);
+        const btnDislike = document.getElementById("btn-dislike-"+change.id);
+        if(btnLike == null || btnDislike == null){
+            return
+        }
+    if(change.data().liked){
+        btnLike.style.display = "none";
+        btnDislike.style.display = "visible";
+    }else{
+        btnDislike.style.display = "none";
+        btnLike.style.display = "viisble";
     }
 }
+<<<<<<< HEAD
 /*Función para eliminar post*/
 
 export const postDelete=(id)=>{
@@ -193,3 +276,32 @@ export const postDelete=(id)=>{
         });
     }
 }
+=======
+
+
+
+
+// //real-time
+// export const realTime = () => {
+//     let db = firebase.firestore();
+//     db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
+//     let changes = snapshot.docChanges();
+//     changes.forEach(change=>{
+        
+//         if(change.type == 'added'){
+//             renderPost(change.doc,db);
+//         }else if(change.type == 'removed'){
+//             let post = document.getElementById("div-container-"+change.doc.id)
+//             document.getElementById("post-wall").removeChild(post);}
+//         // }else if ( change.type == 'modified'){
+//         //     let likes = document.getElementById("count_"+change.doc.id)
+//         //     likes.innerHTML = change.doc.data().likes+"❤️"
+            
+
+//         // }
+//     })
+// })
+
+
+// }
+>>>>>>> fa6708422df5265c2a66ee2ebcc1426a00106405

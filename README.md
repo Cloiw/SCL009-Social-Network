@@ -14,6 +14,7 @@ Esto facilitará las comunicaciones, contribuyendo con la creación de una comun
 ## Planificación 🚀
 ***
 La planificacion fue realizada en trello, la cual puedes revisar
+![Aqui](https://trello.com/b/4jUqLjcx/red-social-scl009-dramaturgos)
 
 ***
 ## Usuarios 👪
@@ -241,14 +242,16 @@ Una vez reconocido el usuario, comienza el proceso creativo de prototipado crean
 
 Acá podemos revisar la página de inicio de nuestra aplicación, donde el usuario puede iniciar sesión o crear su cuenta. 
 
+![Prototipo inicial](img\prototipo1.jpg\prototipo2.jpg\prototipo3.jpg)
 
+ 
 ***
 ## Prototipo de Alta Fidelidad
 ***
 
 Al reconocer al usuario se definió los colores, el tipo de información y su distribución a desplegarse en la app web. A partir del prototipo de baja fidelidad se realizaron algunos ajustes en cuanto a la presentación de la pantalla de inicio de sesión y el muro principal.
 
-El prototipo fue probado con posibles futuros usuarios, quienes  por medio de feedback recomendaron mejoras a aplicar en la aplicación.
+El prototipo fue probado con posibles futuros usuarios (pruebas de usabilidad), quienes  por medio de feedback aportaron ideas para mejorar la aplicación, las cuales fueron aplicadas.
 
 Las tareas realizadas fueron:
 Registrarse como usuario nuevo.
@@ -258,7 +261,10 @@ Editar la publicación.
 Eliminar la publicación.
 Cerrar sesión.
 
-El prototipo de Alta Fidelidad fue realizado en Figma.
+El prototipo de Alta Fidelidad fue realizado en Figma:
+[Selecciona aqui](https://www.figma.com/proto/S6TPhxUBzFfzoYBo6jxGZaep/Social-Network?node-id=4%3A47&scaling=scale-down&redirected=1)
+
+
 ***
 ## Consideraciones en el desarrollo 🛠️
 ***
@@ -319,9 +325,21 @@ postEdit(id), para editar una publicación del muro. El usuario solo podrá edit
 
 Se realizó test para comprobar el funcionamiento de la aplicación, logrando los siguientes resultados:
 
+#### El Diseño final
+La meta de la aplicación web es cear una comunidad para amantes del teatro, donde puedan interactuar con personajes y compartir eventos. Entre otras cosas. 
+
+La versión final esta disponible en versión demo en github:
+[Ver aqui](https://.github.io/SCL/src/index.html)
+
+Version demo en firebase:
+[Ver aqui](https://.github.io/SCL/src/index.html)
+
 ***
 ## Futuras mejoras ⌨️
 ***
+- Que se puedan crear post con fotos.
+- Buscar y agregar personajes amigos , asi como eliminarlos.
+- Hacer comentarios sobre las publicaciones.
 
 ### Implementar la Hacker Edition
 - Crear posts con imágenes.
