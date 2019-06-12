@@ -7,16 +7,18 @@ export const loginGoogle = () =>{
    const userRef = db.collection('users').doc(user.uid);
     userRef.get().then(doc=>{
       if (doc.exists) {
-        return
+        alert(user.displayName+" Has iniciado sesión con exito")
+      window.location.hash = '#/wall';
       }else{ 
         db.collection("users").doc(user.uid).set({
         name: user.displayName,
         age:"99",
         location: "Por ahi",
         email: user.email});
+        alert(user.displayName+" Has iniciado sesión con exito")
+        window.location.hash = '#/wall';
       }
-      alert(user.displayName+" Has iniciado sesión con exito")
-      window.location.hash = '#/wall';
+      
     })
     .catch(error=> {
       console.log(error.message);
@@ -100,7 +102,7 @@ export const signOut = () =>{
 
 
 export const observer=() =>{
-  // firebase.auth().onAuthStateChanged(user => {
+  firebase.auth().onAuthStateChanged(user => {
   //   if(user){
   //     console.log("oliadsa")
   //     window.location.hash = '#/wall';
@@ -108,20 +110,21 @@ export const observer=() =>{
   // else{
   //   window.location.hash = "";
 
-  }
   
-//     if(user===null && window.location.hash != "#/create"){
-//       console.log("No hay usuario")
-//       return window.location.hash = '';}
-//     if(user===null && window.location.hash == "#/create"){
-//         return
-//       }
-//     if (user.emailVerified === true && ( window.location.hash =='' || window.location.hash == '#/home'  || window.location.hash == '#/create')) {
-//       console.log("Usuario activo, redireccionado a Wall")
-//       window.location.hash = '#/wall';
-//     }
-//   })
-// } 
+  
+    if(user===null && window.location.hash != "#/create"){
+      console.log("No hay usuario")
+      return window.location.hash = '';}
+    if(user===null && window.location.hash == "#/create"){
+        return
+      }
+    if (user.emailVerified === true && ( window.location.hash =='' || window.location.hash == '#/home'  || window.location.hash == '#/create')) {
+      console.log("Usuario activo, redireccionado a Wall")
+      window.location.hash = '#/wall';
+      
+    }
+  }
+  )}
 
 
 

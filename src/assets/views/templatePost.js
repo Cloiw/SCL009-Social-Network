@@ -2,6 +2,7 @@ import { signOut,observer } from "./../js/auth.js";
 import { validateAndPost } from "../js/validation.js";
 
 
+
 export const templatePost =()=>{
     
    
@@ -50,7 +51,11 @@ document.getElementById("root").innerHTML=
                         `
                     
 document.getElementById('btn-wall').addEventListener('click', () => {
+    
     window.location.hash = "/wall"
+
+    
+    
 })
 document.getElementById('btn-post').addEventListener('click', () => {
     window.location.hash = "/post"

@@ -10,10 +10,14 @@ body {
 }
 
 
-.container-col,.container-col-center,.center-col,.left-col,.col-inputs,.col-main-75{
+.container-col,.container-col-center,.center-col,.left-col,.col-inputs,.col-main-75,.post-container,.col-btn-post-icons{
     display:flex;
     flex-direction:column;
     align-items: center;
+}
+.col-btn-post-icons{
+    align-items: flex-end;
+    margin-top:10px;
 }
 
 .center-col{
@@ -46,11 +50,12 @@ textarea {
     align-self: flex-end;
     width: 50%;
 }
-.icons-row{
+.icons-row,.row-btn-post{
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
 .container-row-nav{
     width:100%;
     background-color: #BC0202;
@@ -136,7 +141,7 @@ textarea {
     align-self: center;
 }
 
-.btn-google-login, .btn-register,.btn-create-account,.btn-back,.btn-signin,#btn-signout {
+.btn-google-login, .btn-register,.btn-create-account,.btn-back,.btn-signin,#btn-signout,.btn-post {
     width:100%;
     text-align: center;
     cursor: pointer;
@@ -149,11 +154,15 @@ textarea {
     background-size: 25px;
     background-color: #CF4332;
 }
-.btn-register,.btn-create-account,.btn-back,.btn-signin{
+.btn-register,.btn-create-account,.btn-back,.btn-signin,.btn-post{
     background:none;
     background-color: #BC0202;
     border-radius: 10px;
     padding: 10px 0;
+}
+.btn-post{
+    width:10%;
+    margin: 0;
 }
 .btn-signin{
     margin: 10px auto 40px auto;
@@ -177,12 +186,16 @@ textarea {
     border: none;
     cursor:pointer;
 }
+.btn-delete-icon{
+    width: auto;
+    height:3vh;
+}
 .post-container{
     border-bottom: 1px solid black;
+    width: 100%;
+    align-items: stretch;
 }
-.post-read{
-    word-wrap: break-word;
-}
+
 .post-date,.post-age-location{
     font-size: 14px;
     color: rgb(90, 89, 89);
@@ -216,6 +229,9 @@ textarea {
         text-align:left;
         display:inline-block;
     }
+    .btn-post{
+        width:20%;
+    }
    }
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 767px) {
@@ -228,8 +244,12 @@ textarea {
         height:5vh;
         margin:10px 20px 10px 10px;  
     }
-   
-}
+
+    .btn-post{
+        width:20%;
+    }
+    
+   }
 
 /* Desktop Styles */
 @media only screen and (min-width: 700px) {
