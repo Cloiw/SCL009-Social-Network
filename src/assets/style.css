@@ -10,20 +10,27 @@ body {
 }
 
 
-.container-col,.container-col-center,.center-col,.left-col,.col-inputs,.col-main-75,.post-container,.col-btn-post-icons{
+.container-col,.container-col-center,.center-col,.left-col,.col-inputs,.col-main-75,.post-container,.col-btn-post-icons,.col-btn-likes,.left-col-likes,.center-col-likes{
     display:flex;
     flex-direction:column;
     align-items: center;
 }
 .col-btn-post-icons{
-    display:flex;
-    flex-direction:row;
+   
     margin-top:10px;
     width: 100%;
-    justify-content: space-between;
+    align-items: flex-end;
     flex-wrap: wrap;
 }
+.center-col-likes{
+    
+     align-items: stretch;
+}
 
+.left-col-likes{
+    width:10%;
+    align-items: stretch;
+}
 .center-col{
     width:100%;
 }
@@ -48,7 +55,7 @@ textarea {
     height: auto;
 }
 
-.row-btn-signin,.row-btn-google,.row-create-account,.row-btn-back,.nav-wall,.elements-row,.nav-wall,.container-row-nav,.icons-row{
+.row-btn-signin,.row-btn-google,.row-create-account,.row-btn-back,.nav-wall,.elements-row,.nav-wall,.container-row-nav,.icons-row,.row-post,.row-btn-post{
     display: flex;
     flex-direction:row;
     align-self: flex-end;
@@ -58,6 +65,9 @@ textarea {
     width: 100%;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+.row-btn-post{
+    border-top: 1px solid rgb(199, 199, 199);
 }
 
 .container-row-nav{
@@ -78,9 +88,12 @@ textarea {
     width:100%;
     align-self: center;
 }
-.row-btn-back{
+.row-btn-back,.row-post{
     align-self: flex-start;
     width:40%;
+}
+.row-post{
+margin-top: 5px;
 }
 .row-create-account{
     width:80%;
@@ -195,7 +208,7 @@ textarea {
     height:3vh;
 }
 .post-container{
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #BC0202;
     width: 100%;
     align-items: stretch;
 }
@@ -208,14 +221,17 @@ textarea {
     display:inline-block; 
 }
 .post-age-location{
-    margin:10px 10px 10px 0;
+    margin:20px 10px 10px 0;
     text-align:right;
     display:block;  
 }
 
-.btn-dislike-icon{
+.btn-dis-like-icon{
     height: 4vh;
     width: auto;
+}
+.post-read{
+    word-wrap: break-word;
 }
 
 
@@ -241,6 +257,11 @@ textarea {
     .btn-post{
         width:20%;
     }
+
+    .post-age-location{
+        margin-top:0px;
+      
+    }
    }
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 767px) {
@@ -257,7 +278,7 @@ textarea {
     .btn-post{
         width:20%;
     }
-    
+  
    }
 
 /* Desktop Styles */
@@ -273,4 +294,5 @@ textarea {
         padding: 2% 0 2% 0.5em; 
 
 }
+
 }

@@ -44,7 +44,7 @@ export const realTime = () => {
         }else if ( change.type == 'modified'){
         //Conteo de Likes
         let likes = document.getElementById("count_"+change.doc.id)
-        likes.innerHTML = change.doc.data().likes+"❤️"
+        likes.innerHTML = change.doc.data().likes
         isLikeOrDislike(change.doc)
 
         let btnLike = document.getElementById("btn-like-"+change.doc.id)
@@ -90,32 +90,8 @@ export const renderPost = (change,db) =>{
     //COL para botones superiores
     const divBtnRowFirst = document.createElement("Div");
     divBtnRowFirst.setAttribute("class", "col-btn-post-icons" );
-    divContainer.appendChild(divBtnRowFirst) 
-
+    divContainer.appendChild(divBtnRowFirst);
     
-       // Boton Like
-       const btnLike = document.createElement("Button");
-       btnLike.id="btn-like-"+change.id
-       btnLike.setAttribute("class","icon-btn");
-       divBtnRowFirst.appendChild(btnLike)
-
-        //IMG para boton Like
-        const imgBtnLike = document.createElement("img");
-        imgBtnLike.setAttribute("class", "btn-dislike-icon");
-        imgBtnLike.setAttribute("src", "assets/img/dislike_icon.png")
-        btnLike.appendChild(imgBtnLike);
-    
-       // Botone DisLike
-       const btnDislike = document.createElement("Button");
-       btnDislike.id="btn-dislike-"+change.id
-       btnDislike.setAttribute("class","icon-btn");
-       divBtnRowFirst.appendChild(btnDislike);
-
-        //IMG para boton DisLike
-        const imgBtnDislike = document.createElement("img");
-        imgBtnDislike.setAttribute("class", "btn-dislike-icon");
-        imgBtnDislike.setAttribute("src", "assets/img/like_icon.png")
-        btnDislike.appendChild(imgBtnDislike);
 
      // Boton Borrar
     const btnDelete = document.createElement("Button");
@@ -172,30 +148,67 @@ export const renderPost = (change,db) =>{
     msgSpan.setAttribute("class","post-message");
     msgSpan.appendChild(textMsg)
     allData.appendChild(msgSpan)
-        
-    // Span de likes
-    const likeSpan = document.createElement("span");
-    likeSpan.setAttribute("id","count_"+change.id)
-    const textLike = document.createTextNode(change.data().likes+"❤️");
-    likeSpan.appendChild(textLike);
-    allData.appendChild(likeSpan);
+    
 
-     //Parrafo firma
-     const footer = document.createElement("p");
-     const textFooter = document.createTextNode("( "+change.data().name+", "+change.data().age+" años... de "+change.data().location+" ) ")
-     footer.setAttribute("class","post-age-location")
-     footer.appendChild(textFooter);
-     divElement.appendChild(footer);
+
 
     //Div contenedor de botones like y dislike 
     const divBtnRow = document.createElement("Div");
     divBtnRow.setAttribute("class", "row-btn-post" );
     divContainer.appendChild(divBtnRow)
     
- 
+    //Div COl likes
+    const divLikesCol = document.createElement("Div");
+    divLikesCol.setAttribute("class", "left-col-likes");
+    divBtnRow.appendChild(divLikesCol);
+
+    //Div row span y boton
+    const divLikesRow = document.createElement("Div");
+    divLikesRow.setAttribute("class", "row-post");
+    divLikesCol.appendChild(divLikesRow);
+
+    // Parrafo de likes
+    const likeSpan = document.createElement("p");
+    likeSpan.setAttribute("id","count_"+change.id)
+    const textLike = document.createTextNode(change.data().likes);
+    likeSpan.appendChild(textLike);
+    divLikesRow.appendChild(likeSpan);
+   
+      // Boton Like
+      const btnLike = document.createElement("Button");
+      btnLike.id="btn-like-"+change.id
+      btnLike.setAttribute("class","icon-btn");
+      divLikesRow.appendChild(btnLike)
+
+       //IMG para boton Like
+       const imgBtnLike = document.createElement("img");
+       imgBtnLike.setAttribute("class", "btn-dis-like-icon");
+       imgBtnLike.setAttribute("src", "assets/img/dislike_icon.png")
+       btnLike.appendChild(imgBtnLike);
     
+        // Botone DisLike
+        const btnDislike = document.createElement("Button");
+        btnDislike.id="btn-dislike-"+change.id
+        btnDislike.setAttribute("class","icon-btn");
+        divLikesRow.appendChild(btnDislike);
+ 
+         //IMG para boton DisLike
+         const imgBtnDislike = document.createElement("img");
+         imgBtnDislike.setAttribute("class", "btn-dis-like-icon");
+         imgBtnDislike.setAttribute("src", "assets/img/like_icon.png")
+         btnDislike.appendChild(imgBtnDislike);
 
+          //Div COLlikes
+    const divParrRow = document.createElement("Div");
+    divParrRow.setAttribute("class", "center-col-likes");
+    divBtnRow.appendChild(divParrRow);
 
+           //Parrafo firma
+     const footer = document.createElement("p");
+     const textFooter = document.createTextNode("( "+change.data().name+", "+change.data().age+" años... de "+change.data().location+" ) ")
+     footer.setAttribute("class","post-age-location")
+     footer.appendChild(textFooter);
+     divParrRow.appendChild(footer);
 
     //quitando eventlistener
    let btnDeleteClone = btnDelete.cloneNode(true);
