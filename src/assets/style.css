@@ -16,8 +16,12 @@ body {
     align-items: center;
 }
 .col-btn-post-icons{
-    align-items: flex-end;
+    display:flex;
+    flex-direction:row;
     margin-top:10px;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .center-col{
@@ -206,9 +210,14 @@ textarea {
 .post-age-location{
     margin:10px 10px 10px 0;
     text-align:right;
-    display:block; 
-    
+    display:block;  
 }
+
+.btn-dislike-icon{
+    height: 4vh;
+    width: auto;
+}
+
 
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {

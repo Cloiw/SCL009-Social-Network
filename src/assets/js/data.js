@@ -32,14 +32,7 @@ export const realTime = () => {
     let changes = snapshot.docChanges();
     changes.forEach(change=>{
         console.log(change.type);
-<<<<<<< HEAD
-  renderPost2(change.doc,db)
-   
-    console.log(change.doc.id)
-    console.log(change.type);
-=======
         if(change.type == 'added'){
->>>>>>> fa6708422df5265c2a66ee2ebcc1426a00106405
 
 
         }else if(change.type == 'removed'){console.log("jsdad");
@@ -49,32 +42,29 @@ export const realTime = () => {
             }
             document.getElementById("post-wall").removeChild(post);
         }else if ( change.type == 'modified'){
-        
+        //Conteo de Likes
+        let likes = document.getElementById("count_"+change.doc.id)
+        likes.innerHTML = change.doc.data().likes+"❤️"
+        isLikeOrDislike(change.doc)
 
-
-            
+        let btnLike = document.getElementById("btn-like-"+change.doc.id)
+        let btnLikeClone = btnLike.cloneNode(true);
+        let btnDislike = document.getElementById("btn-dislike-"+change.doc.id);
+        let btnDislikeClone = btnDislike.cloneNode(true);
+        btnLike.parentNode.replaceChild(btnLikeClone, btnLike)
+        btnDislike.parentNode.replaceChild(btnDislikeClone, btnDislike)
         
-        
-        
-            //Conteo de Likes
-            let likes = document.getElementById("count_"+change.doc.id)
-            likes.innerHTML = change.doc.data().likes+"❤️"
-
-            let btnLike = document.getElementById("btn-like-"+change.doc.id)
-            let btnLikeClone = btnLike.cloneNode(true);
-            btnLike.parentNode.replaceChild(btnLikeClone, btnLike)
-            btnLikeClone.addEventListener("click", ()=>{      
-            db.collection("post").doc(change.doc.id).update({ likes: (Number(change.doc.data().likes)+1), liked: true});
-            })
+        btnLikeClone.addEventListener("click", ()=>{
            
-            let btnDislike = document.getElementById("btn-dislike-"+change.doc.id);
-            let btnDislikeClone = btnDislike.cloneNode(true);
-            btnDislike.parentNode.replaceChild(btnDislikeClone, btnDislike)
-            
-            btnDislikeClone.addEventListener("click", ()=>{
-                if(change.doc.data().likes != "0"){
-                db.collection("post").doc(change.doc.id).update({ likes: (Number(change.doc.data().likes)-1), liked: false});}
-            })
+        db.collection("post").doc(change.doc.id).update({ likes: (Number(change.doc.data().likes)+1), liked: true})
+        
+        })
+    
+    btnDislikeClone.addEventListener("click", ()=>{
+       
+        if(change.doc.data().likes != "0"){
+        db.collection("post").doc(change.doc.id).update({ likes: (Number(change.doc.data().likes)-1), liked: false});}
+    })
 
 
 
@@ -100,7 +90,32 @@ export const renderPost = (change,db) =>{
     //COL para botones superiores
     const divBtnRowFirst = document.createElement("Div");
     divBtnRowFirst.setAttribute("class", "col-btn-post-icons" );
-    divContainer.appendChild(divBtnRowFirst)   
+    divContainer.appendChild(divBtnRowFirst) 
+
+    
+       // Boton Like
+       const btnLike = document.createElement("Button");
+       btnLike.id="btn-like-"+change.id
+       btnLike.setAttribute("class","icon-btn");
+       divBtnRowFirst.appendChild(btnLike)
+
+        //IMG para boton Like
+        const imgBtnLike = document.createElement("img");
+        imgBtnLike.setAttribute("class", "btn-dislike-icon");
+        imgBtnLike.setAttribute("src", "assets/img/dislike_icon.png")
+        btnLike.appendChild(imgBtnLike);
+    
+       // Botone DisLike
+       const btnDislike = document.createElement("Button");
+       btnDislike.id="btn-dislike-"+change.id
+       btnDislike.setAttribute("class","icon-btn");
+       divBtnRowFirst.appendChild(btnDislike);
+
+        //IMG para boton DisLike
+        const imgBtnDislike = document.createElement("img");
+        imgBtnDislike.setAttribute("class", "btn-dislike-icon");
+        imgBtnDislike.setAttribute("src", "assets/img/like_icon.png")
+        btnDislike.appendChild(imgBtnDislike);
 
      // Boton Borrar
     const btnDelete = document.createElement("Button");
@@ -177,23 +192,7 @@ export const renderPost = (change,db) =>{
     divBtnRow.setAttribute("class", "row-btn-post" );
     divContainer.appendChild(divBtnRow)
     
-        
-    // Boton Like
-    const btnLike = document.createElement("Button");
-    btnLike.id="btn-like-"+change.id
-    btnLike.setAttribute("class","btn-post");
-    const textForButton = document.createTextNode("Like");
-    btnLike.appendChild(textForButton);
-    divBtnRow.appendChild(btnLike)
-
-    // Botone DisLike
-    const btnDislike = document.createElement("Button");
-    btnDislike.id="btn-dislike-"+change.id
-    btnDislike.setAttribute("class","btn-post");
-    const textForButtonDislike = document.createTextNode("Dislike...");
-    btnDislike.appendChild(textForButtonDislike);
-    divBtnRow.appendChild(btnDislike)
-
+ 
     
 
 
@@ -213,13 +212,16 @@ export const renderPost = (change,db) =>{
 
     //Funcion boton like
     btnLike.addEventListener("click", ()=>{
-    db.collection("post").doc(change.id).update({ likes: (Number(change.data().likes)+1), liked: true});
+    db.collection("post").doc(change.id).update({ likes: (Number(change.data().likes)+1), liked: true})
+    
     
     })
     //Funcion boton dislike
     btnDislike.addEventListener("click", ()=>{
         if(change.data().likes != "0"){
-        db.collection("post").doc(change.id).update({ likes: (Number(change.data().likes)-1), liked: false});}
+        db.collection("post").doc(change.id).update({ likes: (Number(change.data().likes)-1), liked: false});
+        }
+       
         })
         
      
@@ -228,7 +230,7 @@ export const renderPost = (change,db) =>{
     if(algo!=null){
     algo.appendChild(divContainer);
 }
- 
+isLikeOrDislike(change)
 userPostDelete(change)
 }
 
@@ -243,7 +245,7 @@ const userPostDelete = (change) =>{
             return
         }
     if(user.uid == change.data().author){
-        btnDelete.style.display = "visible";
+        btnDelete.style.display = "inline";
     }else{
         btnDelete.style.display = "none";
     }})}
@@ -255,28 +257,13 @@ const isLikeOrDislike = (change) =>{
             return
         }
     if(change.data().liked){
-        btnLike.style.display = "none";
-        btnDislike.style.display = "visible";
+        btnLike.style.display= "none";
+        btnDislike.style.display= "inline";
     }else{
-        btnDislike.style.display = "none";
-        btnLike.style.display = "viisble";
+        btnDislike.style.display= "none";
+        btnLike.style.display= "inline";
     }
 }
-<<<<<<< HEAD
-/*Función para eliminar post*/
-
-export const postDelete=(id)=>{
-    let dbPost = firebase.firestore();
-    if(confirm("¿Realmente deseas eliminar esta publicación?")){
-        dbPost.collection("post").doc(id).delete().then(function() {
-            console.log("Document successfully deleted!");
-            postRead();        
-        }).catch(function(error) {
-            console.error("Error removing document: ", error);
-        });
-    }
-}
-=======
 
 
 
@@ -304,4 +291,3 @@ export const postDelete=(id)=>{
 
 
 // }
->>>>>>> fa6708422df5265c2a66ee2ebcc1426a00106405
