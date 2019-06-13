@@ -4,6 +4,7 @@ export const templateWall = () => {
 
     
 document.getElementById("root").innerHTML =
+
     `
     <nav class="container-row-nav">
         <div class="left-col">
@@ -65,6 +66,9 @@ db.collection("post").orderBy("date","desc").get().then((post)=>{
 // document.addEventListener('DOMContentLoaded',()=>{
 //    console.log("hgola")
 //     })
+
+    
+
 
 //evento que sirve para volver al inicio de la pantalla
     //document.getElementById('up').addEventListener('click',()=>{

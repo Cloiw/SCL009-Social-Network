@@ -32,7 +32,14 @@ export const realTime = () => {
     let changes = snapshot.docChanges();
     changes.forEach(change=>{
         console.log(change.type);
+<<<<<<< HEAD
+  renderPost2(change.doc,db)
+   
+    console.log(change.doc.id)
+    console.log(change.type);
+=======
         if(change.type == 'added'){
+>>>>>>> fa6708422df5265c2a66ee2ebcc1426a00106405
 
 
         }else if(change.type == 'removed'){console.log("jsdad");
@@ -255,6 +262,21 @@ const isLikeOrDislike = (change) =>{
         btnLike.style.display = "viisble";
     }
 }
+<<<<<<< HEAD
+/*Función para eliminar post*/
+
+export const postDelete=(id)=>{
+    let dbPost = firebase.firestore();
+    if(confirm("¿Realmente deseas eliminar esta publicación?")){
+        dbPost.collection("post").doc(id).delete().then(function() {
+            console.log("Document successfully deleted!");
+            postRead();        
+        }).catch(function(error) {
+            console.error("Error removing document: ", error);
+        });
+    }
+}
+=======
 
 
 
@@ -282,3 +304,4 @@ const isLikeOrDislike = (change) =>{
 
 
 // }
+>>>>>>> fa6708422df5265c2a66ee2ebcc1426a00106405
