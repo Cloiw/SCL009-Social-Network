@@ -19,7 +19,9 @@ document.getElementById("root").innerHTML=
 
         <div class="center-col">
             <div class="icons-row">
-                <img id="btn-profile" class="btn-icons" src="assets/img/profile_icon.png">
+                 <button id="btn-profile" class="icon-btn">
+                    <img class="btn-icons" src="assets/img/profile_icon.png">
+                </button>
                 <button id="btn-wall" class="icon-btn">
                     <img class="btn-icons" src="assets/img/wall_icon.png">
                 </button>
@@ -50,26 +52,27 @@ document.getElementById("root").innerHTML=
     </div>
                         `
                     
-document.getElementById('btn-wall').addEventListener('click', () => {
-    
-    window.location.hash = "/wall"
+    document.getElementById('btn-wall').addEventListener('click', () => {
+        window.location.hash = "/wall"
+     })
 
-    
-    
-})
-document.getElementById('btn-post').addEventListener('click', () => {
-    window.location.hash = "/post"
-})
-document.getElementById('btn-logout').addEventListener('click', () => {
-    signOut();
-})
+    document.getElementById('btn-profile').addEventListener('click', () => {
+            window.location.hash = "/profile"
+    }) 
 
-document.getElementById('btn-create-post').addEventListener('click', ()=>{
-let userPost = document.getElementById('text-post').value;
-let userStageDirection = document.getElementById('text-stage-direction').value;
-let errorPost = document.getElementById('error-post');
-let errorStageDirection = document.getElementById('error-stage-direction');
-validateAndPost(errorPost,errorStageDirection,userPost,userStageDirection);
-})
+    document.getElementById('btn-post').addEventListener('click', () => {
+        window.location.hash = "/post"
+    })
+    document.getElementById('btn-logout').addEventListener('click', () => {
+        signOut();
+    })
+
+    document.getElementById('btn-create-post').addEventListener('click', ()=>{
+        let userPost = document.getElementById('text-post').value;
+        let userStageDirection = document.getElementById('text-stage-direction').value;
+        let errorPost = document.getElementById('error-post');
+        let errorStageDirection = document.getElementById('error-stage-direction');
+        validateAndPost(errorPost,errorStageDirection,userPost,userStageDirection);
+    })
 
 }
