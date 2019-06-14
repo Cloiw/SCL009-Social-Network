@@ -1,9 +1,9 @@
-import { signOut,observer } from "./../js/auth.js";
-import {renderPost} from "./../js/data.js";
+import { signOut } from "./../js/auth.js";
+import { realTimeWall } from "./../js/data.js";
 export const templateWall = () => {
-
     
-document.getElementById("root").innerHTML =
+   
+    document.getElementById("root").innerHTML =
 
     `
     <nav class="container-row-nav">
@@ -16,7 +16,9 @@ document.getElementById("root").innerHTML =
 
         <div class="center-col">
             <div class="icons-row">
-                <img id="btn-profile" class="btn-icons" src="assets/img/profile_icon.png">
+                <button id="btn-profile" class="icon-btn">
+                    <img class="btn-icons" src="assets/img/profile_icon.png">
+                </button>
                 <button id="btn-wall" class="icon-btn">
                     <img class="btn-icons" src="assets/img/wall_icon.png">
                 </button>
@@ -43,7 +45,8 @@ document.getElementById("root").innerHTML =
         </div>   
     </div>                              
     `
- document.getElementById('btn-logout').addEventListener('click', () => {
+    //botones de la barra superior
+    document.getElementById('btn-logout').addEventListener('click', () => {
         signOut();
     })
     document.getElementById('btn-post').addEventListener('click', () => {
@@ -53,24 +56,11 @@ document.getElementById("root").innerHTML =
         window.location.hash = "/wall"
         
     })
-//botones de la barra superior
 
-let db = firebase.firestore();
-db.collection("post").orderBy("date","desc").get().then((post)=>{
-    post.forEach((doc) => {
-         renderPost(doc,db)
-    })
-
-})}
-
-// document.addEventListener('DOMContentLoaded',()=>{
-//    console.log("hgola")
-//     })
+    document.getElementById('btn-profile').addEventListener('click', () => {
+        window.location.hash = "/profile"
+        })
 
     
-
-
-//evento que sirve para volver al inicio de la pantalla
-    //document.getElementById('up').addEventListener('click',()=>{
-    //    window.scrollTo(0,0);
-    //});    
+    realTimeWall()
+}

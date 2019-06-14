@@ -1,4 +1,4 @@
-import { signOut,observer } from "./../js/auth.js";
+import { signOut} from "./../js/auth.js";
 import { validateAndPost } from "../js/validation.js";
 
 

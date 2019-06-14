@@ -6,6 +6,7 @@ import {templateWall} from './assets/views/templateWall.js';
 import {templateCreate} from './assets/views/templateCreate.js';
 import {templatePost} from './assets/views/templatePost.js'
 import { observer } from './assets/js/auth.js';
+import {templateProfile} from './assets/views/templateProfile.js';
 
 
 
@@ -38,6 +39,11 @@ const changeRoute = (hash) =>{
         //le pasa como parametro #/ a la función showTemplate
         return showTemplate(hash);
     }
+
+    if (hash === '#/profile') {
+        //le pasa como parametro #/ a la función showTemplate
+        return showTemplate(hash);
+    }
 }
 
 /*La función showTemplate(), se encarga de imprimir el template en el index.html*/
@@ -64,6 +70,9 @@ const showTemplate = (hash) =>{
             break;
         case 'post':
             templatePost();
+            break;
+        case 'profile':
+                templateProfile();
             break;
         default:
             containerRoot.innerHTML = `<p>Error 404</p>`

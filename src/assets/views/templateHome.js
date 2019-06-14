@@ -1,6 +1,6 @@
-import{loginGoogle,observer}from "./../js/auth.js";
+import{loginGoogle}from "./../js/auth.js";
 import{validateAndSignIn}from "./../js/validation.js";
-import{templateCreate}from "./templateCreate.js"
+
 
 export const templateHome = () => {
 
@@ -55,7 +55,6 @@ let userPassword = document.getElementById("password-signin").value;
 
 document.getElementById("btn-register").addEventListener('click', ()=>{
 
-   templateCreate();
    window.location.hash= "#/create";
 })
 }

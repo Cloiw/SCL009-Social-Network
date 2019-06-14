@@ -1,6 +1,6 @@
-import{templateHome}from "./templateHome.js"
+
 import{validateAndCreateAccount}from "./../js/validation.js"
-import { observer } from "./../js/auth.js";
+
 
 
 
@@ -36,7 +36,6 @@ export const templateCreate = () => {
     </div>`
 
    document.getElementById("btn-back").addEventListener('click', ()=>{
-    templateHome();
     window.location.hash= "#/home";
     })
     document.getElementById("btn-create-account").addEventListener('click', ()=>{

@@ -11,6 +11,7 @@ export const loginGoogle = () =>{
       window.location.hash = '#/wall';
       }else{ 
         db.collection("users").doc(user.uid).set({
+        user_id: user.uid,
         name: user.displayName,
         age:"99",
         location: "Por ahi",
@@ -45,6 +46,7 @@ export const createAccount = (userName, userAge,userLocation, userEmail, userPas
   firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
     .then(cred => {
       dbProfiles.collection("users").doc(cred.user.uid).set({
+        user_id: cred.user.uid,
         name: userName,
         age: userAge,
         location: userLocation,
@@ -69,20 +71,13 @@ export const signIn = (emailSignIn, passwordSignIn) => {
  //Función firebase para ingreso de usuarios registrados
   firebase.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn).then(() =>{
     let user = firebase.auth().currentUser;
-    console.log(user)
     if(!user.emailVerified){
       console.log("No verificado, cerrando sesion")
       document.getElementById("error-fb").innerHTML= `Verifica tu correo para poder iniciar sesión`
       firebase.auth().signOut()
-            //<br>
-            //<p id="sendEmailAgain">Enviame otro correo!</a>
-            // document.getElementById("sendEmailAgain").addEventListener('click', ()=>{
-            //   emailVerification()
-            //   document.getElementById("error-fb").innerHTML=""
-            //   firebase.auth().signOut()
-            //   })
     }else{ 
         window.location.hash = '#/wall';
+        
     }
   })
   .catch(error =>{
@@ -102,16 +97,8 @@ export const signOut = () =>{
 
 
 export const observer=() =>{
-  firebase.auth().onAuthStateChanged(user => {
-  //   if(user){
-  //     console.log("oliadsa")
-  //     window.location.hash = '#/wall';
-  //   }
-  // else{
-  //   window.location.hash = "";
-
-  
-  
+    firebase.auth().onAuthStateChanged(user => {
+ 
     if(user===null && window.location.hash != "#/create"){
       console.log("No hay usuario")
       return window.location.hash = '';}

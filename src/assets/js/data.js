@@ -2,8 +2,7 @@
 export const postCreate = (userPost,userStageDirection) =>{
     let db = firebase.firestore();
     let date= Date.now()
-    console.log(date)
-    firebase.auth().onAuthStateChanged(user=> {
+    let user = firebase.auth().currentUser
         db.collection('users').doc(user.uid).get().then(doc=> {
             db.collection("post").add({
                 author: user.uid,
@@ -14,73 +13,32 @@ export const postCreate = (userPost,userStageDirection) =>{
                 message: userPost,
                 stage_direction: userStageDirection,
                 likes: 0,
-                liked:""
             })  
         })
-    })
+    window.location.hash = "/wall"
 }
 
-
-
-
-
-//Actualizaciones en tiempo real
-export const realTime = () => {
-   console.log("fjida")
+//Muestra Posts con cambios instantaneos
+export const realTimeWall = () =>{
     let db = firebase.firestore();
-    db.collection("post").orderBy("date","desc").onSnapshot(snapshot =>{
-        let changes = snapshot.docChanges();
-        changes.forEach(change=>{
-            console.log(change.type);
-            if(change.type == 'added'){
-            
-            }else if(change.type == 'removed'){
-            //Eliminar Post
-                console.log("jsdad");
-                let post = document.getElementById("div-container-"+change.doc.id)
-                if(post==null){
-                    return
-                }
-                document.getElementById("post-wall").removeChild(post);
-            }else if ( change.type == 'modified'){
-                //Conteo de Likes
-                let likes = document.getElementById("count_"+change.doc.id)
-                likes.innerHTML = change.doc.data().likes
-                isLikeOrDislike(change.doc)
-                
-                
-                //Quitando listeners viejos para agregar los con nuevo valor.
-                let btnLike = document.getElementById("btn-like-"+change.doc.id);
-                let btnDislike = document.getElementById("btn-dislike-"+change.doc.id);
-                let btnLikeClone = btnLike.cloneNode(true);
-                let btnDislikeClone = btnDislike.cloneNode(true);
-
-                btnLike.parentNode.replaceChild(btnLikeClone, btnLike)
-                btnDislike.parentNode.replaceChild(btnDislikeClone, btnDislike)
-            
-                //Remplazando listener con nuevo parametro.
-                btnLikeClone.addEventListener("click", ()=>{
-                
-                    db.collection("post").doc(change.doc.id).update({ likes: (Number(change.doc.data().likes)+1), liked: true})
-                
-                })
-                
-                //Reemplazando listener con nuevo parametro.
-                btnDislikeClone.addEventListener("click", ()=>{
-                    if(change.doc.data().likes != "0"){
-                        db.collection("post").doc(change.doc.id).update({ likes: (Number(change.doc.data().likes)-1), liked: false});
-                    }
-                })
-            
-                change.type = "add"
-            } 
+    let user = firebase.auth().currentUser;
+    if(user == null){
+        user =  firebase.auth().onAuthStateChanged;
+    }
+    db.collection("post").orderBy("date","desc").limit(10).onSnapshot((querySnapshot)=>{
+    const postWallContainer = document.getElementById("post-wall");
+    if(postWallContainer !=null){
+        postWallContainer.innerHTML = "";
+        querySnapshot.forEach((doc)=>{
+        renderPost(doc,db,postWallContainer,user)
         })
-    })
+    }
+})
 }
 
-
-//Crear Elementos de Post Inicial
-export const renderPost = (change,db) =>{
+//Crear Elementos de Post
+export const renderPost = (change,db,postWallContainer,user) =>{
+    
     
     const postDate = new Date(change.data().date);
 
@@ -221,23 +179,28 @@ export const renderPost = (change,db) =>{
 
     //Funcion boton like
     btnLike.addEventListener("click", ()=>{
-        db.collection("post").doc(change.id).update({ likes: (Number(change.data().likes)+1), liked: true})
+        let Key = "liked_"+user.uid
+        db.collection("post").doc(change.id).update({ 
+            likes: (Number(change.data().likes)+1), 
+            [Key]: true})
     })
 
     //Funcion boton dislike
     btnDislike.addEventListener("click", ()=>{
+        let Key = "liked_"+user.uid
         if(change.data().likes != "0"){
-            db.collection("post").doc(change.id).update({ likes: (Number(change.data().likes)-1), liked: false});
+            db.collection("post").doc(change.id).update({ 
+                likes: (Number(change.data().likes)-1), 
+                [Key]: false})
         }
     })
         
     // Unir todo a div contenedor post-wall    
-    const postWallContainer = document.getElementById("post-wall");
-        if(postWallContainer!=null){
+    if(postWallContainer!=null){
         postWallContainer.appendChild(divContainer);
     }
 
-    isLikeOrDislike(change)
+    isLikeOrDislike(change,user)
     userPostDeleteEdit(change)
 }
 
@@ -260,18 +223,63 @@ const userPostDeleteEdit = (change) =>{
 )}
 
 //Mostrar boton Like o Dislikes, dependiendo de su valor true o false
-const isLikeOrDislike = (change) =>{
+const isLikeOrDislike = (change,user) =>{
     const btnLike = document.getElementById("btn-like-"+change.id);
     const btnDislike = document.getElementById("btn-dislike-"+change.id);
-    if(btnLike == null || btnDislike == null){
-        return
-    }
-    if(change.data().liked){
-        btnLike.style.display= "none";
-        btnDislike.style.display= "inline";
-    }else{
-        btnDislike.style.display= "none";
-        btnLike.style.display= "inline";
-    }
+   
+            let Key = "liked_"+user.uid
+        if(btnLike == null || btnDislike == null){
+            return
+        }
+        if(change.data()[Key]){
+            btnLike.style.display= "none";
+            btnDislike.style.display= "inline";
+        }else{
+            btnDislike.style.display= "none";
+            btnLike.style.display= "inline";
+        }
+    
 }
 
+
+
+//Muestra los posts del usuario.
+export const realTimePost =  () =>{
+    let db = firebase.firestore();
+    let user = firebase.auth().currentUser;
+    db.collection("post").orderBy("date","desc").where("author", "==", user.uid).limit(10).onSnapshot((querySnapshot)=>{
+    const profilePost = document.getElementById("profile-post");
+    if(profilePost !=null){
+        profilePost.innerHTML = "";
+        querySnapshot.forEach((doc)=>{
+        renderPost(doc,db,profilePost,user)
+        })
+    }
+})
+}
+
+
+
+//Muestra los datos de usuario.
+export const renderProfile = () =>{
+   const db = firebase.firestore();
+   let user = firebase.auth().currentUser; 
+   db.collection("users").where("user_id", "==", user.uid).get().then(function(querySnapshot) {
+    querySnapshot.forEach((doc)=>{
+    renderDataProfile(doc)
+                           
+})
+
+})
+}
+
+
+//Inserta los datos del perfil en el html.
+const renderDataProfile = (doc) =>{
+    document.getElementById('profile-wall').innerHTML =
+    `<p class="profile-data">
+    Nombre: ${doc.data().name}<br>
+    Edad: ${doc.data().age}<br>
+    Procedencia: ${doc.data().location}<br>
+    Email: ${doc.data().email}</p`
+}
