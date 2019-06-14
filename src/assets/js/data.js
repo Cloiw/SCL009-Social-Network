@@ -214,7 +214,7 @@ const userPostDeleteEdit = (change) =>{
         }
         if(user.uid == change.data().author){
             btnDelete.style.display = "inline";
-            btnEdit.style.display = "inline";
+            btnEdit.style.display = "none";
         }else{
             btnDelete.style.display = "none";
             btnEdit.style.display = "none";
