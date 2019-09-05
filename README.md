@@ -242,7 +242,7 @@ Una vez reconocido el usuario, comienza el proceso creativo de prototipado crean
 
 Acá podemos revisar la página de inicio de nuestra aplicación, donde el usuario puede iniciar sesión o crear su cuenta. 
 
-![Foto1](src\assets\img\prototipo1.jpg)
+![Foto1](https://github.com/Cloiw/SCL009-Social-Network/blob/master/src/assets/img/prototipo1.jpg?raw=true)
 ![Foto2](src\assets\img\prototipo2.jpg)
 ![Foto3](src\assets\img\prototipo3.jpg)
 
