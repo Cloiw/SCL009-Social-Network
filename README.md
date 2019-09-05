@@ -1,5 +1,5 @@
 ***
-⭐️ Readme Social Network ⭐️
+ ## Readme Social Network ⭐️⭐️
 ***
 
 Para el proyecto de Red Social se creó una red pensada en los amantes del teatro a la que podrán acceder directamente en sus teléfonos móviles, llamada Sala Red de Teatro.
@@ -14,7 +14,7 @@ Esto facilitará las comunicaciones, contribuyendo con la creación de una comun
 ## Planificación 🚀
 ***
 La planificacion fue realizada en trello, la cual puedes revisar
-![Aqui](https://trello.com/b/4jUqLjcx/red-social-scl009-dramaturgos)
+[Aqui](https://trello.com/b/4jUqLjcx/red-social-scl009-dramaturgos)
 
 ***
 ## Usuarios 👪
@@ -242,9 +242,10 @@ Una vez reconocido el usuario, comienza el proceso creativo de prototipado crean
 
 Acá podemos revisar la página de inicio de nuestra aplicación, donde el usuario puede iniciar sesión o crear su cuenta. 
 
-![Prototipo inicial](img\prototipo1.jpg\prototipo2.jpg\prototipo3.jpg)
+![Foto1](src\assets\img\prototipo1.jpg)
+![Foto2](src\assets\img\prototipo2.jpg)
+![Foto3](src\assets\img\prototipo3.jpg)
 
- 
 ***
 ## Prototipo de Alta Fidelidad
 ***
@@ -329,10 +330,8 @@ Se realizó test para comprobar el funcionamiento de la aplicación, logrando lo
 La meta de la aplicación web es cear una comunidad para amantes del teatro, donde puedan interactuar con personajes y compartir eventos. Entre otras cosas. 
 
 La versión final esta disponible en versión demo en github:
-[Ver aqui](https://.github.io/SCL/src/index.html)
+[Ver aqui](https://cloiw.github.io/SCL009-Social-Network/src/index.html)
 
-Version demo en firebase:
-[Ver aqui](https://.github.io/SCL/src/index.html)
 
 ***
 ## Futuras mejoras ⌨️
