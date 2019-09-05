@@ -6,7 +6,7 @@ Para el proyecto de Red Social se creó una red pensada en los amantes del teatr
 
 ¿Qué es Sala Red de Teatro?
 
-Sala Red de Teatro nace como una aplicación pensanda en la necesidad de unir a las personas que de alguna manera tienen afficción por el teatro.
+Sala Red de Teatro nace como una aplicación pensada en la necesidad de unir a las personas que de alguna manera tienen afición por el teatro.
 
 Esto facilitará las comunicaciones, contribuyendo con la creación de una comunidad para amantes del teatro.
 
