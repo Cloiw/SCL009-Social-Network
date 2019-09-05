@@ -7,6 +7,7 @@
 
 body {
     background-color: #F5F5F5;
+    margin: 0 0 5px 0;
 }
 
 
@@ -16,8 +17,11 @@ body {
     align-items: center;
 }
 
+.container-col {
+    margin: 5px;
+}
+
 .center-col-likes{
-    
      align-items: stretch;
 }
 
@@ -114,6 +118,7 @@ margin-top: 5px;
     margin:20px;
 }
 .hr-home-top, .hr-home-bot {
+    margin: 5px;
     height: 3px;
     color: #BC0202;
     background-color: #BC0202;
